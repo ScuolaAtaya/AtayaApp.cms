@@ -40,7 +40,6 @@ import { D3ChartService } from "./core/nvD3/nvD3.service";
 import { nvD3 } from "./core/nvD3/nvD3.component";
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { DashboardOneComponent } from './dashboard/dashboard-v2/dashboard1.component';
 
 import { InboxComponent } from './inbox/inbox.component';
 import { MailService } from "./inbox/mail.service";
@@ -171,7 +170,6 @@ const sortablejsConfig: SortablejsOptions = {
 		GeneAppComponent,
 		MainComponent,
 		DashboardComponent,
-		DashboardOneComponent,
 		InboxComponent,
 		InboxComposeComponent,
 		ChatComponent,

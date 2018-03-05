@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainComponent }   from './main/main.component';
 import { DashboardComponent }  from './dashboard/dashboard.component';
-import { DashboardOneComponent }  from './dashboard/dashboard-v2/dashboard1.component';
 import { InboxComponent }  from './inbox/inbox.component';
 import { ChatComponent }  from './chat/chat.component';
 import { CalendarComponent}  from './calendar/calendar.component';
@@ -80,7 +79,6 @@ const appRoutes: Routes = [
 	 	component: MainComponent,
 	 	children: [
             { path: 'dashboard/dashboard-v1', component: DashboardComponent },
-            { path: 'dashboard/dashboard-v2', component: DashboardOneComponent },
             { path: 'file-manager', component: FileManagerComponent },
             { path: 'inbox', component: InboxComponent },
             { path: 'chat', component: ChatComponent },
