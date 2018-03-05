@@ -1,0 +1,10 @@
+.DS_STORE
+
+/dist/
+node_modules
+
+.vscode
+modules/.vscode
+
+# Ignore npm debug log
+npm-debug.log

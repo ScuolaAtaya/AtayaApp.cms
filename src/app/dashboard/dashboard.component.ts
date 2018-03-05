@@ -1,0 +1,27 @@
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { PageTitleService } from '../core/page-title/page-title.service';
+import { fadeInAnimation } from '../core/route-animation/route.animation';
+import { DashboardItems, Menu } from './dashboard-items';
+
+@Component({
+  selector: 'ms-dashboard',
+  templateUrl: './dashboard-component.html',
+  styleUrls: ['./dashboard-component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    "[@fadeInAnimation]": 'true'
+  },
+  animations: [fadeInAnimation]
+})
+export class DashboardComponent implements OnInit {
+
+  public dashboardItems: Menu[];
+
+  constructor(private pageTitleService: PageTitleService, dashboardItems: DashboardItems) {
+    this.dashboardItems = dashboardItems.getAll();
+  }
+  ngOnInit() {
+    this.pageTitleService.setTitle("Home");
+  }
+
+}

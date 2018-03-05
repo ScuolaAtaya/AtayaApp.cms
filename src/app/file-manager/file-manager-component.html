@@ -1,0 +1,16 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+    <div fxFlex.gt-md="100" fxFlex.gt-sm="100" fxFlex="100">
+        <md-card>
+            <div class="gene-card-title">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxLayout="column">
+                        <h4>File Manager</h4>
+                    </div> <span fxFlex></span> </div>
+                <md-divider></md-divider>
+            </div>
+            <div class="gene-card-content">
+                <tree #treeFFS [tree]="ffs"></tree>
+            </div>
+        </md-card>
+    </div>
+</div>

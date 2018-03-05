@@ -1,0 +1,46 @@
+
+<div fxLayout="row" fxLayoutWrap="wrap">
+    <div fxFlex.gt-sm="50" fxFlex="100">
+
+  <md-card>
+            <div class="gene-card-title">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxLayout="column">
+                        <h4>Date Picker</h4>
+                    </div> <span fxFlex></span>
+              
+                </div>
+                <md-divider></md-divider>
+            </div>
+        <div class="gene-card-content custom-height">
+        <md-input-container>
+          <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+          <button mdSuffix [mdDatepickerToggle]="picker"></button>
+        </md-input-container>
+        <md-datepicker #picker></md-datepicker>
+      </div>
+</md-card>
+</div>
+ <div fxFlex.gt-sm="50" fxFlex="100">
+  <md-card>
+            <div class="gene-card-title">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxLayout="column">
+                        <h4>Date Picker</h4>
+                    </div> <span fxFlex></span>
+              
+                </div>
+                <md-divider></md-divider>
+            </div>
+        <div class="gene-card-content custom-height">
+        <md-input-container>
+          <input mdInput [mdDatepicker]="picker2" placeholder="Choose a date">
+          <button mdSuffix [mdDatepickerToggle]="picker2"></button>
+        </md-input-container>
+        <md-datepicker #picker2></md-datepicker>
+      </div>
+</md-card>
+</div>
+</div>
+
+

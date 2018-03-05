@@ -1,0 +1,39 @@
+<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start">
+  <div  fxFlex="100" class="gene-sorted-drag-drop">
+    <md-card class="mat-green">
+      <div class="gene-card-title">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <div fxLayout="column">
+            <h2>Scriviamo </h2>
+          </div>
+          <span fxFlex></span>
+        </div>
+        <md-divider></md-divider>
+      </div>
+      <md-list [sortablejs]="list1" [sortablejsOptions]="simpleOptions" class="no-gutter">
+        <md-list-item class="draggable" *ngFor="let list of list1">
+          <div>
+            <md-icon>more_vert</md-icon>
+          </div>
+          <div>
+            <img md-list-avatar [src]="list.image" alt="...">
+          </div>
+          <div class="pad-wrap">
+            <span md-line class="gene-text-lg"> {{ list.title }} </span>
+            <!--<p md-line>
+              <span> {{ list.subject }} </span>
+              <span> -- {{ list.content }} </span>
+            </p>
+            <p md-line class="gene-text-md font-bold">5 min ago</p>-->
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-card>
+  </div>
+</div>
+<!-- class="box-inset pad-all-md mrgn-b-md"-->
+<div>
+  <button class="mrgn-all-xs" md-fab style="float: right" routerLink="exercise">
+    <md-icon>add</md-icon>
+  </button>
+</div>
