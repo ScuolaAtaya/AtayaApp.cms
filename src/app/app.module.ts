@@ -116,6 +116,12 @@ import { UnderstandComponent } from './work/understand/understand.component';
 import { FormWriteComponent } from './work/write/form-write/form-write.component';
 import { DashboardItems } from './dashboard/dashboard-items';
 import { FormTalkComponent } from './work/talk/form-talk/form-talk.component';
+import { WriteModule } from './work/write/write.module';
+import { ReadModule } from './work/read/read.module';
+import { UnderstandModule } from './work/understand/understand.module';
+import { TalkModule } from './work/talk/talk.module';
+import { WorkModule } from './work/work.module';
+
 
 
 
@@ -165,6 +171,7 @@ const sortablejsConfig: SortablejsOptions = {
 			useFactory: (createTranslateLoader),
 			deps: [Http]
 		}),
+		WorkModule
 	],
 	declarations: [
 		GeneAppComponent,
@@ -227,13 +234,7 @@ const sortablejsConfig: SortablejsOptions = {
 		PieChartComponent,
 		StackedAreaChartComponent,
 		nvD3,
-		FileManagerComponent,
-		ReadComponent,
-		TalkComponent,
-		UnderstandComponent,
-		WriteComponent,
-		FormWriteComponent,
-		FormTalkComponent
+		FileManagerComponent
 	],
 	entryComponents: [
 		DemoDialog,

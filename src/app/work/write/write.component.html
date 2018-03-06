@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start">
   <div  fxFlex="100" class="gene-sorted-drag-drop">
-    <md-card class="mat-green">
+    <md-card class="mat-accoglienza">
       <div class="gene-card-title">
         <div fxLayout="row" fxLayoutAlign="start center">
           <div fxLayout="column">
@@ -10,21 +10,16 @@
         </div>
         <md-divider></md-divider>
       </div>
-      <md-list [sortablejs]="list1" [sortablejsOptions]="simpleOptions" class="no-gutter">
-        <md-list-item class="draggable" *ngFor="let list of list1">
+      <md-list [sortablejs]="writeList" [sortablejsOptions]="simpleOptions" class="no-gutter">
+        <md-list-item class="draggable" *ngFor="let item of writeList">
           <div>
             <md-icon>more_vert</md-icon>
           </div>
           <div>
-            <img md-list-avatar [src]="list.image" alt="...">
+            <img md-list-avatar [src]="item.image" alt="...">
           </div>
           <div class="pad-wrap">
-            <span md-line class="gene-text-lg"> {{ list.title }} </span>
-            <!--<p md-line>
-              <span> {{ list.subject }} </span>
-              <span> -- {{ list.content }} </span>
-            </p>
-            <p md-line class="gene-text-md font-bold">5 min ago</p>-->
+            <span md-line class="gene-text-lg"> {{ item.title }} </span>
           </div>
         </md-list-item>
       </md-list>

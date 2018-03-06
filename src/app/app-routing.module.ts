@@ -58,8 +58,12 @@ import { FileManagerComponent }  from './file-manager/file-manager.component';
 import { WriteComponent } from './work/write/write.component';
 import { FormWriteComponent } from './work/write/form-write/form-write.component';
 import { ReadComponent } from './work/read/read.component';
+import { FormReadComponent } from './work/read/form-read/form-read.component';
 import { TalkComponent } from './work/talk/talk.component';
+import { FormTalkComponent } from './work/talk/form-talk/form-talk.component';
 import { UnderstandComponent } from './work/understand/understand.component';
+import { FormUnderstandComponent } from './work/understand/form-understand/form-understand.component';
+
 
 const appRoutes: Routes = [
 	{	
@@ -131,8 +135,11 @@ const appRoutes: Routes = [
 			{ path: ':section/write', component: WriteComponent },
 			{ path: ':section/write/exercise', component: FormWriteComponent },
 			{ path: ':section/read', component: ReadComponent },
+			{ path: ':section/read/exercise', component: FormReadComponent },
 			{ path: ':section/understand', component: UnderstandComponent },
-			{ path: ':section/talk', component: TalkComponent }
+			{ path: ':section/understand/exercise', component: FormUnderstandComponent },
+			{ path: ':section/talk', component: TalkComponent },
+			{ path: ':section/talk/exercise', component: FormTalkComponent },
 	 	]
   	}
 ];

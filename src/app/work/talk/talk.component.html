@@ -1,1 +1,34 @@
-<ms-form-talk></ms-form-talk>
+<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start">
+  <div  fxFlex="100" class="gene-sorted-drag-drop">
+    <md-card class="mat-accoglienza">
+      <div class="gene-card-title">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <div fxLayout="column">
+            <h2>Parliamo </h2>
+          </div>
+          <span fxFlex></span>
+        </div>
+        <md-divider></md-divider>
+      </div>
+      <md-list [sortablejs]="talkList" [sortablejsOptions]="simpleOptions" class="no-gutter">
+        <md-list-item class="draggable" *ngFor="let item of talkList">
+          <div>
+            <md-icon>more_vert</md-icon>
+          </div>
+          <div>
+            <img md-list-avatar [src]="item.image" alt="...">
+          </div>
+          <div class="pad-wrap">
+            <span md-line class="gene-text-lg"> {{ item.title }} </span>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-card>
+  </div>
+</div>
+<!-- class="box-inset pad-all-md mrgn-b-md"-->
+<div>
+  <button class="mrgn-all-xs" md-fab style="float: right" routerLink="exercise">
+    <md-icon>add</md-icon>
+  </button>
+</div>

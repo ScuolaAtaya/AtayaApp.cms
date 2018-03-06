@@ -1,23 +1,24 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PageTitleService } from '../../core/page-title/page-title.service';
-import {SortablejsOptions} from "angular-sortablejs";
-import {fadeInAnimation} from "../../core/route-animation/route.animation";
+import { SortablejsOptions } from "angular-sortablejs";
+import { fadeInAnimation } from "../../core/route-animation/route.animation";
 import { FormWriteComponent } from './form-write/form-write.component'
+import { WriteService } from './write.service';
+import { Write } from './write';
 
 @Component({
-  selector: 'ms-write',
-  templateUrl: './write.component.html',
-  styleUrls: ['./write.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  host: {
-      "[@fadeInAnimation]": 'true'
-  },
-  animations: [ fadeInAnimation ]
+	selector: 'ms-write',
+	templateUrl: './write.component.html',
+	styleUrls: ['./write.component.scss'],
+	encapsulation: ViewEncapsulation.None,
+	host: {
+		"[@fadeInAnimation]": 'true'
+	},
+	animations: [fadeInAnimation]
 })
 export class WriteComponent implements OnInit {
 
-  list1: any[];
-	list2: any[];
+	writeList: Write[];
 	numbers: any[];
 	groupOptions: SortablejsOptions = {
 		group: 'testGroup',
@@ -29,33 +30,17 @@ export class WriteComponent implements OnInit {
 		animation: 300
 	};
 
-	constructor(private pageTitleService: PageTitleService) {}
+	constructor(private writeService: WriteService, private pageTitleService: PageTitleService) { }
 
-  ngOnInit() {
+	ngOnInit() {
 
-    this.pageTitleService.setTitle("Scriviamo");
+		this.pageTitleService.setTitle("Scriviamo");
 
-		this.list1 = [
-		{
-			image: 'assets/img/user-1.jpg',
-			title: 'Exercise title 1'
-		},
-		{
-			image: 'assets/img/user-2.jpg',
-			title: 'Exercise title 2'
-		},
-		{
-			image: 'assets/img/user-3.jpg',
-			title: 'Exercise title 3'
-		},
-		{
-			image: 'assets/img/user-4.jpg',
-			title: 'Exercise title 4'
-		},
-		{
-			image: 'assets/img/user-1.jpg',
-			title: 'Exercise title 5'
-		}];
-  }
+		this.writeService.getAll().subscribe(
+			res => this.writeList = res,
+			err => { console.log('Error occured : ' + err) }
+		  );
+	
+	}
 
 }
