@@ -37,6 +37,11 @@ export abstract class WorkService {
             .map(res => res);
     }
 
+    delete(id: string) {
+        return this.http.delete(this.createUrl(this.baseUrl, this.target, id), {})
+            .map(res => res)
+    }
+
     protected handleErrorObservable(error: Response | any) {
         console.error(error.message || error);
         return Observable.throw(error.message || error);
