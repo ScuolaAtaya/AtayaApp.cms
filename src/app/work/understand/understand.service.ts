@@ -10,15 +10,14 @@ import { Work } from '../work';
 @Injectable()
 export class UnderstandService extends WorkService {
 
-    private target = 'understand/';  // URL to web api
-
     constructor(http: HttpClient) {
         super();
         this.http = http;
+        this.target = 'understand';
     }
 
     public getList<T extends Work>(sectionId: number): Observable<T[]> {
-        return this.getAllBySection(this.target, sectionId);
+        return this.getAllBySection(sectionId);
     }
 
 }

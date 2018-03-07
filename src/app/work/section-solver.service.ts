@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 
 const section = [
-  { id: 0, name: 'accoglienza' },
-  { id: 1, name: 'il-lavoro' },
-  { id: 2, name: 'il-cibo' },
-  { id: 3, name: 'pronto' },
-  { id: 4, name: 'come-sei-come-stai' },
-  { id: 5, name: 'la-salute' },
-  { id: 6, name: 'la-citta' },
-  { id: 7, name: 'mezzi-di-trasporto' },
-  { id: 8, name: 'la-cura-della-casa' },
-  { id: 9, name: 'il-viaggio' }
+  { id: 0, name: 'accoglienza', background: '#40ACCC' },
+  { id: 1, name: 'il-lavoro', background: '#40ACCC' },
+  { id: 2, name: 'il-cibo',background: '#40ACCC' },
+  { id: 3, name: 'pronto', background: '#40ACCC' },
+  { id: 4, name: 'come-sei-come-stai', background: '#40ACCC' },
+  { id: 5, name: 'la-salute', background: '#40ACCC' },
+  { id: 6, name: 'la-citta', background: '#40ACCC' },
+  { id: 7, name: 'mezzi-di-trasporto', background: '#40ACCC' },
+  { id: 8, name: 'la-cura-della-casa', background: '#40ACCC' },
+  { id: 9, name: 'il-viaggio', background: '#40ACCC' }
 ]
 
 export class Section {

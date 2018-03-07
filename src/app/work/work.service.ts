@@ -10,29 +10,30 @@ export abstract class WorkService {
     private baseUrl = environment.baseUrl;
 
     protected http: HttpClient;
+    protected target: string;
 
-    protected getAll<T extends Work>(target: string): Observable<T[]> {
-        return this.http.get(this.createUrl(this.baseUrl, target))
+    protected getAll<T extends Work>(): Observable<T[]> {
+        return this.http.get(this.createUrl(this.baseUrl, this.target))
             .map(response => response as T[]);
     }
 
-    getOne<T extends Work>(target: string, id: string): Observable<T> {
-        return this.http.get(this.createUrl(this.baseUrl, target, id))
+    getOne<T extends Work>(id: string): Observable<T> {
+        return this.http.get(this.createUrl(this.baseUrl, this.target, id))
             .map(response => response as T);
     }
 
-    protected getAllBySection<T extends Work>(target: string, section: number): Observable<T[]> {
-        return this.http.get(this.createUrl(this.baseUrl, target, 'unit_id', String(section)))
+    protected getAllBySection<T extends Work>(section: number): Observable<T[]> {
+        return this.http.get(this.createUrl(this.baseUrl, this.target, 'unit_id', String(section)))
             .map(response => response as T[]);
     }
 
-    update<T extends Work>(target, work: T) {
-        return this.http.put(this.createUrl(this.baseUrl, target), JSON.stringify(event), {})
+    update<T extends Work>(work: T) {
+        return this.http.put(this.createUrl(this.baseUrl, this.target), JSON.stringify(event), {})
             .map(res => res);
     }
 
-    create<T extends Work>(target: string, work: T) {
-        return this.http.post(this.createUrl(this.baseUrl, target), JSON.stringify(event), {})
+    create<T extends Work>(work: T) {
+        return this.http.post(this.createUrl(this.baseUrl, this.target), JSON.stringify(event), {})
             .map(res => res);
     }
 

@@ -8,17 +8,16 @@ import { WorkService } from '../work.service';
 import { Work } from '../work';
 
 @Injectable()
-export class WriteService extends WorkService{
-
-    private target = 'write/';  // URL to web api
+export class WriteService extends WorkService {
 
     constructor(http: HttpClient) {
         super();
         this.http = http;
-     }
+        this.target = 'write';
+    }
 
-     public getList<T extends Work>(sectionId: number): Observable<T[]> {
-        return this.getAllBySection(this.target, sectionId ); 
+    public getList<T extends Work>(sectionId: number): Observable<T[]> {
+        return this.getAllBySection(sectionId);
     }
 
 }
