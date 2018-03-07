@@ -28,12 +28,12 @@ export abstract class WorkService {
     }
 
     update<T extends Work>(work: T) {
-        return this.http.put(this.createUrl(this.baseUrl, this.target), JSON.stringify(event), {})
+        return this.http.put(this.createUrl(this.baseUrl, this.target), JSON.stringify(work), {})
             .map(res => res);
     }
 
     create<T extends Work>(work: T) {
-        return this.http.post(this.createUrl(this.baseUrl, this.target), JSON.stringify(event), {})
+        return this.http.post(this.createUrl(this.baseUrl, this.target), JSON.stringify(work), {})
             .map(res => res);
     }
 
