@@ -5,6 +5,8 @@ import { fadeInAnimation } from "../../core/route-animation/route.animation";
 import { FormTalkComponent } from './form-talk/form-talk.component'
 import { TalkService } from './talk.service';
 import { Talk } from './talk';
+import { ActivatedRoute } from '@angular/router';
+import { SectionSolverService, Section } from '../section-solver.service';
 
 @Component({
 	selector: 'ms-talk',
@@ -30,17 +32,25 @@ export class TalkComponent implements OnInit {
 		animation: 300
 	};
 
-	constructor(private talkService: TalkService, private pageTitleService: PageTitleService) { }
+	private section: Section;
+
+	constructor(private talkService: TalkService,
+		private pageTitleService: PageTitleService,
+		private route: ActivatedRoute,
+		private sectionService: SectionSolverService) { }
 
 	ngOnInit() {
+		this.route.params.subscribe(params => {
+			this.section = this.sectionService.retrieveSection(params);
+			this.pageTitleService.setTitle("Parliamo");
 
-		this.pageTitleService.setTitle("Scriviamo");
+			this.talkService.getList(this.section.id)
+				.subscribe(
+					res => this.talkList = res as Talk[],
+					err => console.log('Error occured : ' + err)
+				);
+		});
 
-		this.talkService.getAll().subscribe(
-			res => this.talkList = res,
-			err => console.log('Error occured : ' + err)
-		);
-	
 	}
 
 }

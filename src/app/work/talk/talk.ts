@@ -1,7 +1,7 @@
-export class Talk {
+import { Work } from "../work";
+
+export class Talk extends Work{
     
-    unit_id: number;
-    title: string;
     picture: string;
     audio: string;
 

@@ -1,9 +1,9 @@
-export class Write {
+import { Work } from "../work";
+
+export class Write  extends Work{
 
     letters: string[];
     picture: string;
-    title: string;
-    unit_id: number;
     word: string;
 
 }

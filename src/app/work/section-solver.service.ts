@@ -33,7 +33,7 @@ export class SectionSolverService {
   }
 
   public retrieveSection(params : Params) {
-    return params['section'];
+    return this.getByName(params['section']);
   }
 
 }

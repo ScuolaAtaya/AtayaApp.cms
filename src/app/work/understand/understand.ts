@@ -1,9 +1,9 @@
-export class Understand {
+import { Work } from "../work";
+
+export class Understand extends Work {
 
     letters: string[];
     picture: string;
-    title: string;
-    unit_id: number;
     word: string;
 
 }

@@ -4,47 +4,21 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment'
 import { Understand } from './understand';
-
-const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { WorkService } from '../work.service';
+import { Work } from '../work';
 
 @Injectable()
-export class UnderstandService {
+export class UnderstandService extends WorkService {
 
-    private url = 'understand/';  // URL to web api
+    private target = 'understand/';  // URL to web api
 
-    constructor(private http: HttpClient) { }
-
-    getAll(): Observable<Understand[]> {
-        console.debug(this.url);
-        return this.http.get(environment.baseUrl + this.url)
-            .map(response => {
-                console.debug(response);
-                return response as Understand[];
-            });
+    constructor(http: HttpClient) {
+        super();
+        this.http = http;
     }
 
-    getOne(id: String): Observable<Understand> {
-        return this.http.get(this.url + id)
-            .map(response => response as Understand);
-    }
-
-    update(understand: Understand) {
-        const headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.put(this.url , JSON.stringify(event), {})
-            .map(res => res);
-    }
-
-    create(understand: Understand) {
-        const headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(this.url , JSON.stringify(event), {})
-            .map(res => res);
-    }
-
-    private handleErrorObservable(error: Response | any) {
-        console.error(error.message || error);
-        return Observable.throw(error.message || error);
+    public getList<T extends Work>(sectionId: number): Observable<T[]> {
+        return this.getAllBySection(this.target, sectionId);
     }
 
 }

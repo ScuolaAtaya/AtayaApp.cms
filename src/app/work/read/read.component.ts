@@ -44,10 +44,10 @@ export class ReadComponent implements OnInit {
 			this.section = this.sectionService.retrieveSection(params);
 		});
 
-		this.pageTitleService.setTitle("Scriviamo");
+		this.pageTitleService.setTitle("Leggiamo");
 
-		this.readService.getAll().subscribe(
-			res => this.readList = res,
+		this.readService.getList(this.section.id).subscribe(
+			res => this.readList = res as Read[],
 			err => console.log('Error occured : ' + err)
 		);
 

@@ -5,6 +5,8 @@ import { fadeInAnimation } from "../../core/route-animation/route.animation";
 import { FormUnderstandComponent } from './form-understand/form-understand.component'
 import { UnderstandService } from './understand.service';
 import { Understand } from './understand';
+import { ActivatedRoute } from '@angular/router';
+import { SectionSolverService, Section } from '../section-solver.service';
 
 @Component({
 	selector: 'ms-understand',
@@ -30,17 +32,25 @@ export class UnderstandComponent implements OnInit {
 		animation: 300
 	};
 
-	constructor(private understandService: UnderstandService, private pageTitleService: PageTitleService) { }
+	private section: Section;
+
+	constructor(private understandService: UnderstandService,
+		private pageTitleService: PageTitleService,
+		private route: ActivatedRoute,
+		private sectionService: SectionSolverService) { }
 
 	ngOnInit() {
+		this.route.params.subscribe(params => {
+			this.section = this.sectionService.retrieveSection(params);
+			this.pageTitleService.setTitle("Capiamo");
 
-		this.pageTitleService.setTitle("Scriviamo");
+			this.understandService.getList(this.section.id)
+				.subscribe(
+					res => this.understandList = res as Understand[],
+					err => console.log('Error occured : ' + err)
+				);
+		});
 
-		this.understandService.getAll().subscribe(
-			res => this.understandList = res,
-			err => console.log('Error occured : ' + err)
-		  );
-	
 	}
 
 }
