@@ -110,32 +110,6 @@
         .mat-input-container {
             font-size: 0.875rem;
         }
-        //Breadcrumbs
-        .gene-breadcrumbs {
-              font-size: $breadcrumb-font-size;
-              color: $breadcrumb-font-color;
-              margin-left: 2rem;
-              margin-right: 2rem;
-              .breadcrumb {
-              padding:0;
-                  li {
-                      display: inline-block;
-                      margin-left: 0.2rem;
-                      margin-right: 0.2rem;
-                      &:first-child {
-                          margin: 0;
-                          &:before {
-                              content: none;
-                          }
-                         
-                      }
-                       &:before {
-                              content: '/';
-                              display: inline-block;
-                          }
-                  }
-              }
-          }
         .mat-raised-button.mat-primary,
         .mat-fab.mat-primary,
         .mat-mini-fab.mat-primary {
@@ -195,9 +169,6 @@
     .app-dark {
         .mat-sidenav-content {
             background: rgba(54, 54, 54, 1);
-        }
-        .gene-breadcrumbs {
-            color: mat-color($dark-foreground, base);
         }
         .sidebar-area.mat-sidenav {
             background: mat-color($dark-background, card);
@@ -273,9 +244,6 @@
     }
     
     @media(max-width:991px) {
-        .gene-breadcrumbs {
-            display: none;
-        }
         .gene-header-toolbar {
             .search-bar,
             .mat-icon-button {

@@ -24,7 +24,6 @@ import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-tra
 import { CKEditorModule } from 'ng2-ckeditor';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { MdNativeDateModule } from '@angular/material';
-import { Ng2BreadcrumbModule, BreadcrumbService } from 'ng2-breadcrumb/ng2-breadcrumb';
 import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
 import { TreeModule as NgTreeModule } from 'ng2-tree';
 import { TreeModule } from 'angular-tree-component';
@@ -150,7 +149,6 @@ const sortablejsConfig: SortablejsOptions = {
 		FlexLayoutModule,
 		NgbModalModule.forRoot(),
 		CalendarModule.forRoot(),
-		Ng2BreadcrumbModule.forRoot(),
 		AgmCoreModule.forRoot({ apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk' }),
 		QuillModule,
 		CKEditorModule,
@@ -247,7 +245,6 @@ const sortablejsConfig: SortablejsOptions = {
 		MailService,
 		D3ChartService,
 		MenuItems,
-		BreadcrumbService,
 		PageTitleService,
 		DashboardItems
 	]

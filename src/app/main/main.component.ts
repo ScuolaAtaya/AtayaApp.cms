@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, HostListener, ViewEncapsulation, AnimationTransitionEvent }      from '@angular/core';
 import { MenuItems } from '../core/menu/menu-items/menu-items';
-import { BreadcrumbService} from 'ng2-breadcrumb/ng2-breadcrumb';
 import { PageTitleService } from '../core/page-title/page-title.service';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Router, NavigationEnd } from '@angular/router';
