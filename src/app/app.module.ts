@@ -121,6 +121,7 @@ import { ReadModule } from './work/read/read.module';
 import { UnderstandModule } from './work/understand/understand.module';
 import { TalkModule } from './work/talk/talk.module';
 import { WorkModule } from './work/work.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 
 
@@ -171,7 +172,8 @@ const sortablejsConfig: SortablejsOptions = {
 			useFactory: (createTranslateLoader),
 			deps: [Http]
 		}),
-		WorkModule
+		WorkModule,
+		AuthenticationModule
 	],
 	declarations: [
 		GeneAppComponent,

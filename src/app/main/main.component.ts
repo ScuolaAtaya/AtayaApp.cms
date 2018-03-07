@@ -42,75 +42,9 @@ export class MainComponent implements OnInit, OnDestroy{
     
     @ViewChild('sidenav') sidenav;
 
-	constructor( public menuItems: MenuItems, private breadcrumbService: BreadcrumbService, private pageTitleService: PageTitleService, public translate: TranslateService, private router: Router, private media: ObservableMedia, private deviceService: Ng2DeviceService) {
+	constructor( public menuItems: MenuItems, private pageTitleService: PageTitleService, public translate: TranslateService, private router: Router, private media: ObservableMedia, private deviceService: Ng2DeviceService) {
         const browserLang: string = translate.getBrowserLang();
         translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
-
-
-
-        breadcrumbService.addFriendlyNameForRoute('/dashboard', 'Dashboard');
-        breadcrumbService.addFriendlyNameForRoute('/dashboard/dashboard-v1', 'Dashboard V1');
-        breadcrumbService.addFriendlyNameForRoute('/dashboard/dashboard-v2', 'Dashboard V2');
-        breadcrumbService.addFriendlyNameForRoute('/file-manager', 'File Manager');
-        breadcrumbService.addFriendlyNameForRoute('/inbox', 'Apps / Inbox');
-        breadcrumbService.addFriendlyNameForRoute('/chat', 'Apps / Chat');
-        breadcrumbService.addFriendlyNameForRoute('/calendar', 'Apps / Calendar');
-        breadcrumbService.addFriendlyNameForRoute('/editor', 'Editor');
-        breadcrumbService.addFriendlyNameForRoute('/editor/wysiwyg', 'Wysiwyg');
-        breadcrumbService.addFriendlyNameForRoute('/editor/ckeditor', 'Ckeditor');
-        breadcrumbService.addFriendlyNameForRoute('/icons', 'Material Icons');
-        breadcrumbService.addFriendlyNameForRoute('/components', 'Components');
-        breadcrumbService.addFriendlyNameForRoute('/components/buttons', 'Buttons');
-        breadcrumbService.addFriendlyNameForRoute('/components/cards', 'Cards');
-        breadcrumbService.addFriendlyNameForRoute('/components/grid', 'Grid');
-        breadcrumbService.addFriendlyNameForRoute('/components/list', 'List');
-        breadcrumbService.addFriendlyNameForRoute('/components/menu', 'Menu');
-        breadcrumbService.addFriendlyNameForRoute('/components/slider', 'Slider');
-        breadcrumbService.addFriendlyNameForRoute('/components/snackbar', 'Snackbar');
-        breadcrumbService.addFriendlyNameForRoute('/components/dialog', 'Dialog');
-        breadcrumbService.addFriendlyNameForRoute('/components/select', 'Select');
-        breadcrumbService.addFriendlyNameForRoute('/components/input', 'Input');
-        breadcrumbService.addFriendlyNameForRoute('/components/colorpicker', 'Colorpicker');
-        breadcrumbService.addFriendlyNameForRoute('/checkbox', 'Checkbox');
-        breadcrumbService.addFriendlyNameForRoute('/components/radio', 'Radio');
-        breadcrumbService.addFriendlyNameForRoute('/components/toolbar', 'Toolbar');
-        breadcrumbService.addFriendlyNameForRoute('/components/progress', 'Progress');
-        breadcrumbService.addFriendlyNameForRoute('/components/tabs', 'Tabs');
-        breadcrumbService.addFriendlyNameForRoute('/dragndrop', 'Drag and Drop');
-        breadcrumbService.addFriendlyNameForRoute('/dragndrop/dragula', 'Dragula');
-        breadcrumbService.addFriendlyNameForRoute('/dragndrop/sortable', 'SortableJS');
-        breadcrumbService.addFriendlyNameForRoute('/chart', 'Charts');
-        breadcrumbService.addFriendlyNameForRoute('/chart/ng2-charts', 'NG2 Charts');
-        breadcrumbService.addFriendlyNameForRoute('/chart/easy-pie-chart', 'Easy Pie');
-        breadcrumbService.addFriendlyNameForRoute('/tables', 'Table');
-        breadcrumbService.addFriendlyNameForRoute('/tables/fullscreen', 'Full Screen');
-        breadcrumbService.addFriendlyNameForRoute('/tables/selection', 'Selection');
-        breadcrumbService.addFriendlyNameForRoute('/tables/pinning', 'Pinning');
-        breadcrumbService.addFriendlyNameForRoute('/tables/sorting', 'Sorting');
-        breadcrumbService.addFriendlyNameForRoute('/tables/Paging', 'Paging');
-        breadcrumbService.addFriendlyNameForRoute('/tables/editing', 'Editing');
-        breadcrumbService.addFriendlyNameForRoute('/tables/filter', 'Filter');
-        breadcrumbService.addFriendlyNameForRoute('/tables/responsive', 'Responsive');
-        breadcrumbService.addFriendlyNameForRoute('/forms', 'Forms');
-        breadcrumbService.addFriendlyNameForRoute('/forms/form-wizard', 'Form Wizard');
-        breadcrumbService.addFriendlyNameForRoute('/forms/form-validation', 'Form Validation');
-        breadcrumbService.addFriendlyNameForRoute('/forms/form-upload', 'Form Upload');
-        breadcrumbService.addFriendlyNameForRoute('/forms/form-tree', 'Tree');
-        breadcrumbService.addFriendlyNameForRoute('/maps', 'Maps');
-        breadcrumbService.addFriendlyNameForRoute('/maps/googlemap', 'Google Map');
-        breadcrumbService.addFriendlyNameForRoute('/maps/leaflet', 'Leaflet Map');
-        breadcrumbService.addFriendlyNameForRoute('/pages', 'Pages');
-        breadcrumbService.addFriendlyNameForRoute('/pages/media', 'Gallery');
-        breadcrumbService.addFriendlyNameForRoute('/pages/pricing', 'Pricing');
-        breadcrumbService.addFriendlyNameForRoute('/pages/blank', 'Blank');
-        breadcrumbService.addFriendlyNameForRoute('/users', 'Users');
-        breadcrumbService.addFriendlyNameForRoute('/users/userprofile', 'User Profile');
-        breadcrumbService.addFriendlyNameForRoute('/users/userlist', 'User List');
-        breadcrumbService.addFriendlyNameForRoute('/session', 'Session');
-        breadcrumbService.addFriendlyNameForRoute('/session/login', 'Login');
-        breadcrumbService.addFriendlyNameForRoute('/session/register', 'Register');
-        breadcrumbService.addFriendlyNameForRoute('/session/forgot-password', 'Forgot');
-        breadcrumbService.addFriendlyNameForRoute('/session/lockscreen', 'Lock Screen');
     }
 
     ngOnInit() {
