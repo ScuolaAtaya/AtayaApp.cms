@@ -87,9 +87,9 @@ const appRoutes: Routes = [
 			{ path: ':section/understand/exercise', component: FormUnderstandComponent },
 			{ path: ':section/talk', component: TalkComponent },
 			{ path: ':section/talk/exercise', component: FormTalkComponent },
-		]
-	}
-
+			{ path: ':section/talk/exercise/:id', component: FormTalkComponent },
+	 	]
+  	}
 ];
 
 @NgModule({

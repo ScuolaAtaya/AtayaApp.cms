@@ -13,7 +13,14 @@
       <md-list [sortablejs]="talkList" [sortablejsOptions]="simpleOptions" class="no-gutter">
         <md-list-item class="draggable" *ngFor="let item of talkList">
           <div>
-            <md-icon>more_vert</md-icon>
+                <button md-icon-button [md-menu-trigger-for]="menu" aria-label="Open basic menu">
+	   	<md-icon>more_vert</md-icon>
+	   </button>
+            <md-menu #menu="mdMenu">
+                <button md-menu-item *ngFor="let menutItem of items" (click)="menuAction(item, menutItem)">
+	      {{ menutItem.text }}
+     </button>
+            </md-menu>
           </div>
           <div>
             <img md-list-avatar [src]="item.image" alt="...">

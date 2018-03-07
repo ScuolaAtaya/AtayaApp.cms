@@ -121,10 +121,8 @@ import { ReadModule } from './work/read/read.module';
 import { UnderstandModule } from './work/understand/understand.module';
 import { TalkModule } from './work/talk/talk.module';
 import { WorkModule } from './work/work.module';
+import { TalkDialog } from './work/talk/talk.component';
 import { AuthenticationModule } from './authentication/authentication.module';
-
-
-
 
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -236,11 +234,13 @@ const sortablejsConfig: SortablejsOptions = {
 		PieChartComponent,
 		StackedAreaChartComponent,
 		nvD3,
-		FileManagerComponent
+		FileManagerComponent,
+		TalkDialog
 	],
 	entryComponents: [
 		DemoDialog,
 		InboxComposeComponent,
+		TalkDialog
 	],
 	bootstrap: [GeneAppComponent],
 	providers: [
