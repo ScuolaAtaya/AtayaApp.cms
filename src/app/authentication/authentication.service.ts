@@ -8,13 +8,19 @@ import { environment } from '../../environments/environment'
 const headers = new Headers({ 'Content-Type': 'application/json' });
 const options = new RequestOptions({ headers: headers });
 
+export class User {
+  name: string;
+  token: string;
+
+  constructor(name: string, token: string) {
+  }
+}
+
 @Injectable()
 export class AuthenticationService {
-  public token: string;
 
   constructor(private http: Http) {
-    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token = currentUser && currentUser.token;
+    var user = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   login(username: string, password: string): Observable<boolean> {
@@ -22,8 +28,7 @@ export class AuthenticationService {
       .map((response: Response) => {
         let token = response.json() && response.json().authToken;
         if (token) {
-          this.token = token;
-          localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
+          localStorage.setItem('currentUser', JSON.stringify({ name: username, token: token }));
           return true;
         } else {
           return false;
@@ -32,7 +37,10 @@ export class AuthenticationService {
   }
 
   logout(): void {
-    this.token = null;
     localStorage.removeItem('currentUser');
+  }
+
+  getUser(): User {
+    return JSON.parse(localStorage.getItem('currentUser'));
   }
 }
