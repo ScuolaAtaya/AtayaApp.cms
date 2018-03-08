@@ -10,6 +10,7 @@ import {ActivatedRoute} from "@angular/router"
 import { Section, SectionSolverService } from '../../section-solver.service'
 import { Router } from '@angular/router'
 import { environment } from 'environments/environment';
+import { AuthenticationService } from './../../../authentication/authentication.service';
 
 enum dropSender {
   none = 0,
@@ -45,7 +46,7 @@ export class FormTalkComponent implements OnInit {
   public dropSender: dropSender
 
   constructor(private fb: FormBuilder, private pageTitleService: PageTitleService, private talkService: TalkService, private route: ActivatedRoute, private sectionService: SectionSolverService,
-		private router: Router) { }
+		private router: Router, public auth: AuthenticationService) { }
 
   ngOnInit() {
     this.cardTitle = 'Nuovo Esercizio'
@@ -73,7 +74,7 @@ export class FormTalkComponent implements OnInit {
       this.uploader = new FileUploader({
         url: environment.baseUrl + '/media/upload',
         method: 'POST',
-        headers: [{ name: 'Authorization', value: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTlkMzg1NmZhYzdjZmM1YTQwNGNiYzkiLCJpYXQiOjE1MjAzNDk2OTV9.9c0UWfoXbaKmiqEP1UFH_h3fRviNwfTunBRaPd1n2ZY' }],
+        headers: [{ name: 'Authorization', value: 'Bearer '+this.auth.getUser().token }],
         autoUpload: true
       });
       this.uploader.onCompleteItem = (item: any,
