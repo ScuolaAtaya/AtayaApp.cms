@@ -10,7 +10,7 @@
             <md-divider></md-divider>
         </div>
         <div class="gene-card-content">
-            <form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
@@ -25,27 +25,24 @@
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-                        <md-input-container class="full-wid">
-                            <input mdInput placeholder="Picture" [formControl]="form.controls['picture']">
-                        </md-input-container>
-                        <small class="gene-block" *ngIf="form.controls['picture'].hasError('required') && form.controls['picture'].touched" class="mat-text-warn">
-                            You must include a picture.
-                        </small>
+                        <div class="file-type" ng2FileDrop [ngClass]="{'nv-file-over': hasPictureDropZoneOver}" (fileOver)="fileOverPicture($event)" [uploader]="uploader">
+                            <div *ngIf="!picture">Carica qui la tua foto</div>
+                            <img  *ngIf="picture" class="picturePreview" [src]="pictureUrl" />
+                        </div>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-                        <md-input-container class="full-wid">
-                            <input mdInput placeholder="Audio" [formControl]="form.controls['audio']">
-                        </md-input-container>
-                        <small class="gene-block" *ngIf="form.controls['audio'].hasError('required') && form.controls['audio'].touched" class="mat-text-warn">
-                            You must include a audio.
-                        </small>
+                        <div class="file-type" ng2FileDrop [ngClass]="{'another-file-over-class': hasAudioDropZoneOver}" (fileOver)="fileOverAudio($event)"
+                            [uploader]="uploader">
+                            <div *ngIf="!audio">Carica qui il tuo MP3</div>
+                            <a *ngIf="audio" [href]="audioUrl">{{ audio }}</a>
+                        </div>
                     </div>
                 </div>
             <div class="pad-wrap">
                     <md-card-actions>
-                        <button md-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+                        <button md-raised-button color="primary" type="submit" [disabled]="!isFormValid()">Submit</button>
                     </md-card-actions>
                 </div>
             </form>

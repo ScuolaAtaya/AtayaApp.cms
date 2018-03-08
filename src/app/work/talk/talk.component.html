@@ -23,10 +23,10 @@
             </md-menu>
           </div>
           <div>
-            <img md-list-avatar [src]="item.image" alt="...">
+            <img md-list-avatar [src]="getMediaUrl(item.picture)" alt="...">
           </div>
           <div class="pad-wrap">
-            <span md-line class="gene-text-lg"> {{ item.title }} </span>
+            <span md-line class="gene-text-lg"> {{ item.title }}</span>
           </div>
         </md-list-item>
       </md-list>

@@ -9,6 +9,13 @@ import { Talk } from './../talk';
 import {ActivatedRoute} from "@angular/router"
 import { Section, SectionSolverService } from '../../section-solver.service'
 import { Router } from '@angular/router'
+import { environment } from 'environments/environment';
+
+enum dropSender {
+  none = 0,
+  picture = 1,
+  audio = 2,
+}
 
 @Component({
   selector: 'ms-form-talk',
@@ -25,8 +32,17 @@ export class FormTalkComponent implements OnInit {
   public id: string
   public talk: Talk
   public form: FormGroup;
+  public audio: string
+  public audioUrl: string
+  public picture: string
+  public pictureUrl: string
 
-	private section: Section;
+  private section: Section;
+  
+  public uploader: FileUploader;
+  public hasPictureDropZoneOver: Boolean;
+  public hasAudioDropZoneOver: Boolean;
+  public dropSender: dropSender
 
   constructor(private fb: FormBuilder, private pageTitleService: PageTitleService, private talkService: TalkService, private route: ActivatedRoute, private sectionService: SectionSolverService,
 		private router: Router) { }
@@ -34,15 +50,15 @@ export class FormTalkComponent implements OnInit {
   ngOnInit() {
     this.cardTitle = 'Nuovo Esercizio'
 
+    this.dropSender = dropSender.none
+
     this.route.params.subscribe(params => {
       this.pageTitleService.setTitle("Parliamo");
 
       this.section = this.sectionService.retrieveSection(params);
       this.id = String(params['id'])
       this.form = this.fb.group({
-        title: [null, Validators.compose([Validators.required])],
-        picture: [null, Validators.compose([Validators.required])],
-        audio: [null, Validators.compose([Validators.required])]
+        title: [null, Validators.compose([Validators.required])]
       });
       if (this.id !== 'undefined') {
         this.cardTitle = 'Modifica Esercizio' // TODO Check
@@ -54,10 +70,51 @@ export class FormTalkComponent implements OnInit {
           err => console.log('Error occured : ' + err)
         )
       }
+      this.uploader = new FileUploader({
+        url: environment.baseUrl + '/media/upload',
+        method: 'POST',
+        headers: [{ name: 'Authorization', value: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTlkMzg1NmZhYzdjZmM1YTQwNGNiYzkiLCJpYXQiOjE1MjAzNDk2OTV9.9c0UWfoXbaKmiqEP1UFH_h3fRviNwfTunBRaPd1n2ZY' }],
+        autoUpload: true
+      });
+      this.uploader.onCompleteItem = (item: any,
+        response: string,
+        status: number,
+        headers: any) => {
+        let json = JSON.parse(response)
+        let type = json.type
+        let name = json.name
+        if (this.dropSender == dropSender.picture) {
+          this.picture = name
+          this.pictureUrl = this.getMediaUrl(this.picture)
+        }
+        if (this.dropSender == dropSender.audio) {
+          this.audio = name
+          this.audioUrl = this.getMediaUrl(this.audio)
+        }
+        this.dropSender = dropSender.none
+        return { item, response, status, headers };
+      };
+      this.hasPictureDropZoneOver = false;
+      this.hasAudioDropZoneOver = false;
     })
   }
-  public onFormSubmit() {
-    if (this.form.valid) {
+
+  fileOverPicture(e: any): void {
+    if (e == true) {
+      this.dropSender = dropSender.picture
+    }
+    this.hasPictureDropZoneOver = e;
+  }
+
+  fileOverAudio(e: any): void {
+    if (e == true) {
+      this.dropSender = dropSender.audio
+    }
+    this.hasAudioDropZoneOver = e;
+  }
+
+  public onSubmit() {
+    if (this.isFormValid()) {
       if (this.id !== 'undefined') {
         this.talkService.update(this.formToObj(), this.id).subscribe(
           res => {
@@ -79,14 +136,20 @@ export class FormTalkComponent implements OnInit {
     }
   }
 
+  isFormValid() {
+    return (this.form.valid && this.picture !== undefined && this.audio !== undefined)
+  }
+
   public goToListPage() {
     this.router.navigate([this.section.name + '/talk'])
   }
 
   public objToForm(talk: Talk) {
     this.form.controls.title.setValue(talk.title)
-    this.form.controls.picture.setValue(talk.picture)
-    this.form.controls.audio.setValue(talk.audio)
+    this.picture = talk.picture
+    this.pictureUrl = this.getMediaUrl(this.picture)
+    this.audio = talk.audio
+    this.audioUrl = this.getMediaUrl(this.audio)
   }
 
   public formToObj() {
@@ -96,22 +159,13 @@ export class FormTalkComponent implements OnInit {
       talk = this.talk
     }
     talk.title = this.form.controls.title.value
-    talk.picture = this.form.controls.picture.value
-    talk.audio = this.form.controls.audio.value
+    talk.picture = this.picture
+    talk.audio = this.audio
     return talk
   }
 
-   /*
-  uploader: FileUploader = new FileUploader({ url: 'https://evening-anchorage-3159.herokuapp.com/api/' });
-  hasBaseDropZoneOver = false;
-  hasAnotherDropZoneOver = false;
-
-  fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
+  getMediaUrl(fileName) {
+    let url = environment.baseUrlImage + '/' + fileName
+    return url
   }
-
-  fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
-  }
-    */
 }

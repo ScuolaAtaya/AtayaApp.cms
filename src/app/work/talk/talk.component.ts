@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SectionSolverService, Section } from '../section-solver.service';
 import { MdDialogRef, MdDialog } from "@angular/material";
 import { Router } from '@angular/router'
+import { environment } from 'environments/environment';
 
 @Component({
 	selector: 'ms-talk-dialog',
@@ -108,6 +109,11 @@ export class TalkComponent implements OnInit {
 
 	reloadPage() {
 		// TODO Finish
+	}
+
+	getMediaUrl(fileName) {
+		let url = environment.baseUrlImage + '/' + fileName
+		return url
 	}
 }
 
