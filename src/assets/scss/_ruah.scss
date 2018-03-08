@@ -1,0 +1,64 @@
+.mat-ruah {
+
+    color: white;
+}
+
+.mat-accoglienza {
+    @extend .mat-ruah;
+
+    background-color: #37ABDF !important;
+}
+
+.mat-il-lavoro {
+    @extend .mat-ruah;
+
+    background-color: #2C74B6 !important;
+}
+
+.mat-il-cibo {
+    @extend .mat-ruah;
+
+    background-color: #72458E !important;
+}
+
+.mat-pronto {
+    @extend .mat-ruah;
+
+    background-color: #AE007D !important;
+}
+
+.mat-come-sei-come-stai {
+    @extend .mat-ruah;
+
+    background-color: #D4145D !important;
+}
+
+.mat-la-salute {
+    @extend .mat-ruah;
+
+    background-color: #D2262D !important;
+}
+
+.mat-la-citta {
+    @extend .mat-ruah;
+
+    background-color: #DD6927 !important;
+}
+
+.mat-mezzi-di-trasporto {
+    @extend .mat-ruah;
+
+    background-color: #EAAC12 !important;
+}
+
+.mat-la-cura-della-casa {
+    @extend .mat-ruah;
+
+    background-color: #9ACB2A !important;
+}
+
+.mat-il-viaggio {
+    @extend .mat-ruah;
+
+    background-color: #139B43 !important;
+}
