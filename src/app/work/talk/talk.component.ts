@@ -74,11 +74,7 @@ export class TalkComponent implements OnInit {
 				type: 'delete',
 				text: 'Delete'
 			}]
-			this.talkService.getList(this.section.id)
-				.subscribe(
-					res => this.talkList = res as Talk[],
-					err => console.log('Error occured : ' + err)
-				);
+			this.refresh();
 		});
 	}
 
@@ -95,7 +91,7 @@ export class TalkComponent implements OnInit {
 					this.talkService.delete(id).subscribe(
 						res => {
 							console.log(res)
-							this.reloadPage()
+							this.refresh();
 						},
 						err => console.log('Error occured : ' + err)
 					)
@@ -107,13 +103,17 @@ export class TalkComponent implements OnInit {
 		}
 	}
 
-	reloadPage() {
-		// TODO Finish
-	}
-
 	getMediaUrl(fileName) {
 		let url = environment.baseUrlImage + '/' + fileName
 		return url
+	}
+
+	refresh() {
+		this.talkService.getList(this.section.id)
+		.subscribe(
+			res => this.talkList = res as Talk[],
+			err => console.log('Error occured : ' + err)
+		);
 	}
 }
 
