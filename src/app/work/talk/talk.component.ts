@@ -67,12 +67,7 @@ export class TalkComponent implements OnInit {
 		this.route.params.subscribe(params => {
 			this.section = this.sectionService.retrieveSection(params);
 			this.pageTitleService.setTitle("Parliamo");
-
-			this.talkService.getList(this.section.id)
-				.subscribe(
-					res => this.talkList = res as Talk[],
-					err => console.log('Error occured : ' + err)
-				);
+			this.downloadData()
 		});
 	}
 
@@ -89,7 +84,7 @@ export class TalkComponent implements OnInit {
 					this.talkService.delete(id).subscribe(
 						res => {
 							console.log(res)
-							this.refresh();
+							this.downloadData();
 						},
 						err => console.log('Error occured : ' + err)
 					)
@@ -106,7 +101,7 @@ export class TalkComponent implements OnInit {
 		return url
 	}
 
-	refresh() {
+	downloadData() {
 		this.talkService.getList(this.section.id)
 		.subscribe(
 			res => this.talkList = res as Talk[],
