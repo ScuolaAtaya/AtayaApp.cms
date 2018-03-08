@@ -32,7 +32,7 @@ export class ReadComponent implements OnInit {
 		animation: 300
 	};
 
-	private section: Section;
+	section: Section;
 
 	constructor(private readService: ReadService,
 		private pageTitleService: PageTitleService,

@@ -32,7 +32,7 @@ export class TalkComponent implements OnInit {
 		animation: 300
 	};
 
-	private section: Section;
+	section: Section;
 
 	constructor(private talkService: TalkService,
 		private pageTitleService: PageTitleService,

@@ -32,7 +32,7 @@ export class UnderstandComponent implements OnInit {
 		animation: 300
 	};
 
-	private section: Section;
+	section: Section;
 
 	constructor(private understandService: UnderstandService,
 		private pageTitleService: PageTitleService,
