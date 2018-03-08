@@ -302,20 +302,7 @@ const MENUITEMS = [
       {state: 'understand', name: 'Capiamo'},
       {state: 'talk', name: 'Parliamo'},      
     ]
-  },
-  {
-    state: 'session',
-    name: 'SESSIONS',
-    type: 'sub',
-    icon: 'face',
-    children: [
-      { state: 'login', name: 'LOGIN' },
-      { state: 'register', name: 'REGISTER' },
-      { state: 'forgot-password', name: 'FORGOT' },
-      { state: 'lockscreen', name: 'LOCKSCREEN' }
-    ]
   }
-
 ];
 
 @Injectable()

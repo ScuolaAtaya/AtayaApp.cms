@@ -15,7 +15,7 @@
                 <div class="sidebar-container">
                     <div class="gene-user-thumb text-center">
                         <img class="img-responsive img-circle" src="assets/img/user.png" width="107" height="107" alt="user list image">
-                        <span class="gene-user-name gene-block">Admin</span>
+                        <span class="gene-user-name gene-block">{{user.name}}</span>
                     </div>
                     <div class="sidenav-scrollbar-container" fxLayout="column">
                         <perfect-scrollbar>
@@ -45,7 +45,6 @@
         </md-sidenav>
         <md-toolbar class="gene-header-toolbar">
             <a class="navbar-brand" href="#">{{header}}</a>
-            <breadcrumb class="gene-breadcrumbs"></breadcrumb>
             <span fxFlex></span>
             <div class="secondary-menu">
                 <button fxHide="true" fxHide.gt-sm="false" md-button class="fullscreen-toggle" (click)="toggleFullscreen()">
