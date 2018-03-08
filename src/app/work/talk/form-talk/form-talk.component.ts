@@ -29,6 +29,7 @@ enum dropSender {
 })
 export class FormTalkComponent implements OnInit {
   public cardTitle: string
+  public cardSubmitButtonTitle: string
 
   public id: string
   public talk: Talk
@@ -49,7 +50,8 @@ export class FormTalkComponent implements OnInit {
 		private router: Router, public auth: AuthenticationService) { }
 
   ngOnInit() {
-    this.cardTitle = 'Nuovo Esercizio'
+    this.cardTitle = 'Carica il nuovo esercizio'
+    this.cardSubmitButtonTitle = 'Carica esercizio'
 
     this.dropSender = dropSender.none
 
@@ -62,7 +64,8 @@ export class FormTalkComponent implements OnInit {
         title: [null, Validators.compose([Validators.required])]
       });
       if (this.id !== 'undefined') {
-        this.cardTitle = 'Modifica Esercizio' // TODO Check
+        this.cardTitle = 'Modifica l\'esercizio'
+        this.cardSubmitButtonTitle = 'Modifica esercizio'
         this.talkService.getOne(this.id).subscribe(
           res => {
             this.talk = res as Talk
