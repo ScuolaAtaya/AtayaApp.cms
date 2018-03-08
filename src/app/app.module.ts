@@ -121,9 +121,8 @@ import { UnderstandModule } from './work/understand/understand.module';
 import { TalkModule } from './work/talk/talk.module';
 import { WorkModule } from './work/work.module';
 import { AuthenticationModule } from './authentication/authentication.module';
-
-
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './authentication/token-interceptor';
 
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -246,7 +245,12 @@ const sortablejsConfig: SortablejsOptions = {
 		D3ChartService,
 		MenuItems,
 		PageTitleService,
-		DashboardItems
+		DashboardItems,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: TokenInterceptor,
+			multi: true
+		}
 	]
 })
 export class GeneAppModule { }
