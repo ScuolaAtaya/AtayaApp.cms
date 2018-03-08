@@ -124,6 +124,7 @@ import { TalkDialog } from './work/talk/talk.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './authentication/token-interceptor';
+import { WorkListMenuItems } from './work/work-list-menu-items';
 
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -247,6 +248,7 @@ const sortablejsConfig: SortablejsOptions = {
 		MailService,
 		D3ChartService,
 		MenuItems,
+		WorkListMenuItems,
 		PageTitleService,
 		DashboardItems,
 		{

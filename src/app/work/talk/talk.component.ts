@@ -10,6 +10,7 @@ import { SectionSolverService, Section } from '../section-solver.service';
 import { MdDialogRef, MdDialog } from "@angular/material";
 import { Router } from '@angular/router'
 import { environment } from 'environments/environment';
+import { WorkListMenuItems } from '../work-list-menu-items';
 
 @Component({
 	selector: 'ms-talk-dialog',
@@ -39,9 +40,8 @@ export class TalkDialog {
 export class TalkComponent implements OnInit {
 
 	dialogRef: MdDialogRef<TalkDialog>;
-	items: any[]
 	talkList: Talk[];
-	numbers: any[];
+
 	groupOptions: SortablejsOptions = {
 		group: 'testGroup',
 		handle: '.drag-handle',
@@ -59,7 +59,8 @@ export class TalkComponent implements OnInit {
 		private route: ActivatedRoute,
 		private sectionService: SectionSolverService,
 		private dialog: MdDialog,
-		private router: Router
+		private router: Router,
+		public workListMenuItems: WorkListMenuItems
 	) { }
 
 	ngOnInit() {
@@ -67,14 +68,11 @@ export class TalkComponent implements OnInit {
 			this.section = this.sectionService.retrieveSection(params);
 			this.pageTitleService.setTitle("Parliamo");
 
-			this.items = [{
-				type: 'edit',
-				text: 'Edit'
-			}, {
-				type: 'delete',
-				text: 'Delete'
-			}]
-			this.refresh();
+			this.talkService.getList(this.section.id)
+				.subscribe(
+					res => this.talkList = res as Talk[],
+					err => console.log('Error occured : ' + err)
+				);
 		});
 	}
 
