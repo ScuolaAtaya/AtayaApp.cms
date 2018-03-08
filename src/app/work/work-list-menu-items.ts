@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 
 const MENUITEMS = [{
     type: 'edit',
-    text: 'Edit'
+    key: 'EDIT'
 }, {
     type: 'delete',
-    text: 'Delete'
+    key: 'DELETE'
 }];
 
 @Injectable()
 export class WorkListMenuItems {
-  getAll(): any[] { // TODO Translate all texts
+  getAll(): any[] {
     return MENUITEMS;
   }
 }
