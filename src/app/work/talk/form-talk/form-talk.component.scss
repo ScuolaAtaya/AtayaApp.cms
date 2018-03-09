@@ -3,7 +3,8 @@ $file-type-dotted-area:#c8c8c8;
 $border-radius:8px;
 
 .file-type {
-    background-color: $file-type-area-bg;
+    // background-color: $file-type-area-bg;
+    background-color: transparent;
     border: 3px dotted $file-type-dotted-area;
     display: block;
     margin-bottom: 1rem;
@@ -27,4 +28,9 @@ $border-radius:8px;
     .file-type{
         background-color: transparent;
     }
+}
+
+.file-type .picturePreview{
+    max-width: 400px;
+    height: auto;      
 }

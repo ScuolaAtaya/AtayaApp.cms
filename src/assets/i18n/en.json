@@ -65,5 +65,9 @@
   "LOCKSCREEN": "Lockscreen",
   "GENE MENU": "Gene Menu",
   "SUB MENU1": "Sub Menu1",
-  "SUB MENU2": "Sub Menu2"
+  "SUB MENU2": "Sub Menu2",
+  "EDIT": "Edit",
+  "DELETE": "Delete",
+  "YES": "YES",
+  "NO": "NO"
 }

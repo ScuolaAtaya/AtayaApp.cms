@@ -124,6 +124,8 @@ import { WorkModule } from './work/work.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './authentication/token-interceptor';
+import { WorkListMenuItems } from './work/work-list-menu-items';
+import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
 
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -235,17 +237,20 @@ const sortablejsConfig: SortablejsOptions = {
 		PieChartComponent,
 		StackedAreaChartComponent,
 		nvD3,
-		FileManagerComponent
+		FileManagerComponent,
+		ConfirmDialogComponent
 	],
 	entryComponents: [
 		DemoDialog,
 		InboxComposeComponent,
+		ConfirmDialogComponent
 	],
 	bootstrap: [GeneAppComponent],
 	providers: [
 		MailService,
 		D3ChartService,
 		MenuItems,
+		WorkListMenuItems,
 		PageTitleService,
 		DashboardItems,
 		SubSections,

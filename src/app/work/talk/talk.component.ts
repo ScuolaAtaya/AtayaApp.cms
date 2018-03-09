@@ -7,6 +7,10 @@ import { TalkService } from './talk.service';
 import { Talk } from './talk';
 import { ActivatedRoute } from '@angular/router';
 import { SectionSolverService, Section } from '../section-solver.service';
+import { Router } from '@angular/router'
+import { environment } from 'environments/environment';
+import { WorkListMenuItems } from '../work-list-menu-items';
+import { UtilsService } from './../../common/utils.service';
 
 @Component({
 	selector: 'ms-talk',
@@ -21,7 +25,7 @@ import { SectionSolverService, Section } from '../section-solver.service';
 export class TalkComponent implements OnInit {
 
 	talkList: Talk[];
-	numbers: any[];
+
 	groupOptions: SortablejsOptions = {
 		group: 'testGroup',
 		handle: '.drag-handle',
@@ -37,20 +41,51 @@ export class TalkComponent implements OnInit {
 	constructor(private talkService: TalkService,
 		private pageTitleService: PageTitleService,
 		private route: ActivatedRoute,
-		private sectionService: SectionSolverService) { }
+		private sectionService: SectionSolverService,
+		private router: Router,
+		public workListMenuItems: WorkListMenuItems,
+		public utils: UtilsService
+	) { }
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
 			this.section = this.sectionService.retrieveSection(params);
 			this.pageTitleService.setTitle("Parliamo");
-
-			this.talkService.getList(this.section.id)
-				.subscribe(
-					res => this.talkList = res as Talk[],
-					err => console.log('Error occured : ' + err)
-				);
+			this.downloadData()
 		});
-
 	}
 
+	menuAction(item, menutItem) {
+		let type = menutItem.type
+		let id = item._id
+		if (type == 'delete') {
+			this.utils.confirm('Sei sicuro di voler continuare?').subscribe(result => {
+				if (result) {
+					this.talkService.delete(id).subscribe(
+						res => {
+							console.log(res)
+							this.downloadData();
+						},
+						err => console.log('Error occured : ' + err)
+					)
+				}
+			})
+		}
+		else {
+			this.router.navigate([this.section.name + '/talk/exercise', id])
+		}
+	}
+
+	getMediaUrl(fileName) {
+		return environment.baseUrlImage + '/' + fileName
+	}
+
+	downloadData() {
+		this.talkService.getList(this.section.id)
+		.subscribe(
+			res => this.talkList = res as Talk[],
+			err => console.log('Error occured : ' + err)
+		);
+	}
 }
+
