@@ -7,25 +7,10 @@ import { TalkService } from './talk.service';
 import { Talk } from './talk';
 import { ActivatedRoute } from '@angular/router';
 import { SectionSolverService, Section } from '../section-solver.service';
-import { MdDialogRef, MdDialog } from "@angular/material";
 import { Router } from '@angular/router'
 import { environment } from 'environments/environment';
 import { WorkListMenuItems } from '../work-list-menu-items';
-
-@Component({
-	selector: 'ms-talk-dialog',
-	template: `
-	<h1>Sei sicuro di voler continuare?</h1>
-
-	<md-dialog-actions align="end">
-	   <button md-button (click)="dialogRef.close(false)">No</button>
-	   <button md-button color="primary" (click)="dialogRef.close(true)">Yes</button>
-	</md-dialog-actions>
-`
-})
-export class TalkDialog {
-	constructor(public dialogRef: MdDialogRef<TalkDialog>) { }
-}
+import { UtilsService } from './../../common/utils.service';
 
 @Component({
 	selector: 'ms-talk',
@@ -39,7 +24,6 @@ export class TalkDialog {
 })
 export class TalkComponent implements OnInit {
 
-	dialogRef: MdDialogRef<TalkDialog>;
 	talkList: Talk[];
 
 	groupOptions: SortablejsOptions = {
@@ -58,9 +42,9 @@ export class TalkComponent implements OnInit {
 		private pageTitleService: PageTitleService,
 		private route: ActivatedRoute,
 		private sectionService: SectionSolverService,
-		private dialog: MdDialog,
 		private router: Router,
-		public workListMenuItems: WorkListMenuItems
+		public workListMenuItems: WorkListMenuItems,
+		public utils: UtilsService
 	) { }
 
 	ngOnInit() {
@@ -75,11 +59,7 @@ export class TalkComponent implements OnInit {
 		let type = menutItem.type
 		let id = item._id
 		if (type == 'delete') {
-			this.dialogRef = this.dialog.open(TalkDialog, {
-				disableClose: false
-			});
-			this.dialogRef.afterClosed().subscribe(result => {
-				this.dialogRef = null;
+			this.utils.confirm('Sei sicuro di voler continuare?').subscribe(result => {
 				if (result) {
 					this.talkService.delete(id).subscribe(
 						res => {
@@ -97,8 +77,7 @@ export class TalkComponent implements OnInit {
 	}
 
 	getMediaUrl(fileName) {
-		let url = environment.baseUrlImage + '/' + fileName
-		return url
+		return environment.baseUrlImage + '/' + fileName
 	}
 
 	downloadData() {

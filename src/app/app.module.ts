@@ -120,11 +120,11 @@ import { ReadModule } from './work/read/read.module';
 import { UnderstandModule } from './work/understand/understand.module';
 import { TalkModule } from './work/talk/talk.module';
 import { WorkModule } from './work/work.module';
-import { TalkDialog } from './work/talk/talk.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './authentication/token-interceptor';
 import { WorkListMenuItems } from './work/work-list-menu-items';
+import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
 
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -236,12 +236,12 @@ const sortablejsConfig: SortablejsOptions = {
 		StackedAreaChartComponent,
 		nvD3,
 		FileManagerComponent,
-		TalkDialog
+		ConfirmDialogComponent
 	],
 	entryComponents: [
 		DemoDialog,
 		InboxComposeComponent,
-		TalkDialog
+		ConfirmDialogComponent
 	],
 	bootstrap: [GeneAppComponent],
 	providers: [

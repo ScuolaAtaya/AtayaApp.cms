@@ -12,6 +12,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from 'ng2-translate/ng2-translate';
+import { UtilsService } from './../../common/utils.service';
 
 @NgModule({
   imports: [
@@ -28,6 +29,6 @@ import { TranslateModule } from 'ng2-translate/ng2-translate';
     TranslateModule.forRoot()
   ],
   declarations: [TalkComponent, FormTalkComponent],
-  providers: [TalkService]
+  providers: [TalkService, UtilsService]
 })
 export class TalkModule { }
