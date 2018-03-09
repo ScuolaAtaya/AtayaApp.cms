@@ -25,7 +25,7 @@ export class FormWriteComponent implements OnInit {
 
   public cardTitle: string
   public cardSubmitButtonTitle: string
-  private section: Section;
+  public section: Section;
 
   public id: string
   public write: Write
