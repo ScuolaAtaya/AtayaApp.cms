@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PageTitleService } from '../core/page-title/page-title.service';
 import { fadeInAnimation } from '../core/route-animation/route.animation';
-import { DashboardItems, Menu } from './dashboard-items';
+import { DashboardItems, Menu } from './menu-items';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'ms-dashboard',
@@ -17,11 +19,12 @@ export class DashboardComponent implements OnInit {
 
   public dashboardItems: Menu[];
 
-  constructor(private pageTitleService: PageTitleService, dashboardItems: DashboardItems) {
+  constructor(private pageTitleService: PageTitleService, private router: Router, dashboardItems: DashboardItems) {
     this.dashboardItems = dashboardItems.getAll();
   }
-  ngOnInit() {
-    this.pageTitleService.setTitle("Home");
-  }
+  ngOnInit = () => this.pageTitleService.setTitle("Home");
+
+  public goTo = (route: string) => this.router.navigate([`${route}/menu`]);
+  
 
 }

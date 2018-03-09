@@ -2,21 +2,22 @@ import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 
 const section = [
-  { id: 0, name: 'accoglienza', background: '#37ABDF' },
-  { id: 1, name: 'il-lavoro', background: '#2C74B6' },
-  { id: 2, name: 'il-cibo',background: '#72458E' },
-  { id: 3, name: 'pronto', background: '#AE007D' },
-  { id: 4, name: 'come-sei-come-stai', background: '#D4145D' },
-  { id: 5, name: 'la-salute', background: '#D2262D' },
-  { id: 6, name: 'la-citta', background: '#DD6927' },
-  { id: 7, name: 'mezzi-di-trasporto', background: '#EAAC12' },
-  { id: 8, name: 'la-cura-della-casa', background: '#9ACB2A' },
-  { id: 9, name: 'il-viaggio', background: '#139B43' }
+  { id: 0, name: 'accoglienza', title: 'Accoglienza'},
+  { id: 1, name: 'il-lavoro', title: 'Il lavoro'},
+  { id: 2, name: 'il-cibo', title: 'Il cibo'},
+  { id: 3, name: 'pronto', title: 'Pronto?'},
+  { id: 4, name: 'come-sei-come-stai', title: 'Come sei? Come stai?' },
+  { id: 5, name: 'la-salute', title: 'La salute' },
+  { id: 6, name: 'la-citta', title: 'La città e i suoi servizi'},
+  { id: 7, name: 'mezzi-di-trasporto', title: 'I mezzi di trasporto' },
+  { id: 8, name: 'la-cura-della-casa', title: 'La cura della casa' },
+  { id: 9, name: 'il-viaggio', title: 'Il viaggio'}
 ]
 
 export class Section {
   id: number;
   name: string;
+  title: string;
 }
 
 @Injectable()

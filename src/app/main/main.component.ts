@@ -135,19 +135,6 @@ export class MainComponent implements OnInit, OnDestroy {
         }
     }
 
-    addMenuItem(): void {
-        this.menuItems.add({
-            state: 'pages',
-            name: 'GENE MENU',
-            type: 'sub',
-            icon: 'trending_flat',
-            children: [
-                { state: 'blank', name: 'SUB MENU1' },
-                { state: 'blank', name: 'SUB MENU2' }
-            ]
-        });
-    }
-
     onActivate(e, scrollContainer) {
         scrollContainer.scrollTop = 0;
     }

@@ -1,0 +1,7 @@
+<div fxLayoutWrap="wrap" fxLayoutAlign="start" >
+  <div fxFlex.gt-md="20" fxFlex.gt-sm="20" fxFlex="100" *ngFor="let subSectionItem of subSectionItems" >
+    <md-card class="mat-card-ruah" (click)="goTo(subSectionItem.route)">
+      <img src="{{subSectionItem.image}}" alt="{{subSectionItems.title}}">
+    </md-card>
+  </div>
+</div>
