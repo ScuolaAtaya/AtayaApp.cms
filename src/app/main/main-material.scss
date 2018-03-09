@@ -1,12 +1,10 @@
-
-.example-sidenav-content {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+.mat-menu-item {
+    color: white;
 }
 
-.mat-menu-item {
-  
-  color: white;
+.mat-menu-logout-ruah { //FIXME
+    padding-top: 48px !important;
+    .mat-icon {
+        color: white !important;
+    }
 }
