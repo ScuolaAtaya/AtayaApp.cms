@@ -8,6 +8,10 @@ import { SectionSolverService, Section } from '../section-solver.service';
 import { ActivatedRoute } from '@angular/router';
 import { WorkService } from '../work.service';
 import { WriteService } from './write.service';
+import { WorkListMenuItems } from '../work-list-menu-items';
+import { UtilsService } from './../../common/utils.service';
+import { Router } from '@angular/router'
+import { environment } from 'environments/environment';
 
 const target: string = 'write';
 
@@ -40,21 +44,50 @@ export class WriteComponent implements OnInit {
 	constructor(private writeService: WriteService,
 		private pageTitleService: PageTitleService,
 		private route: ActivatedRoute,
-		private sectionService: SectionSolverService) { }
+		private sectionService: SectionSolverService,
+		public workListMenuItems: WorkListMenuItems,
+		public utils: UtilsService,
+		private router: Router
+	) { }
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
 			this.section = this.sectionService.retrieveSection(params);
 			this.pageTitleService.setTitle("Scriviamo");
-
-			this.writeService.getList(this.section.id)
-				.subscribe(
-					res => this.writeList = res as Write[],
-					err => console.log('Error occured : ' + err)
-				);
+			this.downloadData()
 		});
-
 	}
 
+	menuAction(item, menutItem) {
+		let type = menutItem.type
+		let id = item._id
+		if (type == 'delete') {
+			this.utils.confirm('Sei sicuro di voler continuare?').subscribe(result => {
+				if (result) {
+					this.writeService.delete(id).subscribe(
+						res => {
+							console.log(res)
+							this.downloadData();
+						},
+						err => console.log('Error occured : ' + err)
+					)
+				}
+			})
+		}
+		else {
+			this.router.navigate([this.section.name + '/write/exercise', id])
+		}
+	}
 
+	getMediaUrl(fileName) {
+		return environment.baseUrlImage + '/' + fileName
+	}
+
+	downloadData() {
+		this.writeService.getList(this.section.id)
+			.subscribe(
+				res => this.writeList = res as Write[],
+				err => console.log('Error occured : ' + err)
+			);
+	}
 }

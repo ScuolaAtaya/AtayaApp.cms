@@ -11,15 +11,22 @@
         <md-divider></md-divider>
       </div>
       <md-list [sortablejs]="writeList" [sortablejsOptions]="simpleOptions" class="no-gutter">
-        <md-list-item class="draggable" *ngFor="let item of writeList">
+        <md-list-item class="draggable" *ngFor="let write of writeList">
           <div>
-            <md-icon>more_vert</md-icon>
+            <button md-icon-button [md-menu-trigger-for]="menu" aria-label="Open basic menu">
+              <md-icon>more_vert</md-icon>
+            </button>
+            <md-menu #menu="mdMenu">
+              <button md-menu-item *ngFor="let listMenuItem of workListMenuItems.getAll()" (click)="menuAction(write, listMenuItem)">
+                {{ listMenuItem.key | translate }}
+              </button>
+            </md-menu>
           </div>
           <div>
-            <img md-list-avatar [src]="item.image" alt="...">
+            <img md-list-avatar [src]="getMediaUrl(write.picture)" alt="...">
           </div>
           <div class="pad-wrap">
-            <span md-line class="gene-text-lg"> {{ item.title }} </span>
+            <span md-line class="gene-text-lg"> {{ write.title }} </span>
           </div>
         </md-list-item>
       </md-list>

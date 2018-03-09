@@ -81,6 +81,7 @@ const appRoutes: Routes = [
 			{ path: 'dashboard', component: DashboardComponent },
 			{ path: ':section/write', component: WriteComponent },
 			{ path: ':section/write/exercise', component: FormWriteComponent },
+			{ path: ':section/write/exercise/:id', component: FormWriteComponent },
 			{ path: ':section/read', component: ReadComponent },
 			{ path: ':section/read/exercise', component: FormReadComponent },
 			{ path: ':section/understand', component: UnderstandComponent },
