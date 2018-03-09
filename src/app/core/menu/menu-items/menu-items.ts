@@ -129,7 +129,11 @@ const MENUITEMS = [
       {state: 'read', name: 'Leggiamo'},
       {state: 'understand', name: 'Capiamo'},
       {state: 'talk', name: 'Parliamo'},      
-    ]
+    ]}, {
+      state: '',
+      name: 'Genera il Libro ',
+      type: 'link',
+      icon: 'map'
   }
 ];
 

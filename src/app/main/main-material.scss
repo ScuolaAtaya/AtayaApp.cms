@@ -1,10 +1,16 @@
+$ruah-color: #e4e7ef;
+
 .mat-menu-item {
-    color: white;
+    color: $ruah-color;
 }
 
 .mat-menu-logout-ruah { //FIXME
     padding-top: 48px !important;
     .mat-icon {
-        color: white !important;
+        color: $ruah-color !important;
     }
+}
+
+.mat-button-ruah {
+  background-color: $ruah-color !important;
 }
