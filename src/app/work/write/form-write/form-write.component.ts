@@ -36,6 +36,8 @@ export class FormWriteComponent implements OnInit {
   public uploader: FileUploader;
   public hasPictureDropZoneOver: Boolean;
 
+  public letters: string[];
+
   constructor(private fb: FormBuilder,
     private pageTitleService: PageTitleService,
     private writeService: WriteService,
@@ -87,11 +89,27 @@ export class FormWriteComponent implements OnInit {
       return { item, response, status, headers };
       };
       this.hasPictureDropZoneOver = false;
+
+      this.letters = []
     })
   }
 
   fileOverPicture(e: any): void {
     this.hasPictureDropZoneOver = e;
+  }
+
+  trackByIndex(index: number, obj: any): any {
+    return index;
+  }
+
+  addLetter(letter: string) {
+    if (letter) {
+      this.letters.push(letter);
+    }
+  }
+
+  deleteLetter(i: number) {
+    this.letters.splice(i, 1);
   }
 
   public onSubmit() {
@@ -128,6 +146,7 @@ export class FormWriteComponent implements OnInit {
   public objToForm(write: Write) {
     this.form.controls.title.setValue(write.title)
     this.form.controls.word.setValue(write.word)
+    this.letters = write.letters
     this.picture = write.picture
     this.pictureUrl = this.getMediaUrl(this.picture)
   }
@@ -141,6 +160,7 @@ export class FormWriteComponent implements OnInit {
     write.title = this.form.controls.title.value
     write.word = this.form.controls.word.value
     write.picture = this.picture
+    write.letters = this.letters
     return write
   }
 

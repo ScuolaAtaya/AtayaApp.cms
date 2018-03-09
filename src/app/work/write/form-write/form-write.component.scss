@@ -34,3 +34,12 @@ $border-radius:8px;
     max-width: 400px;
     height: auto;      
 }
+
+.box-inset-letterBox {
+    border: 3px dotted $file-type-dotted-area;
+    border-radius: $border-radius;
+}
+
+.box-inset-letterBox .mat-list .mat-list-item .mat-list-item-content {
+    padding: 0 0px;
+}
