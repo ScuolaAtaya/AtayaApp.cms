@@ -64,6 +64,7 @@ import { FormTalkComponent } from './work/talk/form-talk/form-talk.component';
 import { UnderstandComponent } from './work/understand/understand.component';
 import { FormUnderstandComponent } from './work/understand/form-understand/form-understand.component';
 import { AuthGuardService } from './authentication/auth-guard.service';
+import { SubSectionComponent } from './dashboard/sub-section/sub-section.component';
 
 
 const appRoutes: Routes = [
@@ -89,6 +90,7 @@ const appRoutes: Routes = [
 			{ path: ':section/talk', component: TalkComponent },
 			{ path: ':section/talk/exercise', component: FormTalkComponent },
 			{ path: ':section/talk/exercise/:id', component: FormTalkComponent },
+			{ path: ':section/menu', component: SubSectionComponent }
 	 	]
   	}
 ];

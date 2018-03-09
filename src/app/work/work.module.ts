@@ -12,7 +12,7 @@ import { SectionSolverService } from './section-solver.service';
 		WriteModule,
 		ReadModule,
 		UnderstandModule,
-		TalkModule
+    TalkModule
   ],
   declarations: [],
   providers: [SectionSolverService]

@@ -39,6 +39,7 @@ import { D3ChartService } from "./core/nvD3/nvD3.service";
 import { nvD3 } from "./core/nvD3/nvD3.component";
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SubSectionComponent } from './dashboard/sub-section/sub-section.component'
 
 import { InboxComponent } from './inbox/inbox.component';
 import { MailService } from "./inbox/mail.service";
@@ -113,7 +114,7 @@ import { ReadComponent } from './work/read/read.component';
 import { TalkComponent } from './work/talk/talk.component';
 import { UnderstandComponent } from './work/understand/understand.component';
 import { FormWriteComponent } from './work/write/form-write/form-write.component';
-import { DashboardItems } from './dashboard/dashboard-items';
+import { DashboardItems, SubSections } from './dashboard/menu-items';
 import { FormTalkComponent } from './work/talk/form-talk/form-talk.component';
 import { WriteModule } from './work/write/write.module';
 import { ReadModule } from './work/read/read.module';
@@ -178,6 +179,7 @@ const sortablejsConfig: SortablejsOptions = {
 		GeneAppComponent,
 		MainComponent,
 		DashboardComponent,
+		SubSectionComponent,
 		InboxComponent,
 		InboxComposeComponent,
 		ChatComponent,
@@ -251,6 +253,7 @@ const sortablejsConfig: SortablejsOptions = {
 		WorkListMenuItems,
 		PageTitleService,
 		DashboardItems,
+		SubSections,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: TokenInterceptor,
