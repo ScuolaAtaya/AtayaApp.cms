@@ -98,20 +98,6 @@ export class FormWriteComponent implements OnInit {
     this.hasPictureDropZoneOver = e;
   }
 
-  trackByIndex(index: number, obj: any): any {
-    return index;
-  }
-
-  addLetter(letter: string) {
-    if (letter) {
-      this.letters.push(letter);
-    }
-  }
-
-  deleteLetter(i: number) {
-    this.letters.splice(i, 1);
-  }
-
   public onSubmit() {
     if (this.isFormValid()) {
       if (this.id !== 'undefined') {
