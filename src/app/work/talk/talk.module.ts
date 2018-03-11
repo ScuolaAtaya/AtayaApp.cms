@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { UtilsService } from './../../common/utils.service';
+import { CommonComponentModule } from './../../common/common.module';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { UtilsService } from './../../common/utils.service';
     NgxDatatableModule,
     HttpClientModule,
     RouterModule,
-    TranslateModule.forRoot()
+    TranslateModule.forRoot(),
+    CommonComponentModule
   ],
   declarations: [TalkComponent, FormTalkComponent],
   providers: [TalkService, UtilsService]
