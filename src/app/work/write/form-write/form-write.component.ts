@@ -32,10 +32,6 @@ export class FormWriteComponent implements OnInit {
 
   public form: FormGroup;
   public picture: string
-  public pictureUrl: string
-  public uploader: FileUploader;
-  public hasPictureDropZoneOver: Boolean;
-
   public letters: string[];
 
   constructor(private fb: FormBuilder,
@@ -71,31 +67,13 @@ export class FormWriteComponent implements OnInit {
         title: [null, Validators.compose([Validators.required])],
         word: [null, Validators.compose([Validators.required])]
       });
-      this.uploader = new FileUploader({
-        url: environment.baseUrl + '/media/upload',
-        method: 'POST',
-        headers: [{ name: 'Authorization', value: 'Bearer '+this.auth.getUser().token }],
-        autoUpload: true
-      });
-      this.uploader.onCompleteItem = (item: any,
-        response: string,
-        status: number,
-        headers: any) => {
-        let json = JSON.parse(response)
-        let type = json.type
-        let name = json.name
-        this.picture = name
-        this.pictureUrl = this.getMediaUrl(this.picture)
-      return { item, response, status, headers };
-      };
-      this.hasPictureDropZoneOver = false;
 
       this.letters = []
     })
   }
 
-  fileOverPicture(e: any): void {
-    this.hasPictureDropZoneOver = e;
+  onFileNameChanged(fileName: string) {
+    this.picture = fileName
   }
 
   public onSubmit() {
@@ -134,7 +112,6 @@ export class FormWriteComponent implements OnInit {
     this.form.controls.word.setValue(write.word)
     this.letters = write.letters
     this.picture = write.picture
-    this.pictureUrl = this.getMediaUrl(this.picture)
   }
 
   public formToObj() {
@@ -149,10 +126,4 @@ export class FormWriteComponent implements OnInit {
     write.letters = this.letters
     return write
   }
-
-  getMediaUrl(fileName) {
-    let url = environment.baseUrlImage + '/' + fileName
-    return url
-  }
-
 }

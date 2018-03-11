@@ -29,11 +29,7 @@
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-                        <div class="file-type" ng2FileDrop [ngClass]="{'nv-file-over': hasPictureDropZoneOver}" (fileOver)="fileOverPicture($event)"
-                            [uploader]="uploader">
-                            <div *ngIf="!picture">Carica qui la tua foto</div>
-                            <img *ngIf="picture" class="picturePreview" [src]="pictureUrl" />
-                        </div>
+                        <ms-file-input [fileName]="picture" type="image" (onFileNameChanged)="onFileNameChanged($event)"></ms-file-input>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center" *ngIf="this.section !== undefined && this.section.id < 5">
