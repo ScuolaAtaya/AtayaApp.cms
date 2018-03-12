@@ -12,6 +12,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from 'ng2-translate/ng2-translate';
+import { CommonComponentModule } from './../../common/common.module';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { TranslateModule } from 'ng2-translate/ng2-translate';
     NgxDatatableModule,
     HttpClientModule,
     RouterModule,
-    TranslateModule.forRoot()
+    TranslateModule.forRoot(),
+    CommonComponentModule
   ],
   declarations: [WriteComponent, FormWriteComponent],
   providers: [WriteService]

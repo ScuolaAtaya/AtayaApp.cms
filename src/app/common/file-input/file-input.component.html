@@ -1,0 +1,10 @@
+<div class="file-type" ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader">
+  <div *ngIf="type == 'image'">
+    <div *ngIf="!fileName">Carica qui la tua foto</div>
+    <img *ngIf="fileName" class="picturePreview" [src]="url" />
+  </div>
+  <div *ngIf="type == 'mp3'">
+    <div *ngIf="!fileName">Carica qui il tuo MP3</div>
+    <a *ngIf="fileName" [href]="url">{{ fileName }}</a>
+  </div>
+</div>

@@ -29,35 +29,13 @@
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-                        <div class="file-type" ng2FileDrop [ngClass]="{'nv-file-over': hasPictureDropZoneOver}" (fileOver)="fileOverPicture($event)"
-                            [uploader]="uploader">
-                            <div *ngIf="!picture">Carica qui la tua foto</div>
-                            <img *ngIf="picture" class="picturePreview" [src]="pictureUrl" />
-                        </div>
+                        <ms-file-input [fileName]="picture" type="image" (onFileNameChanged)="onFileNameChanged($event)"></ms-file-input>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center" *ngIf="this.section !== undefined && this.section.id < 5">
                     <div class="box-inset box-inset-letterBox pad-all-md">
                         <h5 class="mrgn-b-md">Letters</h5>
-                        <md-list>
-                            <md-list-item *ngFor="let item of letters;let index = index;trackBy:trackByIndex;">
-                                <h3 md-line>
-                                    <button class="mrgn-all-xs" md-icon-button type="button" (click)="deleteLetter(index)">
-                                        <md-icon>delete</md-icon>
-                                    </button>
-                                    <md-input-container class="full-wid">
-                                        <input mdInput [(ngModel)]="letters[index]" [ngModelOptions]="{standalone: true}">
-                                    </md-input-container>
-                                </h3>
-                            </md-list-item>
-                        </md-list>
-                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-                            <md-input-container class="full-wid">
-                                <input mdInput #newLetter (keyup.enter)="addLetter(newLetter.value)" (blur)="addLetter(newLetter.value); newLetter.value='' "
-                                    placeholder="Add new letter">
-                            </md-input-container>
-                            <button md-raised-button color="primary" type="button" (click)="addLetter(newLetter.value)">Add</button>
-                        </div>
+                        <ms-strings-input [strings]='letters'></ms-strings-input>
                     </div>
                 </div>
                 <div class="pad-wrap">
