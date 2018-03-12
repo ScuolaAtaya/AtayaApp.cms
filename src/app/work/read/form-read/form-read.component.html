@@ -28,6 +28,12 @@
                         <ms-file-input [fileName]="picture" type="image" (onFileNameChanged)="onPictureChanged($event)"></ms-file-input>
                     </div>
                 </div>
+                <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+                    <div class="box-inset box-inset-answersBox pad-all-md">
+                        <h5 class="mrgn-b-md">Options</h5>
+                        <ms-answers-input [answers]="options"></ms-answers-input>
+                    </div>
+                </div>
                 <div class="pad-wrap">
                     <md-card-actions>
                         <button md-raised-button color="primary" type="submit" [disabled]="!isFormValid()" style="float: right;">{{ cardSubmitButtonTitle }}</button>

@@ -43,12 +43,7 @@ export class FormReadComponent implements OnInit {
   ngOnInit() {
     this.cardTitle = 'Carica il nuovo esercizio'
     this.cardSubmitButtonTitle = 'Carica esercizio'
-
-    this.options = [{
-      body: "body2",
-      audio: "audio2.mp3",
-      correct: true
-    }]
+    this.options = []
 
     this.route.params.subscribe(params => {
       this.pageTitleService.setTitle("Leggiamo");

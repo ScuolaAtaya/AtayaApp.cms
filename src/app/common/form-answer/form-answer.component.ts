@@ -17,22 +17,23 @@ export class FormAnswerComponent implements OnInit {
   public audio: string
   public correct: boolean
 
-  constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormAnswerComponent>, @Inject(MD_DIALOG_DATA) public data: any) { }
+  constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormAnswerComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
+    this.correct = false
+  }
 
   ngOnInit() {
     this.cardTitle = 'Carica la nuova risposta'
     this.cardSubmitButtonTitle = 'Carica risposta'
 
     this.form = this.fb.group({
-      title: [null, Validators.compose([Validators.required])]
+      body: [null, Validators.compose([Validators.required])]
     })
-    this.correct = false
 
-    if (this.data) {
+    if (this.data && Object.keys(this.data).length > 0) {
       this.cardTitle = 'Modifica la risposta'
       this.cardSubmitButtonTitle = 'Modifica risposta'
       this.answer = this.data
-      this.objToForm()
+      this.objToForm(this.answer)
     }
   }
 
@@ -44,15 +45,18 @@ export class FormAnswerComponent implements OnInit {
     return (this.form.valid && this.correct !== undefined && this.audio !== undefined)
   }
 
-  public objToForm() {
-    this.form.controls.title.setValue(this.answer.title)
-    this.correct = this.answer.correct
-    this.audio = this.answer.audio
+  public objToForm(answer: any) {
+    this.form.controls.body.setValue(answer.body)
+    this.correct = answer.correct
+    this.audio = answer.audio
   }
 
   public formToObj() {
     let obj = {}
-    obj['title'] = this.form.controls.title.value 
+    if (this.answer) {
+      obj = this.answer
+    }
+    obj['body'] = this.form.controls.body.value 
     obj['correct'] = this.correct
     obj['audio'] = this.audio
     return obj

@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileInputComponent } from './file-input/file-input.component';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { FormAnswerComponent } from './form-answer/form-answer.component';
+import { AnswersInputComponent } from './answers-input/answers-input.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { FormAnswerComponent } from './form-answer/form-answer.component';
     FileUploadModule,
     ReactiveFormsModule
   ],
-  exports: [StringsInputComponent, FileInputComponent, FormAnswerComponent],
-  declarations: [StringsInputComponent, FileInputComponent, FormAnswerComponent]
+  exports: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent],
+  declarations: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent]
 })
 export class CommonComponentModule { }
