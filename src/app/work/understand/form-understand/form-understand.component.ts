@@ -30,7 +30,7 @@ export class FormUnderstandComponent implements OnInit {
   public audio: string
   public questions: any[]
 
-  private section: Section;
+  public section: Section;
 
   constructor(
     private fb: FormBuilder,
