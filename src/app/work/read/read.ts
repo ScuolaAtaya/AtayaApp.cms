@@ -2,8 +2,7 @@ import { Work } from "../work";
 
 export class Read extends Work{
 
-    letters: string[];
+    options: any[];
     picture: string;
-    word: string;
 
 }

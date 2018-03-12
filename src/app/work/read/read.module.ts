@@ -11,6 +11,8 @@ import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { CommonComponentModule } from '../../common/common.module';
+import { TranslateModule } from 'ng2-translate';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import { RouterModule } from '@angular/router';
     FileUploadModule,
     NgxDatatableModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    TranslateModule.forRoot(),
+    CommonComponentModule
   ],
   declarations: [ReadComponent, FormReadComponent],
   providers: [ReadService]

@@ -4,7 +4,10 @@ import { CustomValidators } from 'ng2-validation';
 import { PageTitleService } from '../../../core/page-title/page-title.service';
 import { fadeInAnimation } from "../../../core/route-animation/route.animation";
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
-
+import { Read } from '../read';
+import { Section, SectionSolverService } from '../../section-solver.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ReadService } from './../read.service';
 
 @Component({
   selector: 'ms-form-read',
@@ -19,53 +22,109 @@ export class FormReadComponent implements OnInit {
 
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private pageTitleService: PageTitleService) { }
+  public cardTitle: string
+  public cardSubmitButtonTitle: string
+
+  public id: string
+  public read: Read
+  public picture: string
+  private section: Section;
+  public options: any[]
+
+  constructor(
+    private fb: FormBuilder,
+    private pageTitleService: PageTitleService,
+    private route: ActivatedRoute,
+    private sectionService: SectionSolverService,
+    private readService: ReadService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.pageTitleService.setTitle("Leggiamo");
-    /*this.form = new FormGroup({
-      response: new FormControl('', Validators.required)
-    });*/
+    this.cardTitle = 'Carica il nuovo esercizio'
+    this.cardSubmitButtonTitle = 'Carica esercizio'
 
-    this.form = this.fb.group({
-      title: [null, Validators.compose([Validators.required])],
-      word: [null, Validators.compose([Validators.required])]
-  });
-}
+    this.options = [{
+      body: "body2",
+      audio: "audio2.mp3",
+      correct: true
+    }]
 
-uploader: FileUploader = new FileUploader({url: 'https://evening-anchorage-3159.herokuapp.com/api/'});
-hasBaseDropZoneOver = false;
-hasAnotherDropZoneOver = false;
+    this.route.params.subscribe(params => {
+      this.pageTitleService.setTitle("Leggiamo");
 
-fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-}
-
-fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
-}
-/*
-  public audioFiles: UploadFile[] = [new UploadFile('audio', [])];
-  public imageFiles: UploadFile[] = [new UploadFile('image', [])];
-
-  public droppedAudio(event: UploadEvent) {
-    this.dropped(event, this.audioFiles);
-  }
-
-  public droppedImage(event: UploadEvent) {
-    this.dropped(event, this.imageFiles);
-  }
-
-
-  public dropped(event: UploadEvent, fileArray: UploadFile[]) {
-
-    event.files.forEach((it) => {
-      fileArray.push(it);
-      
-      it.fileEntry.file(info => {
-        console.log(info.size);
+      this.section = this.sectionService.retrieveSection(params);
+      this.id = String(params['id'])
+      this.form = this.fb.group({
+        title: [null, Validators.compose([Validators.required])]
       });
-    });
+      if (this.id !== 'undefined') {
+        this.cardTitle = 'Modifica l\'esercizio'
+        this.cardSubmitButtonTitle = 'Modifica esercizio'
+        this.readService.getOne(this.id).subscribe(
+          res => {
+            this.read = res as Read
+            this.objToForm(this.read)
+          },
+          err => console.log('Error occured : ' + err)
+        )
+      }
+    })
   }
-*/
+
+  onPictureChanged(fileName: string) {
+    this.picture = fileName
+  }
+
+  public onSubmit() {
+    if (this.isFormValid()) {
+      if (this.id !== 'undefined') {
+        this.readService.update(this.formToObj(), this.id).subscribe(
+          res => {
+            console.log(res)
+            this.goToListPage()
+          },
+          err => console.log('Error occured : ' + err)
+        )
+      }
+      else {
+        this.readService.create(this.formToObj()).subscribe(
+          res => {
+            console.log(res)
+            this.goToListPage()
+          },
+          err => console.log('Error occured : ' + err)
+        )
+      }
+    }
+  }
+
+  isFormValid() {
+    return (this.form.valid && this.picture !== undefined)
+  }
+
+  public goToListPage() {
+    this.router.navigate([this.section.name + '/read'])
+  }
+
+  public objToForm(read: Read) {
+    this.form.controls.title.setValue(read.title)
+    this.picture = read.picture
+    this.options = read.options
+  }
+
+  public formToObj() {
+    let read = new Read()
+    read.unit_id = this.section.id
+    if (this.read) {
+      read = this.read
+    }
+    read.title = this.form.controls.title.value
+    read.picture = this.picture
+    read.options = this.options
+
+    console.log(read)
+
+    return read
+  }
 }
