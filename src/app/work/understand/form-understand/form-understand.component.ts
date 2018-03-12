@@ -44,42 +44,6 @@ export class FormUnderstandComponent implements OnInit {
   ngOnInit() {
     this.cardTitle = 'Carica il nuovo esercizio'
     this.cardSubmitButtonTitle = 'Carica esercizio'
-
-    this.questions = [
-      {
-        body: 'qBody',
-        audio: 'qAudio.mp3',
-        answers: [
-          {
-            body: 'body',
-            audio: 'audio.mp3',
-            correct: false
-          },
-          {
-            body: 'body2',
-            audio: 'audio2.mp3',
-            correct: true
-          }
-        ]
-      },
-      {
-        body: 'q2Body',
-        audio: 'q2Audio.mp3',
-        answers: [
-          {
-            body: 'body',
-            audio: 'audio.mp3',
-            correct: false
-          },
-          {
-            body: 'body2',
-            audio: 'audio2.mp3',
-            correct: true
-          }
-        ]
-      }
-    ]
-
     this.route.params.subscribe(params => {
       this.pageTitleService.setTitle("Capiamo");
 
@@ -89,6 +53,9 @@ export class FormUnderstandComponent implements OnInit {
         title: [null, Validators.compose([Validators.required])],
         video_url: [null, Validators.compose([Validators.required])]
       })
+
+      this.questions = []
+
       if (this.id !== 'undefined') {
         this.cardTitle = 'Modifica l\'esercizio'
         this.cardSubmitButtonTitle = 'Modifica esercizio'

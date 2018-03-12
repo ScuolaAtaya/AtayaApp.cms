@@ -3,11 +3,13 @@ import { Observable } from 'rxjs/Observable';
 import { MdDialogRef, MdDialog } from "@angular/material";
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { FormAnswerComponent } from './form-answer/form-answer.component';
+import { FormQuestionComponent } from './form-question/form-question.component';
 
 @Injectable()
 export class UtilsService {
 	private confirmDialogRef: MdDialogRef<ConfirmDialogComponent>;
 	private answerDialogRef: MdDialogRef<FormAnswerComponent>;
+	private questionDialogRef: MdDialogRef<FormQuestionComponent>;
 
   constructor(private dialog: MdDialog) { }
 
@@ -34,6 +36,18 @@ export class UtilsService {
     });
     return this.answerDialogRef.afterClosed().map(result => {
       this.answerDialogRef = null;
+      return result
+    })
+  }
+
+  openQuestionDialog(question: any): Observable<any> {
+    this.questionDialogRef = this.dialog.open(FormQuestionComponent, {
+      panelClass: 'form-question',
+      disableClose: false,
+      data: question
+    });
+    return this.questionDialogRef.afterClosed().map(result => {
+      this.questionDialogRef = null;
       return result
     })
   }

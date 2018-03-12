@@ -128,6 +128,7 @@ import { WorkListMenuItems } from './work/work-list-menu-items';
 import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
 import { FormAnswerComponent } from './common/form-answer/form-answer.component';
 import { MD_DIALOG_DATA } from "@angular/material";
+import { FormQuestionComponent } from './common/form-question/form-question.component';
 
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -246,7 +247,8 @@ const sortablejsConfig: SortablejsOptions = {
 		DemoDialog,
 		InboxComposeComponent,
 		ConfirmDialogComponent,
-		FormAnswerComponent
+		FormAnswerComponent,
+		FormQuestionComponent
 	],
 	bootstrap: [GeneAppComponent],
 	providers: [
