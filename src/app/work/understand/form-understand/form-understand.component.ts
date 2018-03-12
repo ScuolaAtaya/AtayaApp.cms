@@ -4,6 +4,10 @@ import { CustomValidators } from 'ng2-validation';
 import { PageTitleService } from '../../../core/page-title/page-title.service';
 import { fadeInAnimation } from "../../../core/route-animation/route.animation";
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { Understand } from '../understand';
+import { UnderstandService } from './../understand.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SectionSolverService, Section } from '../../section-solver.service';
 
 
 @Component({
@@ -17,55 +21,140 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 })
 export class FormUnderstandComponent implements OnInit {
 
-  public form: FormGroup;
+  public cardTitle: string
+  public cardSubmitButtonTitle: string
 
-  constructor(private fb: FormBuilder, private pageTitleService: PageTitleService) { }
+  public id: string
+  public understand: Understand
+  public form: FormGroup;
+  public audio: string
+  public questions: any[]
+
+  private section: Section;
+
+  constructor(
+    private fb: FormBuilder,
+    private pageTitleService: PageTitleService,
+    private route: ActivatedRoute,
+    private sectionService: SectionSolverService,
+    private router: Router,
+    private understandService: UnderstandService
+  ) { }
 
   ngOnInit() {
-    this.pageTitleService.setTitle("Scriviamo");
-    /*this.form = new FormGroup({
-      response: new FormControl('', Validators.required)
-    });*/
+    this.cardTitle = 'Carica il nuovo esercizio'
+    this.cardSubmitButtonTitle = 'Carica esercizio'
 
-    this.form = this.fb.group({
-      title: [null, Validators.compose([Validators.required])],
-      word: [null, Validators.compose([Validators.required])]
-  });
-}
+    this.questions = [
+      {
+        body: 'qBody',
+        audio: 'qAudio.mp3',
+        answers: [
+          {
+            body: 'body',
+            audio: 'audio.mp3',
+            correct: false
+          },
+          {
+            body: 'body2',
+            audio: 'audio2.mp3',
+            correct: true
+          }
+        ]
+      },
+      {
+        body: 'q2Body',
+        audio: 'q2Audio.mp3',
+        answers: [
+          {
+            body: 'body',
+            audio: 'audio.mp3',
+            correct: false
+          },
+          {
+            body: 'body2',
+            audio: 'audio2.mp3',
+            correct: true
+          }
+        ]
+      }
+    ]
 
-uploader: FileUploader = new FileUploader({url: 'https://evening-anchorage-3159.herokuapp.com/api/'});
-hasBaseDropZoneOver = false;
-hasAnotherDropZoneOver = false;
+    this.route.params.subscribe(params => {
+      this.pageTitleService.setTitle("Capiamo");
 
-fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-}
-
-fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
-}
-/*
-  public audioFiles: UploadFile[] = [new UploadFile('audio', [])];
-  public imageFiles: UploadFile[] = [new UploadFile('image', [])];
-
-  public droppedAudio(event: UploadEvent) {
-    this.dropped(event, this.audioFiles);
+      this.section = this.sectionService.retrieveSection(params);
+      this.id = String(params['id'])
+      this.form = this.fb.group({
+        title: [null, Validators.compose([Validators.required])],
+        video_url: [null, Validators.compose([Validators.required])]
+      })
+      if (this.id !== 'undefined') {
+        this.cardTitle = 'Modifica l\'esercizio'
+        this.cardSubmitButtonTitle = 'Modifica esercizio'
+        this.understandService.getOne(this.id).subscribe(
+          res => {
+            this.understand = res as Understand
+            this.objToForm(this.understand)
+          },
+          err => console.log('Error occured : ' + err)
+        )
+      }
+    })
   }
 
-  public droppedImage(event: UploadEvent) {
-    this.dropped(event, this.imageFiles);
+  onAudioChanged(fileName: string) {
+    this.audio = fileName
   }
 
-
-  public dropped(event: UploadEvent, fileArray: UploadFile[]) {
-
-    event.files.forEach((it) => {
-      fileArray.push(it);
-      
-      it.fileEntry.file(info => {
-        console.log(info.size);
-      });
-    });
+  public onSubmit() {
+    if (this.isFormValid()) {
+      if (this.id !== 'undefined') {
+        this.understandService.update(this.formToObj(), this.id).subscribe(
+          res => {
+            console.log(res)
+            this.goToListPage()
+          },
+          err => console.log('Error occured : ' + err)
+        )
+      }
+      else {
+        this.understandService.create(this.formToObj()).subscribe(
+          res => {
+            console.log(res)
+            this.goToListPage()
+          },
+          err => console.log('Error occured : ' + err)
+        )
+      }
+    }
   }
-*/
+
+  isFormValid() {
+    return (this.form.valid && this.audio !== undefined)
+  }
+
+  public goToListPage() {
+    this.router.navigate([this.section.name + '/understand'])
+  }
+
+  public objToForm(understand: Understand) {
+    this.form.controls.title.setValue(understand.title)
+    this.form.controls.video_url.setValue(understand.video_url)
+    this.audio = understand.audio
+    this.questions = understand.questions
+  }
+
+  public formToObj() {
+    let understand = new Understand()
+    understand.unit_id = this.section.id
+    if (this.understand) {
+      understand = this.understand
+    }
+    understand.title = this.form.controls.title.value
+    understand.video_url = this.form.controls.video_url.value
+    understand.audio = this.audio
+    understand.questions = this.questions
+    return understand
+  }
 }
