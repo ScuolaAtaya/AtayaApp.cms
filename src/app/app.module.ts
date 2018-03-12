@@ -126,6 +126,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './authentication/token-interceptor';
 import { WorkListMenuItems } from './work/work-list-menu-items';
 import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
+import { FormAnswerComponent } from './common/form-answer/form-answer.component';
+import { MD_DIALOG_DATA } from "@angular/material";
 
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -243,7 +245,8 @@ const sortablejsConfig: SortablejsOptions = {
 	entryComponents: [
 		DemoDialog,
 		InboxComposeComponent,
-		ConfirmDialogComponent
+		ConfirmDialogComponent,
+		FormAnswerComponent
 	],
 	bootstrap: [GeneAppComponent],
 	providers: [
@@ -258,7 +261,11 @@ const sortablejsConfig: SortablejsOptions = {
 			provide: HTTP_INTERCEPTORS,
 			useClass: TokenInterceptor,
 			multi: true
-		}
+		},
+		{
+			provide: MD_DIALOG_DATA,
+			useValue: {}
+		  }
 	]
 })
 export class GeneAppModule { }
