@@ -70,5 +70,24 @@
   "DELETE": "Delete",
   "YES": "Yes",
   "NO": "No",
-  "Libro generato correttamente": "Libro generato correttamente"
+  "Libro generato correttamente": "Libro generato correttamente",
+  "A new letter": "A new letter",
+  "CLOSE": "Close",
+  "Letters": "Letters",
+  "Scriviamo": "Scriviamo",
+  "Leggiamo": "Leggiamo",
+  "Capiamo": "Capiamo",
+  "Parliamo": "Parliamo",
+  "Carica il nuovo esercizio": "Carica il nuovo esercizio",
+  "Modifica l'esercizio": "Modifica l'esercizio",
+  "Carica esercizio": "Carica esercizio",
+  "Modifica esercizio": "Modifica esercizio",
+
+  "Carica qui la tua foto": "Carica qui la tua foto",
+  "Carica qui il tuo MP3": "Carica qui il tuo MP3",
+  "Title": "Title",
+  "You must include a title.": "You must include a title.",
+  "You must include a exercise title.": "You must include a exercise title.",
+  "You must include a YouTube Url.": "You must include a exercise title.",
+  "You must include a word.": "You must include a exercise title."
 }
