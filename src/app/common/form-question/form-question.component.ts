@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+declare var $: any;
 
 @Component({
   selector: 'ms-form-question',
@@ -17,7 +18,9 @@ export class FormQuestionComponent implements OnInit {
   public audio: string
   public answers: any[]
 
-  constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormQuestionComponent>, @Inject(MD_DIALOG_DATA) public data: any) { }
+  constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormQuestionComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
+    $('.form-question').addClass('app-dark');
+   }
 
   ngOnInit() {
     this.cardTitle = 'Carica la nuova domanda'

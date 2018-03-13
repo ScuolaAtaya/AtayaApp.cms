@@ -11,7 +11,9 @@ export class UtilsService {
 	private answerDialogRef: MdDialogRef<FormAnswerComponent>;
 	private questionDialogRef: MdDialogRef<FormQuestionComponent>;
 
-  constructor(private dialog: MdDialog) { }
+  constructor(
+    private dialog: MdDialog
+  ) { }
 
   confirm(message: string, btnOkText: string = 'YES', btnCancelText: string = 'NO'): Observable<Boolean> {
     this.confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {

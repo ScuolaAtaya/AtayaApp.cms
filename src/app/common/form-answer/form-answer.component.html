@@ -25,12 +25,12 @@
         </div>
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
           <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-            <md-checkbox class="example-margin" [(ngModel)]="correct" [ngModelOptions]="{standalone: true}">Correct</md-checkbox>
+            <ms-file-input [fileName]="audio" type="mp3" (onFileNameChanged)="onFileNameChanged($event)"></ms-file-input>
           </div>
         </div>
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
           <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-            <ms-file-input [fileName]="audio" type="mp3" (onFileNameChanged)="onFileNameChanged($event)"></ms-file-input>
+            <md-checkbox class="example-margin" [(ngModel)]="correct" [ngModelOptions]="{standalone: true}" align="end">Correct</md-checkbox>
           </div>
         </div>
         <div class="pad-wrap">

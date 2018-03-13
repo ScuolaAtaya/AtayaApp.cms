@@ -1,0 +1,12 @@
+$file-type-dotted-area:#c8c8c8;
+$border-radius:8px;
+
+.box-inset-answersBox {
+    border: 3px dotted $file-type-dotted-area;
+    border-radius: $border-radius;
+    margin-bottom: 1rem;
+}
+
+.box-inset-answersBox .mat-list .mat-list-item .mat-list-item-content {
+    padding: 0 0px;
+}

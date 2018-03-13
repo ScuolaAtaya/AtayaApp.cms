@@ -3,3 +3,31 @@
     display: inline;
     padding: 0px;
 }
+
+.form-answer, .form-question {
+    width: 70%;
+}
+
+snack-bar-container.toast-assert {
+    background: white;
+}
+
+snack-bar-container.toast-warning {
+    background: #FFEB3B;
+}
+
+snack-bar-container.toast-error {
+    background: #F44336;
+}
+
+snack-bar-container.toast-success {
+    background: #4CAF50;
+}
+
+.toast-light simple-snack-bar{
+    color: black;
+}
+
+.toast-dark simple-snack-bar{
+    color: white;
+}

@@ -132,7 +132,7 @@ const MENUITEMS = [
     ]}, {
       state: '',
       name: 'Genera il Libro ',
-      type: 'link',
+      type: 'createBook',
       icon: 'map'
   }
 ];
