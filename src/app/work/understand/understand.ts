@@ -2,8 +2,8 @@ import { Work } from "../work";
 
 export class Understand extends Work {
 
-    letters: string[];
-    picture: string;
-    word: string;
+    questions: any[];
+    audio: string;
+    video_url: string;
 
 }

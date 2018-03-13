@@ -1,0 +1,5 @@
+.form-answer .mat-dialog-container, .form-question .mat-dialog-container {
+    box-shadow: none;
+    display: inline;
+    padding: 0px;
+}

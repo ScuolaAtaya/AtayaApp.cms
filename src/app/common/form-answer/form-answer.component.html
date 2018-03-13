@@ -1,0 +1,45 @@
+<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start">
+  <md-card fxFlex="100%">
+    <div class="gene-card-title">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column">
+          <h4>{{ cardTitle }}</h4>
+        </div>
+        <span fxFlex></span>
+      </div>
+      <md-divider></md-divider>
+    </div>
+    <div class="gene-card-content">
+      <form [formGroup]="form">
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+        </div>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+          <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
+            <md-input-container class="full-wid">
+              <input mdInput placeholder="Title" [formControl]="form.controls['body']">
+            </md-input-container>
+            <small class="gene-block" *ngIf="form.controls['body'].hasError('required') && form.controls['body'].touched" class="mat-text-warn">
+              You must include a title.
+            </small>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+          <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
+            <md-checkbox class="example-margin" [(ngModel)]="correct" [ngModelOptions]="{standalone: true}">Correct</md-checkbox>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+          <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
+            <ms-file-input [fileName]="audio" type="mp3" (onFileNameChanged)="onFileNameChanged($event)"></ms-file-input>
+          </div>
+        </div>
+        <div class="pad-wrap">
+          <md-dialog-actions align="end">
+            <button md-button (click)="onClose()">Annulla</button>
+            <button md-button color="primary" (click)="onSubmit()" [disabled]="!isFormValid()">Ok</button>
+          </md-dialog-actions>
+        </div>
+      </form>
+    </div>
+  </md-card>
+</div>

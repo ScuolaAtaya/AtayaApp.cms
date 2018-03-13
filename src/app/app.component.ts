@@ -5,6 +5,7 @@ import {MdDialog, MdDialogConfig, MdDialogRef, MdSnackBar} from '@angular/materi
 @Component({
   	selector: 'gene-app',
   	template:'<router-outlet></router-outlet>',
+    styleUrls: ['./app.component.css'],
     encapsulation: ViewEncapsulation.None
 })
 export class GeneAppComponent {

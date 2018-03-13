@@ -11,15 +11,19 @@
         <md-divider></md-divider>
       </div>
       <md-list [sortablejs]="understandList" [sortablejsOptions]="simpleOptions" class="no-gutter">
-        <md-list-item class="draggable" *ngFor="let item of understandList">
+        <md-list-item class="draggable" *ngFor="let understand of understandList">
           <div>
-            <md-icon>more_vert</md-icon>
-          </div>
-          <div>
-            <img md-list-avatar [src]="item.image" alt="...">
+            <button md-icon-button [md-menu-trigger-for]="menu" aria-label="Open basic menu">
+              <md-icon>more_vert</md-icon>
+            </button>
+            <md-menu #menu="mdMenu">
+              <button md-menu-item *ngFor="let listMenuItem of workListMenuItems.getAll()" (click)="menuAction(understand, listMenuItem)">
+                {{ listMenuItem.key | translate }}
+              </button>
+            </md-menu>
           </div>
           <div class="pad-wrap">
-            <span md-line class="gene-text-lg"> {{ item.title }} </span>
+            <span md-line class="gene-text-lg"> {{ understand.title }} </span>
           </div>
         </md-list-item>
       </md-list>
