@@ -1,38 +1,47 @@
 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start">
-  <div  fxFlex="100" class="gene-sorted-drag-drop">
-    <md-card class="mat-{{section.name}} mat-card">
-      <div class="gene-card-title">
-        <div fxLayout="row" fxLayoutAlign="start center">
-          <div fxLayout="column">
-            <h2>Capiamo </h2>
-          </div>
-          <span fxFlex></span>
-        </div>
-        <md-divider></md-divider>
-      </div>
-      <md-list [sortablejs]="understandList" [sortablejsOptions]="simpleOptions" class="no-gutter">
-        <md-list-item class="draggable" *ngFor="let understand of understandList">
-          <div>
-            <button md-icon-button [md-menu-trigger-for]="menu" aria-label="Open basic menu">
-              <md-icon>more_vert</md-icon>
+    <div fxFlex="100" class="gene-sorted-drag-drop">
+        <md-card class="mat-{{section.name}} mat-card">
+            <div class="gene-card-title">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxLayout="column">
+                        <h2>Capiamo </h2>
+                    </div>
+                    <span fxFlex></span>
+                </div>
+                <md-divider></md-divider>
+            </div>
+            <md-list [sortablejs]="understandList" [sortablejsOptions]="simpleOptions" class="no-gutter">
+                <md-list-item class="draggable" *ngFor="let understand of understandList">
+                    <div>
+                        <button md-icon-button [md-menu-trigger-for]="menu" aria-label="Open basic menu">
+                            <md-icon>more_vert</md-icon>
+                        </button>
+                        <md-menu #menu="mdMenu">
+                            <button md-menu-item *ngFor="let listMenuItem of workListMenuItems.getAll()"
+                                    (click)="menuAction(understand, listMenuItem)">
+                                {{ listMenuItem.key | translate }}
+                            </button>
+                        </md-menu>
+                    </div>
+                    <div class="pad-wrap">
+                        <span md-line class="gene-text-lg"> {{ understand.title }} </span>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-card>
+        <md-card style="width: 60%; background: black; display: flex;">
+            <button class="mrgn-all-xs" style="justify-content: center" md-icon-button>
+                <md-icon>play_arrow</md-icon>
             </button>
-            <md-menu #menu="mdMenu">
-              <button md-menu-item *ngFor="let listMenuItem of workListMenuItems.getAll()" (click)="menuAction(understand, listMenuItem)">
-                {{ listMenuItem.key | translate }}
-              </button>
-            </md-menu>
-          </div>
-          <div class="pad-wrap">
-            <span md-line class="gene-text-lg"> {{ understand.title }} </span>
-          </div>
-        </md-list-item>
-      </md-list>
-    </md-card>
-  </div>
+            <md-slider style="width: 100%;" [value]="currentTime" (mousedown)="setDragging(true)"
+                       (mouseup)="setDragging(false)" (change)="seekAudio($event)" min="0"
+                       [max]="audio?.duration"></md-slider>
+        </md-card>
+    </div>
 </div>
 <!-- class="box-inset pad-all-md mrgn-b-md"-->
 <div>
-  <button class="mrgn-all-xs mat-button-ruah" md-fab style="float: right" routerLink="exercise">
-    <md-icon>add</md-icon>
-  </button>
+    <button class="mrgn-all-xs mat-button-ruah" md-fab style="float: right" routerLink="exercise">
+        <md-icon>add</md-icon>
+    </button>
 </div>
