@@ -13,7 +13,7 @@
 <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
     <md-input-container class="full-wid">
         <input mdInput #newString (keyup.enter)="addString(newString.value)" (blur)="addString(newString.value); newString.value='' "
-            placeholder="Add new letter">
+            [placeholder]="placeholder">
     </md-input-container>
     <button class="mrgn-all-xs" md-fab color="primary" type="button" (click)="addString(newString.value)">
         <md-icon>add</md-icon>
