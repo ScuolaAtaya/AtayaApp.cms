@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { MdDialogRef, MdDialog, MdSnackBar } from "@angular/material";
+import { MdDialogRef, MdDialog } from "@angular/material";
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { FormAnswerComponent } from './form-answer/form-answer.component';
 import { FormQuestionComponent } from './form-question/form-question.component';
@@ -12,8 +12,7 @@ export class UtilsService {
 	private questionDialogRef: MdDialogRef<FormQuestionComponent>;
 
   constructor(
-    private dialog: MdDialog,
-    private snackBar: MdSnackBar
+    private dialog: MdDialog
   ) { }
 
   confirm(message: string, btnOkText: string = 'YES', btnCancelText: string = 'NO'): Observable<Boolean> {
@@ -52,18 +51,6 @@ export class UtilsService {
     return this.questionDialogRef.afterClosed().map(result => {
       this.questionDialogRef = null;
       return result
-    })
-  }
-
-  successToast(message: string)  {
-    this.snackBar.open(message, undefined, {
-      duration: 1000
-    })
-  }
-
-  errorToast(message: string)  {
-    this.snackBar.open(message, undefined, {
-      duration: 1000
     })
   }
 }

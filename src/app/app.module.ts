@@ -129,6 +129,8 @@ import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.c
 import { FormAnswerComponent } from './common/form-answer/form-answer.component';
 import { MD_DIALOG_DATA } from "@angular/material";
 import { FormQuestionComponent } from './common/form-question/form-question.component';
+import { ApiServiceService } from './common/api-service.service';
+import { LogServiceService } from './common/log-service.service';
 
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -267,7 +269,9 @@ const sortablejsConfig: SortablejsOptions = {
 		{
 			provide: MD_DIALOG_DATA,
 			useValue: {}
-		  }
+		  },
+		  ApiServiceService,
+		  LogServiceService
 	]
 })
 export class GeneAppModule { }

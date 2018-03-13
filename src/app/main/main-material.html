@@ -31,6 +31,10 @@
                                         <span fxFlex></span>
                                         <md-icon class="menu-caret">chevron_right</md-icon>
                                     </a>
+                                    <a menuToggle class="gene-relative" md-ripple *ngIf="menuitem.type === 'createBook'" (click)="createBook()">
+                                        <md-icon>{{ menuitem.icon }}</md-icon>
+                                        <span>{{ menuitem.name | translate }}</span>
+                                    </a>
                                     <md-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
                                         <md-list-item *ngFor="let childitem of menuitem.children" routerLinkActive="open">
                                             <a [routerLink]="['/', menuitem.state, childitem.state ]" routerLinkActive="active-link" class="gene-relative" md-ripple>{{ childitem.name | translate }}</a>
