@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
+import { TranslateService } from 'ng2-translate';
 
 @Injectable()
 export class LogServiceService {
 
-  constructor(private snackBar: MdSnackBar) { }
+  constructor(private snackBar: MdSnackBar, private translate: TranslateService) { }
 
   info(message: string)  {
     this.log(message, 'info')
@@ -45,10 +46,11 @@ export class LogServiceService {
         break;
       }
     }
-
-    this.snackBar.open(message, 'CLOSE', { // TODO Translate
-      duration: 3000,
-      extraClasses: extraClasses
+    this.translate.get('CLOSE').subscribe((translatedText: string) => {
+      this.snackBar.open(message, translatedText.toUpperCase(), {
+        duration: 3000,
+        extraClasses: extraClasses
+      })
     })
   }
 }
