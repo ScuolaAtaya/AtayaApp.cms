@@ -95,6 +95,10 @@ export class MainComponent implements OnInit, OnDestroy {
                 }
             });
         }
+
+        if (this.dark) {
+            $('body').addClass('dark-theme-active');
+        }
     }
 
     ngOnDestroy() {

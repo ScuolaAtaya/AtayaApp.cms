@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MdDialogRef, MdDialog, MD_DIALOG_DATA } from "@angular/material";
+declare var $: any;
 
 @Component({
   selector: 'ms-form-answer',
@@ -18,6 +19,7 @@ export class FormAnswerComponent implements OnInit {
   public correct: boolean
 
   constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormAnswerComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
+    $('.form-answer').addClass('app-dark');
     this.correct = false
   }
 

@@ -15,5 +15,7 @@
         <input mdInput #newString (keyup.enter)="addString(newString.value)" (blur)="addString(newString.value); newString.value='' "
             placeholder="Add new letter">
     </md-input-container>
-    <button md-raised-button color="primary" type="button" (click)="addString(newString.value)">Add</button>
+    <button class="mrgn-all-xs" md-fab color="primary" type="button" (click)="addString(newString.value)">
+        <md-icon>add</md-icon>
+    </button>
 </div>
