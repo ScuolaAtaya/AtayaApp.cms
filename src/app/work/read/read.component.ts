@@ -10,6 +10,7 @@ import { Section, SectionSolverService } from '../section-solver.service';
 import { environment } from 'environments/environment';
 import { WorkListMenuItems } from '../work-list-menu-items';
 import { UtilsService } from '../../common/utils.service';
+import {TranslateService} from "ng2-translate";
 
 @Component({
 	selector: 'ms-read',
@@ -43,15 +44,17 @@ export class ReadComponent implements OnInit {
 		private sectionService: SectionSolverService,
 		private router: Router,
 		public workListMenuItems: WorkListMenuItems,
-		public utils: UtilsService
+		public utils: UtilsService,
+		private translate: TranslateService
 	) { }
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
 			this.section = this.sectionService.retrieveSection(params);
 		});
-
-		this.pageTitleService.setTitle("Leggiamo");
+		this.translate.get('Leggiamo').subscribe((translatedText: string) => {
+			this.pageTitleService.setTitle(translatedText);
+		})
 		this.downloadData()
 	}
 

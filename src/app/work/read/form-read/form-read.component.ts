@@ -8,6 +8,7 @@ import { Read } from '../read';
 import { Section, SectionSolverService } from '../../section-solver.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReadService } from './../read.service';
+import {TranslateService} from "ng2-translate";
 
 @Component({
   selector: 'ms-form-read',
@@ -37,7 +38,8 @@ export class FormReadComponent implements OnInit {
     private route: ActivatedRoute,
     private sectionService: SectionSolverService,
     private readService: ReadService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -46,8 +48,9 @@ export class FormReadComponent implements OnInit {
     this.options = []
 
     this.route.params.subscribe(params => {
-      this.pageTitleService.setTitle("Leggiamo");
-
+      this.translate.get('Leggiamo').subscribe((translatedText: string) => {
+        this.pageTitleService.setTitle(translatedText);
+      })
       this.section = this.sectionService.retrieveSection(params);
       this.id = String(params['id'])
       this.form = this.fb.group({

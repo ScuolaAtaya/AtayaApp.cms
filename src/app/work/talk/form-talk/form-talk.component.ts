@@ -10,6 +10,7 @@ import { Section, SectionSolverService } from '../../section-solver.service'
 import { Router } from '@angular/router'
 import { environment } from 'environments/environment';
 import { AuthenticationService } from './../../../authentication/authentication.service';
+import {TranslateService} from "ng2-translate";
 
 enum dropSender {
   none = 0,
@@ -39,14 +40,16 @@ export class FormTalkComponent implements OnInit {
   private section: Section;
   
   constructor(private fb: FormBuilder, private pageTitleService: PageTitleService, private talkService: TalkService, private route: ActivatedRoute, private sectionService: SectionSolverService,
-		private router: Router, public auth: AuthenticationService) { }
+		private router: Router, public auth: AuthenticationService, private translate: TranslateService) { }
 
   ngOnInit() {
     this.cardTitle = 'Carica il nuovo esercizio'
     this.cardSubmitButtonTitle = 'Carica esercizio'
 
     this.route.params.subscribe(params => {
-      this.pageTitleService.setTitle("Parliamo");
+      this.translate.get('Parliamo').subscribe((translatedText: string) => {
+        this.pageTitleService.setTitle(translatedText);
+      })
 
       this.section = this.sectionService.retrieveSection(params);
       this.id = String(params['id'])
