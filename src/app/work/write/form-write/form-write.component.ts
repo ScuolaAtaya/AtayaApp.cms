@@ -11,6 +11,7 @@ import { Section, SectionSolverService } from '../../section-solver.service'
 import { WriteService } from './../write.service';
 import {ActivatedRoute} from "@angular/router"
 import { AuthenticationService } from './../../../authentication/authentication.service';
+import {TranslateService} from "ng2-translate";
 
 @Component({
   selector: 'ms-form-write',
@@ -40,14 +41,18 @@ export class FormWriteComponent implements OnInit {
     private route: ActivatedRoute,
     private sectionService: SectionSolverService,
     private router: Router,
-    public auth: AuthenticationService) { }
+    public auth: AuthenticationService,
+    private translate: TranslateService
+  ) { }
 
   ngOnInit() {
     this.cardTitle = 'Carica il nuovo esercizio'
     this.cardSubmitButtonTitle = 'Carica esercizio'
 
     this.route.params.subscribe(params => {
-      this.pageTitleService.setTitle("Scriviamo");
+      this.translate.get('Scriviamo').subscribe((translatedText: string) => {
+        this.pageTitleService.setTitle(translatedText);
+      })
       this.section = this.sectionService.retrieveSection(params);
       this.id = String(params['id'])
 

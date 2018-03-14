@@ -8,3 +8,5 @@ modules/.vscode
 
 # Ignore npm debug log
 npm-debug.log
+
+.idea/

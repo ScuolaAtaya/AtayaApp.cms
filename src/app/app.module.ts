@@ -103,16 +103,30 @@ import {LineChartComponent} from './widgets/line-chart/line-chart.component';
 import {PieChartComponent} from './widgets/pie-chart/pie-chart.component';
 import {StackedAreaChartComponent} from './widgets/stacked-area-chart/stacked-area-chart.component';
 
-import {FileManagerComponent} from './file-manager/file-manager.component'
-import {DashboardItems, SubSections} from './dashboard/menu-items';
-import {WorkModule} from './work/work.module';
-import {AuthenticationModule} from './authentication/authentication.module';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {TokenInterceptor} from './authentication/token-interceptor';
-import {WorkListMenuItems} from './work/work-list-menu-items';
-import {ConfirmDialogComponent} from './common/confirm-dialog/confirm-dialog.component';
-import {FormAnswerComponent} from './common/form-answer/form-answer.component';
-import {FormQuestionComponent} from './common/form-question/form-question.component';
+import { FileManagerComponent } from './file-manager/file-manager.component'
+import { WriteComponent } from './work/write/write.component';
+import { ReadComponent } from './work/read/read.component';
+import { TalkComponent } from './work/talk/talk.component';
+import { UnderstandComponent } from './work/understand/understand.component';
+import { FormWriteComponent } from './work/write/form-write/form-write.component';
+import { DashboardItems, SubSections } from './dashboard/menu-items';
+import { FormTalkComponent } from './work/talk/form-talk/form-talk.component';
+import { WriteModule } from './work/write/write.module';
+import { ReadModule } from './work/read/read.module';
+import { UnderstandModule } from './work/understand/understand.module';
+import { TalkModule } from './work/talk/talk.module';
+import { WorkModule } from './work/work.module';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './authentication/token-interceptor';
+import { WorkListMenuItems } from './work/work-list-menu-items';
+import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
+import { FormAnswerComponent } from './common/form-answer/form-answer.component';
+import { MD_DIALOG_DATA } from "@angular/material";
+import { FormQuestionComponent } from './common/form-question/form-question.component';
+import {RequestService} from "./common/request.service";
+import {ApiService} from "./common/api.service";
+import {LogService} from "./common/log.service";
 
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -127,132 +141,135 @@ const sortablejsConfig: SortablejsOptions = {
 };
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MaterialModule,
-        Ng2DeviceDetectorModule.forRoot(),
-        RoutingModule,
-        FlexLayoutModule,
-        NgbModalModule.forRoot(),
-        CalendarModule.forRoot(),
-        AgmCoreModule.forRoot({apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'}),
-        QuillModule,
-        CKEditorModule,
-        DragulaModule,
-        SortablejsModule,
-        FileUploadModule,
-        NgxDatatableModule,
-        MdNativeDateModule,
-        TreeModule,
-        NgTreeModule,
-        ChartsModule,
-        EasyPieChartModule,
-        ColorPickerModule,
-        PerfectScrollbarModule.forRoot(perfectScrollbarConfig),
-        MenuToggleModule,
-        HttpModule,
-        TranslateModule.forRoot({
-            provide: TranslateLoader,
-            useFactory: (createTranslateLoader),
-            deps: [Http]
-        }),
-        WorkModule,
-        AuthenticationModule
-    ],
-    declarations: [
-        GeneAppComponent,
-        MainComponent,
-        DashboardComponent,
-        SubSectionComponent,
-        InboxComponent,
-        InboxComposeComponent,
-        ChatComponent,
-        CalendarComponent,
-        EditorComponent,
-        Ckeditor,
-        MaterialIconComponent,
-        ChartComponent,
-        EasyPieChartComponent,
-        ButtonsComponent,
-        CardsComponent,
-        GridListComponent,
-        ListOverviewComponent,
-        MenuOverviewComponent,
-        SliderOverviewComponent,
-        SnackbarOverviewComponent,
-        TooltipOverviewComponent,
-        DialogOverviewComponent,
-        DemoDialog,
-        SelectComponent,
-        InputComponent,
-        CheckboxComponent,
-        RadioComponent,
-        ToolbarComponent,
-        ProgressComponent,
-        TabsComponent,
-        ColorpickerComponent,
-        DatepickerComponent,
-        DragulaDemoComponent,
-        SortableDemoComponent,
-        FullscreenTableComponent,
-        EditingTableComponent,
-        FilterTableComponent,
-        PagingTableComponent,
-        SortingTableComponent,
-        PinningTableComponent,
-        SelectionTableComponent,
-        ResponsiveTableComponent,
-        FormWizardComponent,
-        FormValidationComponent,
-        FormUploadComponent,
-        FormTreeComponent,
-        GoogleMapComponent,
-        LeafletMapComponent,
-        MediaComponent,
-        UserListComponent,
-        PricingComponent,
-        BlankComponent,
-        UserProfileComponent,
-        LoginComponent,
-        RegisterComponent,
-        ForgotPasswordComponent,
-        LockScreenComponent,
-        LineChartComponent,
-        PieChartComponent,
-        StackedAreaChartComponent,
-        nvD3,
-        FileManagerComponent,
-        ConfirmDialogComponent
-    ],
-    entryComponents: [
-        DemoDialog,
-        InboxComposeComponent,
-        ConfirmDialogComponent,
-        FormAnswerComponent,
-        FormQuestionComponent
-    ],
-    bootstrap: [GeneAppComponent],
-    providers: [
-        MailService,
-        D3ChartService,
-        MenuItems,
-        WorkListMenuItems,
-        PageTitleService,
-        DashboardItems,
-        SubSections,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: TokenInterceptor,
-            multi: true
-        },
-        {
-            provide: MD_DIALOG_DATA,
-            useValue: {}
-        }
-    ]
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MaterialModule,
+		Ng2DeviceDetectorModule.forRoot(),
+		RoutingModule,
+		FlexLayoutModule,
+		NgbModalModule.forRoot(),
+		CalendarModule.forRoot(),
+		AgmCoreModule.forRoot({ apiKey: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk' }),
+		QuillModule,
+		CKEditorModule,
+		DragulaModule,
+		SortablejsModule,
+		FileUploadModule,
+		NgxDatatableModule,
+		MdNativeDateModule,
+		TreeModule,
+		NgTreeModule,
+		ChartsModule,
+		EasyPieChartModule,
+		ColorPickerModule,
+		PerfectScrollbarModule.forRoot(perfectScrollbarConfig),
+		MenuToggleModule,
+		HttpModule,
+		TranslateModule.forRoot({
+			provide: TranslateLoader,
+			useFactory: (createTranslateLoader),
+			deps: [Http]
+		}),
+		WorkModule,
+		AuthenticationModule
+	],
+	declarations: [
+		GeneAppComponent,
+		MainComponent,
+		DashboardComponent,
+		SubSectionComponent,
+		InboxComponent,
+		InboxComposeComponent,
+		ChatComponent,
+		CalendarComponent,
+		EditorComponent,
+		Ckeditor,
+		MaterialIconComponent,
+		ChartComponent,
+		EasyPieChartComponent,
+		ButtonsComponent,
+		CardsComponent,
+		GridListComponent,
+		ListOverviewComponent,
+		MenuOverviewComponent,
+		SliderOverviewComponent,
+		SnackbarOverviewComponent,
+		TooltipOverviewComponent,
+		DialogOverviewComponent,
+		DemoDialog,
+		SelectComponent,
+		InputComponent,
+		CheckboxComponent,
+		RadioComponent,
+		ToolbarComponent,
+		ProgressComponent,
+		TabsComponent,
+		ColorpickerComponent,
+		DatepickerComponent,
+		DragulaDemoComponent,
+		SortableDemoComponent,
+		FullscreenTableComponent,
+		EditingTableComponent,
+		FilterTableComponent,
+		PagingTableComponent,
+		SortingTableComponent,
+		PinningTableComponent,
+		SelectionTableComponent,
+		ResponsiveTableComponent,
+		FormWizardComponent,
+		FormValidationComponent,
+		FormUploadComponent,
+		FormTreeComponent,
+		GoogleMapComponent,
+		LeafletMapComponent,
+		MediaComponent,
+		UserListComponent,
+		PricingComponent,
+		BlankComponent,
+		UserProfileComponent,
+		LoginComponent,
+		RegisterComponent,
+		ForgotPasswordComponent,
+		LockScreenComponent,
+		LineChartComponent,
+		PieChartComponent,
+		StackedAreaChartComponent,
+		nvD3,
+		FileManagerComponent,
+		ConfirmDialogComponent
+	],
+	entryComponents: [
+		DemoDialog,
+		InboxComposeComponent,
+		ConfirmDialogComponent,
+		FormAnswerComponent,
+		FormQuestionComponent
+	],
+	bootstrap: [GeneAppComponent],
+	providers: [
+		MailService,
+		D3ChartService,
+		MenuItems,
+		WorkListMenuItems,
+		PageTitleService,
+		DashboardItems,
+		SubSections,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: TokenInterceptor,
+			multi: true
+		},
+		{
+			provide: MD_DIALOG_DATA,
+			useValue: {}
+		  },
+		  ApiService,
+		  LogService,
+		RequestService
+	]
 })
 export class GeneAppModule {
 }

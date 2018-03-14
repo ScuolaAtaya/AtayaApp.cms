@@ -3,7 +3,7 @@
         <div class="gene-card-title">
             <div fxLayout="row" fxLayoutAlign="start center">
                 <div fxLayout="column">
-                    <h4>{{ cardTitle }}</h4>
+                    <h4>{{ cardTitle | translate }}</h4>
                 </div>
                 <span fxFlex></span>
             </div>
@@ -16,10 +16,10 @@
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
                         <md-input-container class="full-wid">
-                            <input mdInput placeholder="Title" [formControl]="form.controls['title']">
+                            <input mdInput [placeholder]="'Title' | translate" [formControl]="form.controls['title']">
                         </md-input-container>
                         <small class="gene-block" *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched" class="mat-text-warn">
-                            You must include a title.
+                            {{ 'You must include a title.' | translate }}
                         </small>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                 </div>
             <div class="pad-wrap">
                     <md-card-actions>
-                        <button md-raised-button color="primary" type="submit" [disabled]="!isFormValid()" style="float: right;">{{ cardSubmitButtonTitle }}</button>
+                        <button md-raised-button color="primary" type="submit" [disabled]="!isFormValid()" style="float: right;">{{ cardSubmitButtonTitle | translate }}</button>
                     </md-card-actions>
                 </div>
             </form>

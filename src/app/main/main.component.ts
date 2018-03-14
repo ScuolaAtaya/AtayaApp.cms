@@ -8,6 +8,9 @@ import { MediaChange, ObservableMedia } from "@angular/flex-layout";
 import { Ng2DeviceService } from 'ng2-device-detector';
 import * as Ps from 'perfect-scrollbar';
 import { AuthenticationService, User } from '../authentication/authentication.service';
+import { UtilsService } from '../common/utils.service';
+import {ApiService} from "../common/api.service";
+import {LogService} from "../common/log.service";
 declare var $: any;
 
 const screenfull = require('screenfull');
@@ -49,7 +52,11 @@ export class MainComponent implements OnInit, OnDestroy {
         private router: Router,
         private media: ObservableMedia,
         private deviceService: Ng2DeviceService,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        private utils: UtilsService,
+        private api: ApiService,
+        private logger: LogService
+    ) {
 
         this.user = authenticationService.getUser();
         const browserLang: string = translate.getBrowserLang();
@@ -143,6 +150,15 @@ export class MainComponent implements OnInit, OnDestroy {
         scrollContainer.scrollTop = 0;
     }
 
+    createBook() {
+        this.utils.confirm('Sei sicuro di voler continuare?').subscribe(result => {
+            if (result) {
+                this.api.createBook().subscribe(res => {
+                    this.translate.get('Libro generato correttamente').subscribe((translatedText: string) => {
+                        this.logger.success(translatedText)
+                    })
+                })
+            }
+        })
+    }
 }
-
-

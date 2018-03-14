@@ -12,6 +12,7 @@ import { WorkListMenuItems } from '../work-list-menu-items';
 import { UtilsService } from './../../common/utils.service';
 import { Router } from '@angular/router'
 import { environment } from 'environments/environment';
+import {TranslateService} from "ng2-translate";
 
 const target: string = 'write';
 
@@ -47,13 +48,16 @@ export class WriteComponent implements OnInit {
 		private sectionService: SectionSolverService,
 		public workListMenuItems: WorkListMenuItems,
 		public utils: UtilsService,
-		private router: Router
+		private router: Router,
+		private translate: TranslateService
 	) { }
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
 			this.section = this.sectionService.retrieveSection(params);
-			this.pageTitleService.setTitle("Scriviamo");
+			this.translate.get('Scriviamo').subscribe((translatedText: string) => {
+				this.pageTitleService.setTitle(translatedText);
+			})
 			this.downloadData()
 		});
 	}

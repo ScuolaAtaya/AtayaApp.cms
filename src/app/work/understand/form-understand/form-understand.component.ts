@@ -8,6 +8,7 @@ import { Understand } from '../understand';
 import { UnderstandService } from './../understand.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SectionSolverService, Section } from '../../section-solver.service';
+import {TranslateService} from "ng2-translate";
 
 
 @Component({
@@ -38,15 +39,17 @@ export class FormUnderstandComponent implements OnInit {
     private route: ActivatedRoute,
     private sectionService: SectionSolverService,
     private router: Router,
-    private understandService: UnderstandService
+    private understandService: UnderstandService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
     this.cardTitle = 'Carica il nuovo esercizio'
     this.cardSubmitButtonTitle = 'Carica esercizio'
     this.route.params.subscribe(params => {
-      this.pageTitleService.setTitle("Capiamo");
-
+      this.translate.get('Capiamo').subscribe((translatedText: string) => {
+        this.pageTitleService.setTitle(translatedText);
+      })
       this.section = this.sectionService.retrieveSection(params);
       this.id = String(params['id'])
       this.form = this.fb.group({

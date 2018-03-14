@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
-import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
-import {FormAnswerComponent} from './form-answer/form-answer.component';
-import {FormQuestionComponent} from './form-question/form-question.component';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { MdDialogRef, MdDialog } from "@angular/material";
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { FormAnswerComponent } from './form-answer/form-answer.component';
+import { FormQuestionComponent } from './form-question/form-question.component';
 
 @Injectable()
 export class UtilsService {
@@ -11,9 +11,9 @@ export class UtilsService {
     private answerDialogRef: MdDialogRef<FormAnswerComponent>;
     private questionDialogRef: MdDialogRef<FormQuestionComponent>;
 
-    constructor(private dialog: MdDialog,
-                private snackBar: MdSnackBar) {
-    }
+  constructor(
+    private dialog: MdDialog
+  ) { }
 
     confirm(message: string, btnOkText: string = 'YES', btnCancelText: string = 'NO'): Observable<Boolean> {
         this.confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -42,27 +42,15 @@ export class UtilsService {
         })
     }
 
-    openQuestionDialog(question: any): Observable<any> {
-        this.questionDialogRef = this.dialog.open(FormQuestionComponent, {
-            panelClass: 'form-question',
-            disableClose: false,
-            data: question
-        });
-        return this.questionDialogRef.afterClosed().map(result => {
-            this.questionDialogRef = null;
-            return result
-        })
-    }
-
-    successToast(message: string) {
-        this.snackBar.open(message, undefined, {
-            duration: 1000
-        })
-    }
-
-    errorToast(message: string) {
-        this.snackBar.open(message, undefined, {
-            duration: 1000
-        })
-    }
+  openQuestionDialog(question: any): Observable<any> {
+    this.questionDialogRef = this.dialog.open(FormQuestionComponent, {
+      panelClass: 'form-question',
+      disableClose: false,
+      data: question
+    });
+    return this.questionDialogRef.afterClosed().map(result => {
+      this.questionDialogRef = null;
+      return result
+    })
+  }
 }
