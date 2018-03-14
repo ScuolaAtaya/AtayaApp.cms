@@ -28,6 +28,8 @@ export class UnderstandComponent implements OnInit {
     trackSize: number;
     currentTime: number;
     dragging = false;
+    playing = false;
+    playButtonIcon = 'play_arrow';
     groupOptions: SortablejsOptions = {
         group: 'testGroup',
         handle: '.drag-handle',
@@ -73,12 +75,30 @@ export class UnderstandComponent implements OnInit {
                 }
             })
         } else {
-            this.playAudio()
-            // this.router.navigate([this.section.name + '/understand/exercise', id])
+            this.router.navigate([this.section.name + '/understand/exercise', id])
         }
     }
 
-    playAudio() {
+    toggleAudio() {
+        if (this.playing) {
+            // Do stuff
+            this.playButtonIcon = 'play_arrow';
+            this.playing = false;
+            if (this.audio !== undefined) {
+                this.audio.pause();
+            }
+        } else {
+            // Do other stuff
+            this.playButtonIcon = 'pause';
+            this.playing = true;
+            if (this.audio === undefined) {
+                this.setupAudio();
+            }
+            this.audio.play();
+        }
+    }
+
+    setupAudio() {
         // stuff and things
         this.audio = new Audio();
         this.audio.src = 'https://archive.org/download/JM2013-10-05.flac16/V0/jm2013-10-05-t12-MP3-V0.mp3';
@@ -91,7 +111,13 @@ export class UnderstandComponent implements OnInit {
                 this.currentTime = this.audio.currentTime;
             }
         });
-        this.audio.play();
+    }
+
+    formatSeconds(seconds: number) {
+        const date = new Date(null);
+        date.setSeconds(seconds !== undefined ? seconds : 0); // specify value for SECONDS here
+        const result = date.toISOString().substr(14, 5);
+        return result
     }
 
     seekAudio(event) {

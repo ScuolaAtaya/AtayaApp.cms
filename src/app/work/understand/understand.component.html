@@ -29,14 +29,6 @@
                 </md-list-item>
             </md-list>
         </md-card>
-        <md-card style="width: 60%; background: black; display: flex;">
-            <button class="mrgn-all-xs" style="justify-content: center" md-icon-button>
-                <md-icon>play_arrow</md-icon>
-            </button>
-            <md-slider style="width: 100%;" [value]="currentTime" (mousedown)="setDragging(true)"
-                       (mouseup)="setDragging(false)" (change)="seekAudio($event)" min="0"
-                       [max]="audio?.duration"></md-slider>
-        </md-card>
     </div>
 </div>
 <!-- class="box-inset pad-all-md mrgn-b-md"-->
@@ -44,4 +36,14 @@
     <button class="mrgn-all-xs mat-button-ruah" md-fab style="float: right" routerLink="exercise">
         <md-icon>add</md-icon>
     </button>
+</div>
+
+<div style="width: 60%; display: flex; align-items: center; justify-content: center">
+    <button style="float: left" class="mrgn-all-xs center-vertical" md-icon-button (click)="toggleAudio()">
+        <md-icon>{{playButtonIcon}}</md-icon>
+    </button>
+    <md-slider style="width: 100%; float: left;" [value]="currentTime" (mousedown)="setDragging(true)"
+               (mouseup)="setDragging(false)" (change)="seekAudio($event)" min="0"
+               [max]="audio?.duration"></md-slider>
+    <span class="text-nowrap" style="float: left; font-size: smaller; margin-left: 16px">{{ formatSeconds(currentTime) }} / {{ formatSeconds(audio?.duration) }}</span>
 </div>
