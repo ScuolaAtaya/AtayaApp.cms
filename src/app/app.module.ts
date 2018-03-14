@@ -5,7 +5,7 @@ import {Http, HttpModule} from '@angular/http';
 import {CalendarModule} from 'angular-calendar';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
-import {MaterialModule, MD_DIALOG_DATA, MdNativeDateModule} from '@angular/material';
+import {MaterialModule, MdNativeDateModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AgmCoreModule} from '@agm/core';
 import {QuillModule} from 'ngx-quill';

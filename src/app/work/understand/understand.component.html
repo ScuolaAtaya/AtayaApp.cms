@@ -37,12 +37,4 @@
     </button>
 </div>
 
-<div style="width: 60%; display: flex; align-items: center; justify-content: center">
-    <button style="float: left" class="mrgn-all-xs center-vertical" md-icon-button (click)="toggleAudio()">
-        <md-icon>{{playButtonIcon}}</md-icon>
-    </button>
-    <md-slider style="width: 100%; float: left;" [value]="currentTime" (mousedown)="setDragging(true)"
-               (mouseup)="setDragging(false)" (change)="seekAudio($event)" min="0"
-               [max]="audio?.duration"></md-slider>
-    <span class="text-nowrap" style="float: left; font-size: smaller; margin-left: 16px">{{ formatSeconds(currentTime) }} / {{ formatSeconds(audio?.duration) }}</span>
-</div>
+<ms-audio-player audioSource="https://archive.org/download/JM2013-10-05.flac16/V0/jm2013-10-05-t12-MP3-V0.mp3" style="width: 80%;"></ms-audio-player>

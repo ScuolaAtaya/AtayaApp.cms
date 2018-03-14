@@ -1,0 +1,10 @@
+<div class="padding-r-md center-vertical-flex">
+    <button class="mrgn-all-xs" md-icon-button md-button-sm (click)="toggleAudio()">
+        <md-icon>{{playButtonIcon}}</md-icon>
+    </button>
+        <md-slider class="center-vertical  audio-slider" [style.width]="width" [value]="currentTime"
+                   (mousedown)="setDragging(true)"
+                   (mouseup)="setDragging(false)" (change)="seekAudio($event)" min="0"
+                   [max]="audio?.duration"></md-slider>
+    <span *ngIf="showTime" class="text-nowrap time-text">{{ formatSeconds(currentTime) }} / {{ formatSeconds(audio?.duration) }}</span>
+</div>
