@@ -1,11 +1,11 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 
 @Component({
     selector: 'ms-audio-player',
     templateUrl: './audio-player.component.html',
     styleUrls: ['./audio-player.component.scss']
 })
-export class AudioPlayerComponent implements OnInit {
+export class AudioPlayerComponent implements OnInit, OnDestroy {
     trackSize: number;
     currentTime: number;
     audio: HTMLAudioElement;
@@ -13,13 +13,25 @@ export class AudioPlayerComponent implements OnInit {
     dragging = false;
     playing = false;
     loading = false;
-    @Input() audioSource: string;
+    _audioSource: string;
+    // @Input() audioSource: string;
     @Input() showTime = true;
 
     constructor() {
     }
 
+    @Input()
+    set audioSource(audio: string) {
+        console.log('resetting: ' + audio);
+        this.resetAudio();
+        this._audioSource = audio
+    }
+
     ngOnInit() {
+    }
+
+    ngOnDestroy() {
+        this.audio.pause()
     }
 
     toggleAudio() {
@@ -41,11 +53,19 @@ export class AudioPlayerComponent implements OnInit {
         }
     }
 
+    resetAudio() {
+        if (this.audio !== undefined) {
+            this.audio.currentTime = 0;
+            this.playing = false;
+            this.audio.src = this._audioSource;
+        }
+    }
+
     setupAudio() {
         // stuff and things
         this.loading = true;
         this.audio = new Audio();
-        this.audio.src = this.audioSource;
+        this.audio.src = this._audioSource;
         this.audio.load();
         this.audio.addEventListener('loadedmetadata', (event) => {
             this.loading = false;
