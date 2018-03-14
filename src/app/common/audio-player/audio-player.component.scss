@@ -16,3 +16,25 @@
 .audio-slider{
   overflow: hidden;
 }
+
+.audio-box{
+  width: 100%;
+}
+
+.button-box{
+  display: inline; float: left;
+}
+
+.slider-box{
+  display: inline
+}
+
+.time-box{
+  display: inline; float: right;
+}
+
+.time-box span {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 48px;
+}
