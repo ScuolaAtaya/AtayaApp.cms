@@ -23,8 +23,8 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     @Input()
     set audioSource(audio: string) {
         console.log('resetting: ' + audio);
+        this._audioSource = audio;
         this.resetAudio();
-        this._audioSource = audio
     }
 
     ngOnInit() {
