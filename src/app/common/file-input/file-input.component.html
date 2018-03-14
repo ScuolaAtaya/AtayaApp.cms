@@ -6,5 +6,6 @@
   <div *ngIf="type == 'mp3'">
     <div *ngIf="!fileName">{{ 'Carica qui il tuo MP3' | translate }}</div>
     <a *ngIf="fileName" [href]="url">{{ fileName }}</a>
+    <ms-audio-player [audioSource]="url"></ms-audio-player>
   </div>
 </div>
