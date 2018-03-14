@@ -89,5 +89,7 @@
   "You must include a title.": "You must include a title.",
   "You must include a exercise title.": "You must include a exercise title.",
   "You must include a YouTube Url.": "You must include a exercise title.",
-  "You must include a word.": "You must include a exercise title."
+  "You must include a word.": "You must include a exercise title.",
+  "server error": "Errore di comunicazione con il server. Riprovare per favore.",
+  "Sei sicuro di voler continuare?": "Sei sicuro di voler continuare?"
 }

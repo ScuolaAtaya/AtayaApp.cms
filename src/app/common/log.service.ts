@@ -3,7 +3,7 @@ import { MdSnackBar } from '@angular/material';
 import { TranslateService } from 'ng2-translate';
 
 @Injectable()
-export class LogServiceService {
+export class LogService {
 
   constructor(private snackBar: MdSnackBar, private translate: TranslateService) { }
 
@@ -51,6 +51,12 @@ export class LogServiceService {
         duration: 3000,
         extraClasses: extraClasses
       })
+    })
+  }
+
+  public serverError() {
+    this.translate.get('server error').subscribe((translatedText: string) => {
+      this.error(translatedText)
     })
   }
 }
