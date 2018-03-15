@@ -16,7 +16,7 @@
             <button md-icon-button [md-menu-trigger-for]="menu" aria-label="Open basic menu">
               <md-icon>more_vert</md-icon>
             </button>
-            <md-menu #menu="mdMenu">
+            <md-menu #menu="mdMenu" class="mat-content-menu-ruah">
               <button md-menu-item *ngFor="let listMenuItem of workListMenuItems.getAll()" (click)="menuAction(understand, listMenuItem)">
                 {{ listMenuItem.key | translate }}
               </button>
