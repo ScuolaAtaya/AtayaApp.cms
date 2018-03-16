@@ -81,8 +81,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     formatSeconds(seconds: number) {
         const date = new Date(null);
         date.setSeconds(seconds !== undefined ? seconds : 0); // specify value for SECONDS here
-        const result = date.toISOString().substr(14, 5);
-        return result
+        return date.toISOString().substr(14, 5)
     }
 
     seekAudio(event) {
