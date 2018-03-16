@@ -33,6 +33,7 @@ export class FormWriteComponent implements OnInit {
 
   public form: FormGroup;
   public picture: string
+  public audio: string
   public letters: string[];
 
   constructor(private fb: FormBuilder,
@@ -81,6 +82,10 @@ export class FormWriteComponent implements OnInit {
     this.picture = fileName
   }
 
+  onAudioChanged(fileName: string) {
+    this.audio = fileName
+  }
+
   public onSubmit() {
     if (this.isFormValid()) {
       if (this.id !== 'undefined') {
@@ -105,7 +110,7 @@ export class FormWriteComponent implements OnInit {
   }
 
   isFormValid() {
-    return (this.form.valid && this.picture !== undefined)
+    return (this.form.valid && this.picture !== undefined && this.audio !== undefined)
   }
 
   public goToListPage() {
@@ -117,6 +122,7 @@ export class FormWriteComponent implements OnInit {
     this.form.controls.word.setValue(write.word)
     this.letters = write.letters
     this.picture = write.picture
+    this.audio = write.audio
   }
 
   public formToObj() {
@@ -128,6 +134,7 @@ export class FormWriteComponent implements OnInit {
     write.title = this.form.controls.title.value
     write.word = this.form.controls.word.value
     write.picture = this.picture
+    write.audio = this.audio
     write.letters = this.letters
     return write
   }
