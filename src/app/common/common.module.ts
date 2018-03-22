@@ -10,6 +10,7 @@ import { AnswersInputComponent } from './answers-input/answers-input.component';
 import { QuestionsInputComponent } from './questions-input/questions-input.component';
 import { FormQuestionComponent } from './form-question/form-question.component';
 import { TranslateModule } from 'ng2-translate';
+import { AudioPlayerComponent } from './audio-player/audio-player.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { TranslateModule } from 'ng2-translate';
     ReactiveFormsModule,
     TranslateModule.forRoot()
   ],
-  exports: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent],
-  declarations: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent]
+  exports: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent, AudioPlayerComponent],
+  declarations: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent, AudioPlayerComponent]
 })
-export class CommonComponentModule { }
+export class CommonComponentModule {
+}

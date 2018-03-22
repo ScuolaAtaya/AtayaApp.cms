@@ -1,0 +1,40 @@
+.center-vertical-flex{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.padding-r-md{
+  padding-right: 16px;
+}
+
+.time-text{
+  font-size: smaller;
+  margin-left: 16px;
+}
+
+.audio-slider{
+  overflow: hidden;
+}
+
+.audio-box{
+  width: 100%;
+}
+
+.button-box{
+  display: inline; float: left;
+}
+
+.slider-box{
+  display: inline
+}
+
+.time-box{
+  display: inline; float: right;
+}
+
+.time-box span {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 48px;
+}
