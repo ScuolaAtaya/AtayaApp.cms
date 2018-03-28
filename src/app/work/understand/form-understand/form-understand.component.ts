@@ -116,15 +116,17 @@ export class FormUnderstandComponent implements OnInit {
   }
 
   public formToObj() {
-    let understand = new Understand()
-    understand.unit_id = this.section.id
+    let understand = new Understand();
+    understand.unit_id = this.section.id;
     if (this.understand) {
       understand = this.understand
     }
-    understand.title = this.form.controls.title.value
-    understand.video_url = this.form.controls.video_url.value
-    understand.audio = this.audio
-    understand.questions = this.questions
+    understand.title = this.form.controls.title.value;
+    understand.video_url = (this.form.controls.video_url.value)
+        .replace('https://www.youtube.com/watch?v=', '');
+    console.log('video_url: ' + understand.video_url);
+    understand.audio = this.audio;
+    understand.questions = this.questions;
     return understand
   }
 }
