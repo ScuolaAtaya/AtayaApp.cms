@@ -31,7 +31,9 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.audio.pause()
+        if (this.audio !== undefined) {
+            this.audio.pause()
+        }
     }
 
     toggleAudio() {
@@ -79,9 +81,13 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     }
 
     formatSeconds(seconds: number) {
-        const date = new Date(null);
-        date.setSeconds(seconds !== undefined ? seconds : 0); // specify value for SECONDS here
-        return date.toISOString().substr(14, 5)
+        try {
+            const date = new Date(null);
+            date.setSeconds(seconds !== undefined ? seconds : 0); // specify value for SECONDS here
+            return date.toISOString().substr(14, 5)
+        }catch (e) {
+            return '00:00'
+        }
     }
 
     seekAudio(event) {
