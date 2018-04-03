@@ -15,8 +15,14 @@
                         <md-input-container class="mrgn-b-md">
                             <input mdInput placeholder="Password" type="password" name="password" required [(ngModel)]="user.password">
                         </md-input-container>
+                        <div fxLayout="column" fxLayoutAlign="center center mrgn-b-md">
+                            <md-error *ngIf="error"> 
+                                {{ error }} 
+                            </md-error>
+                        </div>
                         <button class="mat-green" md-raised-button [disabled]="!form.valid">SIGN IN</button>
                     </div>
+
                 </form>
             </div>
         </md-card>

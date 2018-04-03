@@ -29,14 +29,13 @@ export class LoginComponent {
   login() {
     this.loading = true;
     this.authenticationService.login(this.user.name, this.user.password)
-      .subscribe(result => {
-        if (result === true) {
-          this.router.navigate(['/dashboard']);
-        } else {
+      .subscribe(
+        result =>
+          this.router.navigate(['/dashboard']),
+        err => {
           this.error = 'Username or password is incorrect';
           this.loading = false;
-        }
-      });
+        });
   }
 
 }
