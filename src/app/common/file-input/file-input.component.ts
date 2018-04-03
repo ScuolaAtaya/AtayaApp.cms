@@ -1,7 +1,8 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { FileUploader, FileItem } from 'ng2-file-upload/ng2-file-upload';
 import { environment } from 'environments/environment';
 import { AuthenticationService } from './../../authentication/authentication.service';
+import { LoadingModule } from 'ngx-loading';
 
 @Component({
   selector: 'ms-file-input',
@@ -15,7 +16,8 @@ export class FileInputComponent implements OnInit, OnChanges {
 
   public uploader: FileUploader;
   public hasBaseDropZoneOver: Boolean;
-  public url: string
+  public url: string;
+  public loading = false;
 
   constructor(public auth: AuthenticationService) { }
 
@@ -23,9 +25,12 @@ export class FileInputComponent implements OnInit, OnChanges {
     this.uploader = new FileUploader({
       url: environment.baseUrl + '/media/upload',
       method: 'POST',
-      headers: [{ name: 'Authorization', value: 'Bearer '+this.auth.getUser().token }],
+      headers: [{ name: 'Authorization', value: 'Bearer ' + this.auth.getUser().token }],
       autoUpload: true
     });
+    this.uploader.onProgressItem = (fileItem: FileItem, progress: any) => {
+      this.loading = true;
+    }
     this.uploader.onCompleteItem = (item: any,
       response: string,
       status: number,
@@ -35,7 +40,8 @@ export class FileInputComponent implements OnInit, OnChanges {
       let name = json.name
       this.fileName = name
       this.onFileNameChanged.emit(this.fileName)
-    return { item, response, status, headers };
+      this.loading = false;
+      return { item, response, status, headers };
     };
   }
 

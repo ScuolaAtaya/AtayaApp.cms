@@ -1,4 +1,4 @@
-<div class="file-type" ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader">
+<div *ngIf="!loading" class="file-type" ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader">
   <div *ngIf="type == 'image'">
     <div *ngIf="!fileName">{{ 'Carica qui la tua foto' | translate }}</div>
     <img *ngIf="fileName" class="picturePreview" [src]="url" />
@@ -10,3 +10,4 @@
     </div>
   </div>
 </div>
+<ngx-loading [show]="loading"></ngx-loading>

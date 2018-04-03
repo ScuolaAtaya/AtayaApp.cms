@@ -11,6 +11,8 @@ import { QuestionsInputComponent } from './questions-input/questions-input.compo
 import { FormQuestionComponent } from './form-question/form-question.component';
 import { TranslateModule } from 'ng2-translate';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
+import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
+
 
 @NgModule({
   imports: [
@@ -19,7 +21,15 @@ import { AudioPlayerComponent } from './audio-player/audio-player.component';
     FormsModule,
     FileUploadModule,
     ReactiveFormsModule,
-    TranslateModule.forRoot()
+    TranslateModule.forRoot(),
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.circleSwish,
+      backdropBackgroundColour: 'rgba(0,0,0,0.5)',
+      backdropBorderRadius: '4px',
+      primaryColour: '#ffffff',
+      secondaryColour: '#ffffff',
+      tertiaryColour: '#ffffff'
+    })
   ],
   exports: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent, AudioPlayerComponent],
   declarations: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent, AudioPlayerComponent]
