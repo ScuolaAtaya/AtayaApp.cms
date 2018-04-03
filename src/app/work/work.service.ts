@@ -31,7 +31,7 @@ export abstract class WorkService extends ApiService {
     }
 
     delete(id: string) {
-        return this.requestService.delete(this.createUrlFromBaseUrl(this.target))
+        return this.requestService.delete(this.createUrlFromBaseUrl(this.target, id))
     }
 }
 
