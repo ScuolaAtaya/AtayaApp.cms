@@ -16,15 +16,9 @@
                         <md-input-container class="full-wid">
                             <input mdInput [placeholder]="'You must include a exercise title.' | translate" [formControl]="form.controls['title']">
                         </md-input-container>
-                        <small class="gene-block" *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched" class="mat-text-warn">
-                            {{ 'You must include a exercise title.' | translate }}
-                        </small>
                         <md-input-container class="full-wid">
                             <input mdInput [placeholder]="'You must include a YouTube Url.' | translate" [formControl]="form.controls['video_url']">
                         </md-input-container>
-                        <small class="gene-block" *ngIf="form.controls['video_url'].hasError('required') && form.controls['video_url'].touched" class="mat-text-warn">
-                            {{ 'You must include a YouTube Url.' | translate }}
-                        </small>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
