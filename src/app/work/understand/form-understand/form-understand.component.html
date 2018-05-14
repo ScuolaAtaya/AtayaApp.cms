@@ -26,7 +26,7 @@
                         <ms-file-input [fileName]="audio" type="mp3" (onFileNameChanged)="onAudioChanged($event)"></ms-file-input>
                     </div>
                 </div>
-                <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center" *ngIf="this.section !== undefined && this.section.id < 5">
+                <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div class="box-inset box-inset-questionsBox pad-all-md">
                         <h5 class="mrgn-b-md">Questions</h5>
                         <ms-questions-input [questions]="questions"></ms-questions-input>
