@@ -14,32 +14,40 @@
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="100">
                         <md-input-container class="full-wid">
-                            <input mdInput [placeholder]="'You must include a exercise title.' | translate" [formControl]="form.controls['title']">
+                            <input mdInput [placeholder]="'You must include a exercise title.' | translate"
+                                [formControl]="form.controls['title']">
                         </md-input-container>
                         <md-input-container class="full-wid">
-                            <input mdInput [placeholder]="'You must include a word.' | translate" [formControl]="form.controls['word']">
+                            <input mdInput [placeholder]="'You must include a word.' | translate"
+                                [formControl]="form.controls['word']">
                         </md-input-container>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-                        <ms-file-input [fileName]="picture" type="image" (onFileNameChanged)="onFileNameChanged($event)" [credits]="pictureCredits" (onCreditsChanged)="onPictureCreditsChanged($event)"></ms-file-input>
+                        <ms-file-input [fileName]="picture" type="image" (onFileNameChanged)="onFileNameChanged($event)"
+                            [credits]="pictureCredits" (onCreditsChanged)="onPictureCreditsChanged($event)">
+                        </ms-file-input>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-                        <ms-file-input [fileName]="audio" type="mp3" (onFileNameChanged)="onAudioChanged($event)" [credits]="audioCredits" (onCreditsChanged)="onAudioCreditsChanged($event)"></ms-file-input>
+                        <ms-file-input [fileName]="audio" type="mp3" (onFileNameChanged)="onAudioChanged($event)"
+                            [credits]="audioCredits" (onCreditsChanged)="onAudioCreditsChanged($event)"></ms-file-input>
                     </div>
                 </div>
-                <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center" *ngIf="this.section !== undefined && this.section.id < 5">
+                <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center"
+                    *ngIf="this.section !== undefined && this.section.id < 5">
                     <div class="box-inset box-inset-letterBox pad-all-md">
                         <h5 class="mrgn-b-md">{{ 'Letters' | translate }}</h5>
-                        <ms-strings-input [strings]='letters' [placeholder]="'A new letter' | translate"></ms-strings-input>
+                        <ms-strings-input [strings]='letters' [placeholder]="'A new letter' | translate">
+                        </ms-strings-input>
                     </div>
                 </div>
                 <div class="pad-wrap">
                     <md-card-actions>
-                        <button md-raised-button color="primary" type="submit" [disabled]="!isFormValid()" style="float: right;">{{ cardSubmitButtonTitle | translate }}</button>
+                        <button md-raised-button color="primary" type="submit" [disabled]="!isFormValid()"
+                            style="float: right;">{{ cardSubmitButtonTitle | translate }}</button>
                     </md-card-actions>
                 </div>
             </form>
