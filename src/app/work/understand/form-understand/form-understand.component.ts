@@ -27,7 +27,7 @@ export class FormUnderstandComponent implements OnInit {
   public audio: string;
   public questions: any[];
   public section: Section;
-  public credits: string;
+  public audioCredits: string;
 
   constructor(
     private fb: FormBuilder,
@@ -50,7 +50,8 @@ export class FormUnderstandComponent implements OnInit {
       this.id = String(params['id']);
       this.form = this.fb.group({
         title: [null, Validators.compose([Validators.required])],
-        video_url: [null, Validators.compose([Validators.required])]
+        video_url: [null, Validators.compose([Validators.required])],
+        video_credits: [null]
       });
       this.questions = [];
       if (this.id !== 'undefined') {
@@ -72,7 +73,7 @@ export class FormUnderstandComponent implements OnInit {
   }
 
   onCreditsChanged(credits: string) {
-    this.credits = credits;
+    this.audioCredits = credits;
   }
 
   public onSubmit() {
@@ -108,9 +109,10 @@ export class FormUnderstandComponent implements OnInit {
   public objToForm(understand: Understand) {
     this.form.controls.title.setValue(understand.title);
     this.form.controls.video_url.setValue(understand.video_url);
+    this.form.controls.video_credits.setValue(understand.video_credits);
     this.audio = understand.audio;
     this.questions = understand.questions;
-    this.credits = understand.credits;
+    this.audioCredits = understand.audio_credits;
   }
 
   public formToObj() {
@@ -122,9 +124,10 @@ export class FormUnderstandComponent implements OnInit {
     understand.title = this.form.controls.title.value;
     understand.video_url = this.form.controls.video_url.value.replace('https://www.youtube.com/watch?v=', '');
     console.log('video_url: ' + understand.video_url);
+    understand.video_credits = this.form.controls.video_credits.value;
     understand.audio = this.audio;
     understand.questions = this.questions;
-    understand.credits = this.credits;
+    understand.audio_credits = this.audioCredits;
     return understand;
   }
 }

@@ -4,5 +4,6 @@ export class Understand extends Work {
     questions: any[];
     audio: string;
     video_url: string;
-    credits: string;
+    audio_credits: string;
+    video_credits: string;
 }

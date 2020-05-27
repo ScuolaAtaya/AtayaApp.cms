@@ -21,12 +21,16 @@
                             <input mdInput [placeholder]="'You must include a YouTube Url.' | translate"
                                 [formControl]="form.controls['video_url']">
                         </md-input-container>
+                        <md-input-container class="full-wid">
+                            <input mdInput [placeholder]="'Credits' | translate"
+                                [formControl]="form.controls['video_credits']">
+                        </md-input-container>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
                         <ms-file-input [fileName]="audio" type="mp3" (onFileNameChanged)="onAudioChanged($event)"
-                            [credits]="credits" (onCreditsChanged)="onCreditsChanged($event)"></ms-file-input>
+                            [credits]="audioCredits" (onCreditsChanged)="onCreditsChanged($event)"></ms-file-input>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
