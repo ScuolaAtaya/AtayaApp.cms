@@ -32,6 +32,7 @@ export class FormUnderstandComponent implements OnInit {
   public questions: any[]
 
   public section: Section;
+  public credits: string;
 
   constructor(
     private fb: FormBuilder,
@@ -77,6 +78,10 @@ export class FormUnderstandComponent implements OnInit {
     this.audio = fileName
   }
 
+  onCreditsChanged(credits: string) {
+    this.credits = credits;
+  }
+
   public onSubmit() {
     if (this.isFormValid()) {
       if (this.id !== 'undefined') {
@@ -113,6 +118,7 @@ export class FormUnderstandComponent implements OnInit {
     this.form.controls.video_url.setValue(understand.video_url)
     this.audio = understand.audio
     this.questions = understand.questions
+    this.credits = understand.credits;
   }
 
   public formToObj() {
@@ -127,6 +133,7 @@ export class FormUnderstandComponent implements OnInit {
     console.log('video_url: ' + understand.video_url);
     understand.audio = this.audio;
     understand.questions = this.questions;
+    understand.credits = this.credits;
     return understand
   }
 }
