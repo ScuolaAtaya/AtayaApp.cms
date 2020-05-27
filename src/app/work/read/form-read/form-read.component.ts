@@ -32,6 +32,8 @@ export class FormReadComponent implements OnInit {
   private section: Section;
   public options: any[]
 
+  public credits: string;
+
   constructor(
     private fb: FormBuilder,
     private pageTitleService: PageTitleService,
@@ -74,6 +76,10 @@ export class FormReadComponent implements OnInit {
     this.picture = fileName
   }
 
+  onCreditsChanged(credits: string) {
+    this.credits = credits;
+  }
+
   public onSubmit() {
     if (this.isFormValid()) {
       if (this.id !== 'undefined') {
@@ -109,6 +115,7 @@ export class FormReadComponent implements OnInit {
     this.form.controls.title.setValue(read.title)
     this.picture = read.picture
     this.options = read.options
+    this.credits = read.credits;
   }
 
   public formToObj() {
@@ -120,6 +127,7 @@ export class FormReadComponent implements OnInit {
     read.title = this.form.controls.title.value
     read.picture = this.picture
     read.options = this.options
+    read.credits = this.credits;
 
     console.log(read)
 
