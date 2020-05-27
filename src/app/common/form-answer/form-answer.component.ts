@@ -17,6 +17,7 @@ export class FormAnswerComponent implements OnInit {
   public answer: any
   public audio: string
   public correct: boolean
+  public credits: string;
 
   constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormAnswerComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
     $('.form-answer').addClass('app-dark');
@@ -43,6 +44,10 @@ export class FormAnswerComponent implements OnInit {
     this.audio = fileName
   }
 
+  onCreditsChanged(credits: string) {
+    this.credits = credits;
+  }
+
   isFormValid() {
     return (this.form.valid && this.correct !== undefined && this.audio !== undefined)
   }
@@ -51,6 +56,7 @@ export class FormAnswerComponent implements OnInit {
     this.form.controls.body.setValue(answer.body)
     this.correct = answer.correct
     this.audio = answer.audio
+    this.credits = answer.credits;
   }
 
   public formToObj() {
@@ -61,6 +67,7 @@ export class FormAnswerComponent implements OnInit {
     obj['body'] = this.form.controls.body.value 
     obj['correct'] = this.correct
     obj['audio'] = this.audio
+    obj['credits'] = this.credits;
     return obj
   }
 
