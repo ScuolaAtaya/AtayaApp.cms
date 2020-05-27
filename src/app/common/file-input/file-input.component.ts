@@ -12,7 +12,9 @@ import { LoadingModule } from 'ngx-loading';
 export class FileInputComponent implements OnInit, OnChanges {
   @Input() fileName: string;
   @Input() type: string;
+  @Input() credits: string;
   @Output() onFileNameChanged = new EventEmitter<string>();
+  @Output() onCreditsChanged = new EventEmitter<string>();
 
   public uploader: FileUploader;
   public hasBaseDropZoneOver: Boolean;
@@ -46,6 +48,7 @@ export class FileInputComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (!changes || !changes.fileName) { return; }
     let f = changes.fileName
     if (f.currentValue !== undefined) {
       this.url = this.getMediaUrl(this.fileName)
@@ -58,5 +61,9 @@ export class FileInputComponent implements OnInit, OnChanges {
 
   getMediaUrl(fileName) {
     return environment.baseUrlImage + '/' + fileName
+  }
+
+  updateCredits() {
+    this.onCreditsChanged.emit(this.credits);
   }
 }

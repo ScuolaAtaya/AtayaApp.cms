@@ -9,5 +9,8 @@
       <ms-audio-player [audioSource]="url"></ms-audio-player>
     </div>
   </div>
+  <md-input-container class="full-wid">
+    <input mdInput [placeholder]="'Credits' | translate" [(ngModel)]="credits" (keyup)='updateCredits($event)'>
+  </md-input-container>
 </div>
 <ngx-loading [show]="loading"></ngx-loading>
