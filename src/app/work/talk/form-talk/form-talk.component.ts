@@ -38,6 +38,8 @@ export class FormTalkComponent implements OnInit {
   public picture: string
 
   private section: Section;
+  public pictureCredits: string;
+  public audioCredits: string;
   
   constructor(private fb: FormBuilder, private pageTitleService: PageTitleService, private talkService: TalkService, private route: ActivatedRoute, private sectionService: SectionSolverService,
 		private router: Router, public auth: AuthenticationService, private translate: TranslateService) { }
@@ -74,8 +76,16 @@ export class FormTalkComponent implements OnInit {
     this.picture = fileName
   }
 
+  onPictureCreditsChanged(credits: string) {
+    this.pictureCredits = credits;
+  }
+
   onAudioChanged(fileName: string) {
     this.audio = fileName
+  }
+
+  onAudioCreditsChanged(credits: string) {
+    this.audioCredits = credits;
   }
 
   public onSubmit() {
@@ -113,6 +123,8 @@ export class FormTalkComponent implements OnInit {
     this.form.controls.title.setValue(talk.title)
     this.picture = talk.picture
     this.audio = talk.audio
+    this.pictureCredits = talk.picture_credits;
+    this.audioCredits = talk.audio_credits;
   }
 
   public formToObj() {
@@ -124,6 +136,8 @@ export class FormTalkComponent implements OnInit {
     talk.title = this.form.controls.title.value
     talk.picture = this.picture
     talk.audio = this.audio
+    talk.picture_credits = this.pictureCredits;
+    talk.audio_credits = this.audioCredits;
     return talk
   }
 }
