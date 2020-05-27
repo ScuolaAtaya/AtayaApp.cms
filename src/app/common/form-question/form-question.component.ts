@@ -9,40 +9,35 @@ declare var $: any;
   styleUrls: ['./form-question.component.scss']
 })
 export class FormQuestionComponent implements OnInit {
-  public cardTitle: string
-  public cardSubmitButtonTitle: string
-
+  public cardTitle: string;
+  public cardSubmitButtonTitle: string;
   public form: FormGroup;
-
-  public question: any
-  public audio: string
-  public answers: any[]
+  public question: any;
+  public audio: string;
+  public answers: any[];
   public credits: string;
 
   constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormQuestionComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
     $('.form-question').addClass('app-dark');
-   }
+  }
 
   ngOnInit() {
-    this.cardTitle = 'Carica la nuova domanda'
-    this.cardSubmitButtonTitle = 'Carica domanda'
-
+    this.cardTitle = 'Carica la nuova domanda';
+    this.cardSubmitButtonTitle = 'Carica domanda';
     this.form = this.fb.group({
       body: [null, Validators.compose([Validators.required])]
-    })
-
-    this.answers = []
-
+    });
+    this.answers = [];
     if (this.data && Object.keys(this.data).length > 0) {
-      this.cardTitle = 'Modifica la domanda'
-      this.cardSubmitButtonTitle = 'Modifica domanda'
-      this.question = this.data
-      this.objToForm(this.question)
+      this.cardTitle = 'Modifica la domanda';
+      this.cardSubmitButtonTitle = 'Modifica domanda';
+      this.question = this.data;
+      this.objToForm(this.question);
     }
   }
 
   onFileNameChanged(fileName: string) {
-    this.audio = fileName
+    this.audio = fileName;
   }
 
   onCreditsChanged(credits: string) {
@@ -50,36 +45,34 @@ export class FormQuestionComponent implements OnInit {
   }
 
   isFormValid() {
-    return (this.form.valid && this.audio !== undefined)
+    return this.form.valid && this.audio !== undefined;
   }
 
   public objToForm(answer: any) {
-    this.form.controls.body.setValue(answer.body)
-    this.audio = answer.audio
-    this.answers = answer.answers
+    this.form.controls.body.setValue(answer.body);
+    this.audio = answer.audio;
+    this.answers = answer.answers;
     this.credits = answer.credits;
   }
 
   public formToObj() {
-    let obj = {}
+    let obj = {};
     if (this.question) {
-      obj = this.question
+      obj = this.question;
     }
-    obj['body'] = this.form.controls.body.value 
-    obj['audio'] = this.audio
-    obj['answers'] = this.answers
+    obj['body'] = this.form.controls.body.value;
+    obj['audio'] = this.audio;
+    obj['answers'] = this.answers;
     obj['credits'] = this.credits;
-    return obj
+    return obj;
   }
 
   public onSubmit() {
     if (this.isFormValid()) {
-      this.dialogRef.close(this.formToObj())
+      this.dialogRef.close(this.formToObj());
     }
   }
-  
   public onClose() {
-    this.dialogRef.close(undefined)
+    this.dialogRef.close(undefined);
   }
-
 }
