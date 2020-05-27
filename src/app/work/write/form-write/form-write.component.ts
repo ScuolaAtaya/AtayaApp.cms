@@ -35,6 +35,8 @@ export class FormWriteComponent implements OnInit {
   public picture: string
   public audio: string
   public letters: string[];
+  public pictureCredits: string;
+  public audioCredits: string;
 
   constructor(private fb: FormBuilder,
     private pageTitleService: PageTitleService,
@@ -82,8 +84,16 @@ export class FormWriteComponent implements OnInit {
     this.picture = fileName
   }
 
+  onPictureCreditsChanged(credits: string) {
+    this.pictureCredits = credits;
+  }
+
   onAudioChanged(fileName: string) {
     this.audio = fileName
+  }
+
+  onAudioCreditsChanged(credits: string) {
+    this.audioCredits = credits;
   }
 
   public onSubmit() {
@@ -123,6 +133,8 @@ export class FormWriteComponent implements OnInit {
     this.letters = write.letters
     this.picture = write.picture
     this.audio = write.audio
+    this.pictureCredits = write.picture_credits;
+    this.audioCredits = write.audio_credits;
   }
 
   public formToObj() {
@@ -136,6 +148,8 @@ export class FormWriteComponent implements OnInit {
     write.picture = this.picture
     write.audio = this.audio
     write.letters = this.letters
+    write.picture_credits = this.pictureCredits;
+    write.audio_credits = this.audioCredits;
     return write
   }
 }

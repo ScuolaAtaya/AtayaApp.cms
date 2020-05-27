@@ -6,5 +6,7 @@ export class Write  extends Work{
     audio: string;
     picture: string;
     word: string;
+    picture_credits: string;
+    audio_credits: string;
 
 }
