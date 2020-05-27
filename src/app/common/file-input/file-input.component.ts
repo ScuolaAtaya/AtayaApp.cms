@@ -1,8 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
-import { FileUploader, FileItem } from 'ng2-file-upload/ng2-file-upload';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { environment } from 'environments/environment';
 import { AuthenticationService } from './../../authentication/authentication.service';
-import { LoadingModule } from 'ngx-loading';
 
 @Component({
   selector: 'ms-file-input',
@@ -15,7 +14,6 @@ export class FileInputComponent implements OnInit, OnChanges {
   @Input() credits: string;
   @Output() onFileNameChanged = new EventEmitter<string>();
   @Output() onCreditsChanged = new EventEmitter<string>();
-
   public uploader: FileUploader;
   public hasBaseDropZoneOver: Boolean;
   public url: string;
@@ -30,18 +28,12 @@ export class FileInputComponent implements OnInit, OnChanges {
       headers: [{ name: 'Authorization', value: 'Bearer ' + this.auth.getUser().token }],
       autoUpload: true
     });
-    this.uploader.onProgressItem = (fileItem: FileItem, progress: any) => {
-      this.loading = true;
-    }
-    this.uploader.onCompleteItem = (item: any,
-      response: string,
-      status: number,
-      headers: any) => {
-      let json = JSON.parse(response)
-      let type = json.type
-      let name = json.name
-      this.fileName = name
-      this.onFileNameChanged.emit(this.fileName)
+    this.uploader.onProgressItem = () => this.loading = true;
+    this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: any) => {
+      const json = JSON.parse(response);
+      const name = json.name;
+      this.fileName = name;
+      this.onFileNameChanged.emit(this.fileName);
       this.loading = false;
       return { item, response, status, headers };
     };
@@ -49,9 +41,9 @@ export class FileInputComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (!changes || !changes.fileName) { return; }
-    let f = changes.fileName
+    const f = changes.fileName;
     if (f.currentValue !== undefined) {
-      this.url = this.getMediaUrl(this.fileName)
+      this.url = this.getMediaUrl(this.fileName);
     }
   }
 
@@ -60,7 +52,7 @@ export class FileInputComponent implements OnInit, OnChanges {
   }
 
   getMediaUrl(fileName) {
-    return environment.baseUrlImage + '/' + fileName
+    return environment.baseUrlImage + '/' + fileName;
   }
 
   updateCredits() {
