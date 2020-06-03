@@ -15,7 +15,9 @@ export class FormQuestionComponent implements OnInit {
   public question: any;
   public audio: string;
   public answers: any[];
-  public credits: string;
+  public audioCredits: string;
+  public picture: string;
+  public pictureCredits: string;
 
   constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormQuestionComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
     $('.form-question').addClass('app-dark');
@@ -36,12 +38,20 @@ export class FormQuestionComponent implements OnInit {
     }
   }
 
-  onFileNameChanged(fileName: string) {
+  onAudioChanged(fileName: string) {
     this.audio = fileName;
   }
 
-  onCreditsChanged(credits: string) {
-    this.credits = credits;
+  onAudioCreditsChanged(credits: string) {
+    this.audioCredits = credits;
+  }
+
+  onPictureChanged(fileName: string) {
+    this.picture = fileName;
+  }
+
+  onPictureCreditsChanged(credits: string) {
+    this.pictureCredits = credits;
   }
 
   isFormValid() {
@@ -52,7 +62,9 @@ export class FormQuestionComponent implements OnInit {
     this.form.controls.body.setValue(answer.body);
     this.audio = answer.audio;
     this.answers = answer.answers;
-    this.credits = answer.credits;
+    this.audioCredits = answer.audio_credits;
+    this.picture = answer.picture;
+    this.pictureCredits = answer.picture_credits;
   }
 
   public formToObj() {
@@ -63,7 +75,9 @@ export class FormQuestionComponent implements OnInit {
     obj['body'] = this.form.controls.body.value;
     obj['audio'] = this.audio;
     obj['answers'] = this.answers;
-    obj['credits'] = this.credits;
+    obj['audio_credits'] = this.audioCredits;
+    obj['picture'] = this.picture;
+    obj['picture_credits'] = this.pictureCredits;
     return obj;
   }
 
