@@ -10,3 +10,23 @@ $border-radius:8px;
 .box-inset-answersBox .mat-list .mat-list-item .mat-list-item-content {
     padding: 0 0px;
 }
+
+.padding {
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+.scroll-layout {
+    max-height: 800px;
+    overflow: auto;
+    padding-right: 10px;
+}
+
+.scroll-layout::-webkit-scrollbar {
+    width: 6px;
+    background-color: #424242;
+} 
+
+.scroll-layout::-webkit-scrollbar-thumb {
+    background-color: #c8c8c8;
+}
