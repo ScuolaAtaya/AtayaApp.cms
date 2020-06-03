@@ -55,7 +55,7 @@ export class FormQuestionComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.form.valid && this.audio !== undefined;
+    return this.form.valid && this.audio !== undefined && this.picture !== undefined;
   }
 
   public objToForm(answer: any) {
