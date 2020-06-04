@@ -1,3 +1,40 @@
-<p>
-  final-verification works!
-</p>
+<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start">
+  <div  fxFlex="100" class="gene-sorted-drag-drop">
+    <md-card class="mat-{{section.name}} mat-card">
+      <div class="gene-card-title">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <div fxLayout="column">
+            <h2>{{ 'Verifica finale' | translate }}</h2>
+          </div>
+          <span fxFlex></span>
+        </div>
+        <md-divider></md-divider>
+      </div>
+      <md-list [sortablejs]="finalVerificationList" [sortablejsOptions]="simpleOptions" class="no-gutter">
+        <md-list-item class="draggable" *ngFor="let finalVerification of finalVerificationList">
+          <div>
+            <button md-icon-button [md-menu-trigger-for]="menu" aria-label="Open basic menu">
+              <md-icon>more_vert</md-icon>
+            </button>
+            <md-menu #menu="mdMenu" class="mat-content-menu-ruah">
+              <button md-menu-item *ngFor="let listMenuItem of workListMenuItems.getAll()" (click)="menuAction(finalVerification, listMenuItem)">
+                {{ listMenuItem.key | translate }}
+              </button>
+            </md-menu>
+          </div>
+          <div>
+            <img md-list-avatar [src]="getMediaUrl(finalVerification.picture)" alt="...">
+          </div>
+          <div class="pad-wrap">
+            <span md-line class="gene-text-lg"> {{ finalVerification.title }} </span>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-card>
+  </div>
+</div>
+<div>
+  <button class="mrgn-all-xs mat-button-ruah" md-fab style="float: right" routerLink="exercise">
+    <md-icon>add</md-icon>
+  </button>
+</div>
