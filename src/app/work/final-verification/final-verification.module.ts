@@ -28,6 +28,6 @@ import { FinalVerificationComponent } from './final-verification.component';
     CommonComponentModule
   ],
   declarations: [FinalVerificationComponent],
-  providers: []
+  providers: [FinalVerificationService]
 })
 export class FinalVerificationModule { }
