@@ -12,6 +12,7 @@ import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { CommonComponentModule } from '../../common/common.module';
 import { FinalVerificationComponent } from './final-verification.component';
 import { FinalVerificationService } from './final-verification.service';
+import { FormFinalVerificationComponent } from './form-final-verification/form-final-verification.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,7 @@ import { FinalVerificationService } from './final-verification.service';
     TranslateModule.forRoot(),
     CommonComponentModule
   ],
-  declarations: [FinalVerificationComponent],
+  declarations: [FinalVerificationComponent, FormFinalVerificationComponent],
   providers: [FinalVerificationService]
 })
 export class FinalVerificationModule { }
