@@ -26,10 +26,11 @@ const MENUITEMS = [
     type: 'sub',
     icon: 'chat',
     children: [
-      {state: 'write', name: 'Scriviamo'},
-      {state: 'read', name: 'Leggiamo'},
-      {state: 'understand', name: 'Capiamo'},
-      {state: 'talk', name: 'Parliamo'},      
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final_verification', name: 'Verifica finale' }
     ]
   }, {
     state: 'il-lavoro',
@@ -37,10 +38,11 @@ const MENUITEMS = [
     type: 'sub',
     icon: 'chat',
     children: [
-      {state: 'write', name: 'Scriviamo'},
-      {state: 'read', name: 'Leggiamo'},
-      {state: 'understand', name: 'Capiamo'},
-      {state: 'talk', name: 'Parliamo'},      
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final_verification', name: 'Verifica finale' }
     ]
   }, {
     state: 'il-cibo',
@@ -48,10 +50,11 @@ const MENUITEMS = [
     type: 'sub',
     icon: 'chat',
     children: [
-      {state: 'write', name: 'Scriviamo'},
-      {state: 'read', name: 'Leggiamo'},
-      {state: 'understand', name: 'Capiamo'},
-      {state: 'talk', name: 'Parliamo'},      
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final_verification', name: 'Verifica finale' }
     ]
   }, {
     state: 'pronto',
@@ -59,10 +62,11 @@ const MENUITEMS = [
     type: 'sub',
     icon: 'chat',
     children: [
-      {state: 'write', name: 'Scriviamo'},
-      {state: 'read', name: 'Leggiamo'},
-      {state: 'understand', name: 'Capiamo'},
-      {state: 'talk', name: 'Parliamo'},      
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final_verification', name: 'Verifica finale' }
     ]
   }, {
     state: 'come-sei-come-stai',
@@ -70,10 +74,11 @@ const MENUITEMS = [
     type: 'sub',
     icon: 'chat',
     children: [
-      {state: 'write', name: 'Scriviamo'},
-      {state: 'read', name: 'Leggiamo'},
-      {state: 'understand', name: 'Capiamo'},
-      {state: 'talk', name: 'Parliamo'},      
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final_verification', name: 'Verifica finale' }
     ]
   }, {
     state: 'la-salute',
@@ -81,10 +86,11 @@ const MENUITEMS = [
     type: 'sub',
     icon: 'chat',
     children: [
-      {state: 'write', name: 'Scriviamo'},
-      {state: 'read', name: 'Leggiamo'},
-      {state: 'understand', name: 'Capiamo'},
-      {state: 'talk', name: 'Parliamo'},      
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final_verification', name: 'Verifica finale' }
     ]
   }, {
     state: 'la-citta',
@@ -92,10 +98,11 @@ const MENUITEMS = [
     type: 'sub',
     icon: 'chat',
     children: [
-      {state: 'write', name: 'Scriviamo'},
-      {state: 'read', name: 'Leggiamo'},
-      {state: 'understand', name: 'Capiamo'},
-      {state: 'talk', name: 'Parliamo'},      
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final_verification', name: 'Verifica finale' }
     ]
   }, {
     state: 'mezzi-di-trasporto',
@@ -103,10 +110,11 @@ const MENUITEMS = [
     type: 'sub',
     icon: 'chat',
     children: [
-      {state: 'write', name: 'Scriviamo'},
-      {state: 'read', name: 'Leggiamo'},
-      {state: 'understand', name: 'Capiamo'},
-      {state: 'talk', name: 'Parliamo'},      
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final_verification', name: 'Verifica finale' }
     ]
   }, {
     state: 'la-cura-della-casa',
@@ -114,10 +122,11 @@ const MENUITEMS = [
     type: 'sub',
     icon: 'chat',
     children: [
-      {state: 'write', name: 'Scriviamo'},
-      {state: 'read', name: 'Leggiamo'},
-      {state: 'understand', name: 'Capiamo'},
-      {state: 'talk', name: 'Parliamo'},      
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final_verification', name: 'Verifica finale' }
     ]
   }, {
     state: 'il-viaggio',
@@ -125,15 +134,17 @@ const MENUITEMS = [
     type: 'sub',
     icon: 'chat',
     children: [
-      {state: 'write', name: 'Scriviamo'},
-      {state: 'read', name: 'Leggiamo'},
-      {state: 'understand', name: 'Capiamo'},
-      {state: 'talk', name: 'Parliamo'},      
-    ]}, {
-      state: '',
-      name: 'Genera il Libro ',
-      type: 'createBook',
-      icon: 'map'
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final_verification', name: 'Verifica finale' }
+    ]
+  }, {
+    state: '',
+    name: 'Genera il Libro ',
+    type: 'createBook',
+    icon: 'map'
   }
 ];
 

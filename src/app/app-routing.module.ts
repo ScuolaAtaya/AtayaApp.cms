@@ -1,3 +1,4 @@
+import { FinalVerificationComponent } from './work/final-verification/final-verification.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -42,6 +43,9 @@ const appRoutes: Routes = [
             {path: ':section/talk', component: TalkComponent},
             {path: ':section/talk/exercise', component: FormTalkComponent},
             {path: ':section/talk/exercise/:id', component: FormTalkComponent},
+            {path: ':section/final_verification', component: FinalVerificationComponent},
+            //{path: ':section/final_verification/exercise', component: FormTalkComponent},
+            //{path: ':section/final_verification/exercise/:id', component: FormTalkComponent},
             {path: ':section/menu', component: SubSectionComponent}
         ]
     }
