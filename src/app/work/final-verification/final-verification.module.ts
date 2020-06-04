@@ -30,4 +30,4 @@ import { FinalVerificationComponent } from './final-verification.component';
   declarations: [FinalVerificationComponent],
   providers: []
 })
-export class WriteModule { }
+export class FinalVerificationModule { }
