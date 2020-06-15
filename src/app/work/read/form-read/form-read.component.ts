@@ -40,6 +40,7 @@ export class FormReadComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.picture = new Media();
     this.cardTitle = 'Carica il nuovo esercizio';
     this.cardSubmitButtonTitle = 'Carica esercizio';
     this.options = [];

@@ -21,7 +21,6 @@ export class FileInputComponent implements OnInit, OnChanges {
   constructor(public auth: AuthenticationService) { }
 
   ngOnInit() {
-    this.file = new Media();
     this.uploader = new FileUploader({
       url: environment.baseUrl + '/media/upload',
       method: 'POST',
@@ -33,6 +32,7 @@ export class FileInputComponent implements OnInit, OnChanges {
       const json = JSON.parse(response);
       const name = json.name;
       this.file.value = name;
+      this.url = this.getMediaUrl(this.file.value);
       this.onFileChanged.emit(this.file);
       this.loading = false;
       return { item, response, status, headers };

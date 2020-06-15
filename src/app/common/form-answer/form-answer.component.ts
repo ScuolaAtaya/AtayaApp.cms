@@ -24,6 +24,7 @@ export class FormAnswerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.audio = new Media();
     this.cardTitle = 'Carica la nuova risposta';
     this.cardSubmitButtonTitle = 'Carica risposta';
     this.form = this.fb.group({

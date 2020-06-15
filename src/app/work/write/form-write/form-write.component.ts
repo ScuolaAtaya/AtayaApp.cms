@@ -43,6 +43,8 @@ export class FormWriteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.picture = new Media();
+    this.audio = new Media();
     this.cardTitle = 'Carica il nuovo esercizio';
     this.cardSubmitButtonTitle = 'Carica esercizio';
     this.route.params.subscribe(params => {
@@ -70,7 +72,7 @@ export class FormWriteComponent implements OnInit {
     });
   }
 
-  onFileNameChanged(file: Media) {
+  onPictureChanged(file: Media) {
     this.picture = file;
   }
 

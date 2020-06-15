@@ -41,6 +41,7 @@ export class FormUnderstandComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.audio = new Media();
     this.cardTitle = 'Carica il nuovo esercizio';
     this.cardSubmitButtonTitle = 'Carica esercizio';
     this.route.params.subscribe(params => {

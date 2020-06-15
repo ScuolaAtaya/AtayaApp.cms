@@ -16,20 +16,22 @@ export class FormQuestionComponent implements OnInit {
   public form: FormGroup;
   public question: Question;
   public audio: Media;
-  public answers: any;
   public picture: Media;
+  public answers: any;
 
   constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormQuestionComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
     $('.form-question').addClass('app-dark');
   }
 
   ngOnInit() {
+    this.audio = new Media();
+    this.picture = new Media();
+    this.answers = [];
     this.cardTitle = 'Carica la nuova domanda';
     this.cardSubmitButtonTitle = 'Carica domanda';
     this.form = this.fb.group({
       body: [null, Validators.compose([Validators.required])]
     });
-    this.answers = [];
     if (this.data && Object.keys(this.data).length > 0) {
       this.cardTitle = 'Modifica la domanda';
       this.cardSubmitButtonTitle = 'Modifica domanda';
