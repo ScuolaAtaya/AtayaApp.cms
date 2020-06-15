@@ -113,6 +113,7 @@ export class FormUnderstandComponent implements OnInit {
 
   public formToObj() {
     let understand = new Understand();
+    understand.video_url = new Media();
     understand.unit_id = this.section.id;
     if (this.understand) {
       understand = this.understand;
