@@ -105,9 +105,9 @@ export class FormReadComponent implements OnInit {
 
   public objToForm(read: Read) {
     this.form.controls.title.setValue(read.title);
-    this.picture = read.picture;
+    this.picture = read.picture.value;
+    this.credits = read.picture.credits;
     this.options = read.options;
-    this.credits = read.credits;
   }
 
   public formToObj() {
@@ -117,10 +117,9 @@ export class FormReadComponent implements OnInit {
       read = this.read;
     }
     read.title = this.form.controls.title.value;
-    read.picture = this.picture;
+    read.picture.value = this.picture;
+    read.picture.credits = this.credits;
     read.options = this.options;
-    read.credits = this.credits;
-    console.log(read);
     return read;
   }
 }
