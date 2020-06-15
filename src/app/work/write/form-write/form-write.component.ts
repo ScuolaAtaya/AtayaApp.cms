@@ -121,10 +121,10 @@ export class FormWriteComponent implements OnInit {
     this.form.controls.title.setValue(write.title);
     this.form.controls.word.setValue(write.word);
     this.letters = write.letters;
-    this.picture = write.picture;
-    this.audio = write.audio;
-    this.pictureCredits = write.picture_credits;
-    this.audioCredits = write.audio_credits;
+    this.picture = write.picture.value;
+    this.pictureCredits = write.picture.credits;
+    this.audio = write.audio.value;
+    this.audioCredits = write.audio.credits;
   }
 
   public formToObj() {
@@ -135,11 +135,11 @@ export class FormWriteComponent implements OnInit {
     }
     write.title = this.form.controls.title.value;
     write.word = this.form.controls.word.value;
-    write.picture = this.picture;
-    write.audio = this.audio;
+    write.picture.value = this.picture;
+    write.picture.credits = this.pictureCredits;
+    write.audio.value = this.audio;
+    write.audio.credits = this.audioCredits;
     write.letters = this.letters;
-    write.picture_credits = this.pictureCredits;
-    write.audio_credits = this.audioCredits;
     return write;
   }
 }

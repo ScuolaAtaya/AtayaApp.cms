@@ -117,10 +117,10 @@ export class FormTalkComponent implements OnInit {
 
   public objToForm(talk: Talk) {
     this.form.controls.title.setValue(talk.title);
-    this.picture = talk.picture;
-    this.audio = talk.audio;
-    this.pictureCredits = talk.picture_credits;
-    this.audioCredits = talk.audio_credits;
+    this.picture = talk.picture.value;
+    this.pictureCredits = talk.picture.credits;
+    this.audio = talk.audio.value;
+    this.audioCredits = talk.audio.credits;
   }
 
   public formToObj() {
@@ -130,10 +130,10 @@ export class FormTalkComponent implements OnInit {
       talk = this.talk;
     }
     talk.title = this.form.controls.title.value;
-    talk.picture = this.picture;
-    talk.audio = this.audio;
-    talk.picture_credits = this.pictureCredits;
-    talk.audio_credits = this.audioCredits;
+    talk.picture.value = this.picture;
+    talk.picture.credits = this.pictureCredits;
+    talk.audio.value = this.audio;
+    talk.audio.credits = this.audioCredits;
     return talk;
   }
 }

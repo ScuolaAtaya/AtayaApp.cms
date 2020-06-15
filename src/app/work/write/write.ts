@@ -1,10 +1,9 @@
+import { Media } from './../media';
 import { Work } from '../work';
 
 export class Write  extends Work {
-    letters: string[];
-    audio: string;
-    picture: string;
+    audio: Media;
+    picture: Media;
     word: string;
-    picture_credits: string;
-    audio_credits: string;
+    letters: string[];
 }

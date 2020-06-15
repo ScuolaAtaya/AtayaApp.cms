@@ -1,3 +1,4 @@
+import { Answer } from './../../answer';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PageTitleService } from '../../../core/page-title/page-title.service';
@@ -25,7 +26,7 @@ export class FormReadComponent implements OnInit {
   public read: Read
   public picture: string
   private section: Section;
-  public options: any[]
+  public options: Answer[];
   public credits: string;
 
   constructor(
@@ -105,9 +106,9 @@ export class FormReadComponent implements OnInit {
 
   public objToForm(read: Read) {
     this.form.controls.title.setValue(read.title);
-    this.picture = read.picture;
+    this.picture = read.picture.value;
+    this.credits = read.picture.credits;
     this.options = read.options;
-    this.credits = read.credits;
   }
 
   public formToObj() {
@@ -117,10 +118,9 @@ export class FormReadComponent implements OnInit {
       read = this.read;
     }
     read.title = this.form.controls.title.value;
-    read.picture = this.picture;
+    read.picture.value = this.picture;
+    read.picture.credits = this.credits;
     read.options = this.options;
-    read.credits = this.credits;
-    console.log(read);
     return read;
   }
 }

@@ -108,11 +108,11 @@ export class FormUnderstandComponent implements OnInit {
 
   public objToForm(understand: Understand) {
     this.form.controls.title.setValue(understand.title);
-    this.form.controls.video_url.setValue(understand.video_url);
-    this.form.controls.video_credits.setValue(understand.video_credits);
-    this.audio = understand.audio;
+    this.form.controls.video_url.setValue(understand.video_url.value);
+    this.form.controls.video_credits.setValue(understand.video_url.credits);
+    this.audio = understand.audio.value;
+    this.audioCredits = understand.audio.credits;
     this.questions = understand.questions;
-    this.audioCredits = understand.audio_credits;
   }
 
   public formToObj() {
@@ -122,12 +122,12 @@ export class FormUnderstandComponent implements OnInit {
       understand = this.understand;
     }
     understand.title = this.form.controls.title.value;
-    understand.video_url = this.form.controls.video_url.value.replace('https://www.youtube.com/watch?v=', '');
-    console.log('video_url: ' + understand.video_url);
-    understand.video_credits = this.form.controls.video_credits.value;
-    understand.audio = this.audio;
+    understand.video_url.value = this.form.controls.video_url.value.value.replace('https://www.youtube.com/watch?v=', '');
+    console.log('video_url: ' + understand.video_url.value);
+    understand.video_url.credits = this.form.controls.video_credits.value;
+    understand.audio.value = this.audio;
+    understand.audio.credits = this.audioCredits;
     understand.questions = this.questions;
-    understand.audio_credits = this.audioCredits;
     return understand;
   }
 }

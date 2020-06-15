@@ -1,3 +1,4 @@
+import { Answer } from './../../work/answer';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
@@ -12,7 +13,7 @@ export class FormAnswerComponent implements OnInit {
   public cardTitle: string;
   public cardSubmitButtonTitle: string;
   public form: FormGroup;
-  public answer: any;
+  public answer: Answer;
   public audio: string;
   public correct: boolean;
   public credits: string;
@@ -48,23 +49,23 @@ export class FormAnswerComponent implements OnInit {
     return this.form.valid && this.correct !== undefined && this.audio !== undefined;
   }
 
-  public objToForm(answer: any) {
+  public objToForm(answer: Answer) {
     this.form.controls.body.setValue(answer.body);
     this.correct = answer.correct;
-    this.audio = answer.audio;
-    this.credits = answer.credits;
+    this.audio = answer.audio.value;
+    this.credits = answer.audio.credits;
   }
 
   public formToObj() {
-    let obj = {};
+    let answer = new Answer();
     if (this.answer) {
-      obj = this.answer;
+      answer = this.answer;
     }
-    obj['body'] = this.form.controls.body.value;
-    obj['correct'] = this.correct;
-    obj['audio'] = this.audio;
-    obj['credits'] = this.credits;
-    return obj;
+    answer.body = this.form.controls.body.value;
+    answer.correct = this.correct;
+    answer.audio.value = this.audio;
+    answer.audio.credits = this.credits;
+    return answer;
   }
 
   public onSubmit() {
