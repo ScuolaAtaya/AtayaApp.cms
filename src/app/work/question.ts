@@ -1,4 +1,3 @@
-import { Answer } from './answer';
 import { Media } from './media';
 
 export class Question {

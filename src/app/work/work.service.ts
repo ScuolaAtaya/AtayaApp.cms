@@ -1,13 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { environment } from '../../environments/environment'
 import { Work } from './work';
-import {ApiService} from "../common/api.service";
+import { ApiService } from '../common/api.service';
 
 export abstract class WorkService extends ApiService {
-
     protected target: string;
 
     protected getAll<T extends Work>(): Observable<T[]> {
@@ -34,4 +30,3 @@ export abstract class WorkService extends ApiService {
         return this.requestService.delete(this.createUrlFromBaseUrl(this.target, id))
     }
 }
-

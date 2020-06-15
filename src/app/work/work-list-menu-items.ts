@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
 const MENUITEMS = [{
-    type: 'edit',
-    key: 'EDIT'
+  type: 'edit',
+  key: 'EDIT'
 }, {
-    type: 'delete',
-    key: 'DELETE'
+  type: 'delete',
+  key: 'DELETE'
 }];
 
 @Injectable()
