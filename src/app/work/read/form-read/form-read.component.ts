@@ -1,3 +1,4 @@
+import { Answer } from './../../answer';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PageTitleService } from '../../../core/page-title/page-title.service';
@@ -25,7 +26,7 @@ export class FormReadComponent implements OnInit {
   public read: Read
   public picture: string
   private section: Section;
-  public options: any[]
+  public options: Answer[];
   public credits: string;
 
   constructor(
