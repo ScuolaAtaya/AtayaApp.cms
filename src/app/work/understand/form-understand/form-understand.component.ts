@@ -1,3 +1,4 @@
+import { Question } from './../../question';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PageTitleService } from '../../../core/page-title/page-title.service';
@@ -25,7 +26,7 @@ export class FormUnderstandComponent implements OnInit {
   public understand: Understand;
   public form: FormGroup;
   public audio: string;
-  public questions: any[];
+  public questions: Question[];
   public section: Section;
   public audioCredits: string;
 

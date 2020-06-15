@@ -1,3 +1,4 @@
+import { Question } from './../../work/question';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
@@ -12,9 +13,9 @@ export class FormQuestionComponent implements OnInit {
   public cardTitle: string;
   public cardSubmitButtonTitle: string;
   public form: FormGroup;
-  public question: any;
+  public question: Question;
   public audio: string;
-  public answers: any[];
+  public answers: any;
   public audioCredits: string;
   public picture: string;
   public pictureCredits: string;
@@ -58,27 +59,27 @@ export class FormQuestionComponent implements OnInit {
     return this.form.valid && this.audio !== undefined && this.picture !== undefined;
   }
 
-  public objToForm(answer: any) {
-    this.form.controls.body.setValue(answer.body);
-    this.audio = answer.audio;
-    this.answers = answer.answers;
-    this.audioCredits = answer.audio_credits;
-    this.picture = answer.picture;
-    this.pictureCredits = answer.picture_credits;
+  public objToForm(question: Question) {
+    this.form.controls.body.setValue(question.body);
+    this.audio = question.audio.value;
+    this.audioCredits = question.audio.credits;
+    this.picture = question.picture.value;
+    this.pictureCredits = question.picture.credits;
+    this.answers = question.answers;
   }
 
   public formToObj() {
-    let obj = {};
+    let question = new Question();
     if (this.question) {
-      obj = this.question;
+      question = this.question;
     }
-    obj['body'] = this.form.controls.body.value;
-    obj['audio'] = this.audio;
-    obj['answers'] = this.answers;
-    obj['audio_credits'] = this.audioCredits;
-    obj['picture'] = this.picture;
-    obj['picture_credits'] = this.pictureCredits;
-    return obj;
+    question.body = this.form.controls.body.value;
+    question.audio.value = this.audio;
+    question.audio.credits = this.audioCredits;
+    question.picture.value = this.picture;
+    question.picture.credits = this.pictureCredits;
+    question.answers = this.answers;
+    return question;
   }
 
   public onSubmit() {

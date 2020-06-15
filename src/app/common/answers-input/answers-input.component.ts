@@ -24,7 +24,7 @@ export class AnswersInputComponent implements OnInit {
       if (res !== undefined) {
         this.answers[index] = res;
       }
-    })
+    });
   }
 
   addAnswer() {
