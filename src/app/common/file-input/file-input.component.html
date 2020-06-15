@@ -1,17 +1,17 @@
 <div *ngIf="!loading" class="file-type" ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
   (fileOver)="fileOverBase($event)" [uploader]="uploader">
   <div *ngIf="type == 'image'">
-    <div *ngIf="!fileName">{{ 'Carica qui la tua foto' | translate }}</div>
-    <img *ngIf="fileName" class="picturePreview" [src]="url" />
+    <div *ngIf="!file.value">{{ 'Carica qui la tua foto' | translate }}</div>
+    <img *ngIf="file.value" class="picturePreview" [src]="url" />
   </div>
   <div *ngIf="type == 'mp3'">
-    <div *ngIf="!fileName">{{ 'Carica qui il tuo MP3' | translate }}</div>
-    <div *ngIf="fileName">
+    <div *ngIf="!file.value">{{ 'Carica qui il tuo MP3' | translate }}</div>
+    <div *ngIf="file.value">
       <ms-audio-player [audioSource]="url"></ms-audio-player>
     </div>
   </div>
   <md-input-container class="full-wid">
-    <input mdInput [placeholder]="'Credits' | translate" [(ngModel)]="credits" (keyup)='updateCredits($event)'>
+    <input mdInput [placeholder]="'Credits' | translate" [(ngModel)]="file.credits" (keyup)='updateCredits($event)'>
   </md-input-container>
 </div>
 <ngx-loading [show]="loading"></ngx-loading>

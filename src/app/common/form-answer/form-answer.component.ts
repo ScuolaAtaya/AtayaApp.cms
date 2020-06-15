@@ -1,3 +1,4 @@
+import { Media } from './../../work/media';
 import { Answer } from './../../work/answer';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -14,9 +15,8 @@ export class FormAnswerComponent implements OnInit {
   public cardSubmitButtonTitle: string;
   public form: FormGroup;
   public answer: Answer;
-  public audio: string;
+  public audio: Media;
   public correct: boolean;
-  public credits: string;
 
   constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormAnswerComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
     $('.form-answer').addClass('app-dark');
@@ -37,12 +37,8 @@ export class FormAnswerComponent implements OnInit {
     }
   }
 
-  onFileNameChanged(fileName: string) {
-    this.audio = fileName;
-  }
-
-  onCreditsChanged(credits: string) {
-    this.credits = credits;
+  onFileChanged(file: Media) {
+    this.audio = file;
   }
 
   isFormValid() {
@@ -52,8 +48,7 @@ export class FormAnswerComponent implements OnInit {
   public objToForm(answer: Answer) {
     this.form.controls.body.setValue(answer.body);
     this.correct = answer.correct;
-    this.audio = answer.audio.value;
-    this.credits = answer.audio.credits;
+    this.audio = answer.audio;
   }
 
   public formToObj() {
@@ -63,8 +58,7 @@ export class FormAnswerComponent implements OnInit {
     }
     answer.body = this.form.controls.body.value;
     answer.correct = this.correct;
-    answer.audio.value = this.audio;
-    answer.audio.credits = this.credits;
+    answer.audio = this.audio;
     return answer;
   }
 

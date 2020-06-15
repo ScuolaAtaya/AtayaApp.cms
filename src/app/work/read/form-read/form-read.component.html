@@ -23,8 +23,8 @@
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-                        <ms-file-input [fileName]="picture" type="image" (onFileNameChanged)="onPictureChanged($event)"
-                            [credits]="credits" (onCreditsChanged)="onCreditsChanged($event)"></ms-file-input>
+                        <ms-file-input [file]="picture" type="image" (onFileChanged)="onPictureChanged($event)">
+                        </ms-file-input>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">

@@ -1,3 +1,4 @@
+import { Media } from './../../media';
 import { Answer } from './../../answer';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -24,10 +25,9 @@ export class FormReadComponent implements OnInit {
   public cardSubmitButtonTitle: string
   public id: string
   public read: Read
-  public picture: string
+  public picture: Media;
   private section: Section;
   public options: Answer[];
-  public credits: string;
 
   constructor(
     private fb: FormBuilder,
@@ -66,12 +66,8 @@ export class FormReadComponent implements OnInit {
     });
   }
 
-  onPictureChanged(fileName: string) {
-    this.picture = fileName;
-  }
-
-  onCreditsChanged(credits: string) {
-    this.credits = credits;
+  onPictureChanged(file: Media) {
+    this.picture = file;
   }
 
   public onSubmit() {
@@ -106,8 +102,7 @@ export class FormReadComponent implements OnInit {
 
   public objToForm(read: Read) {
     this.form.controls.title.setValue(read.title);
-    this.picture = read.picture.value;
-    this.credits = read.picture.credits;
+    this.picture = read.picture;
     this.options = read.options;
   }
 
@@ -118,8 +113,7 @@ export class FormReadComponent implements OnInit {
       read = this.read;
     }
     read.title = this.form.controls.title.value;
-    read.picture.value = this.picture;
-    read.picture.credits = this.credits;
+    read.picture = this.picture;
     read.options = this.options;
     return read;
   }

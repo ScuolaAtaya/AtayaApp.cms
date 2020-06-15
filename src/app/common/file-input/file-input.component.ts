@@ -1,3 +1,4 @@
+import { Media } from './../../work/media';
 import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { environment } from 'environments/environment';
@@ -9,11 +10,9 @@ import { AuthenticationService } from './../../authentication/authentication.ser
   styleUrls: ['./file-input.component.scss']
 })
 export class FileInputComponent implements OnInit, OnChanges {
-  @Input() fileName: string;
+  @Input() file: Media;
   @Input() type: string;
-  @Input() credits: string;
-  @Output() onFileNameChanged = new EventEmitter<string>();
-  @Output() onCreditsChanged = new EventEmitter<string>();
+  @Output() onFileChanged = new EventEmitter<Media>();
   public uploader: FileUploader;
   public hasBaseDropZoneOver: Boolean;
   public url: string;
@@ -22,6 +21,7 @@ export class FileInputComponent implements OnInit, OnChanges {
   constructor(public auth: AuthenticationService) { }
 
   ngOnInit() {
+    this.file = new Media();
     this.uploader = new FileUploader({
       url: environment.baseUrl + '/media/upload',
       method: 'POST',
@@ -32,18 +32,18 @@ export class FileInputComponent implements OnInit, OnChanges {
     this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: any) => {
       const json = JSON.parse(response);
       const name = json.name;
-      this.fileName = name;
-      this.onFileNameChanged.emit(this.fileName);
+      this.file.value = name;
+      this.onFileChanged.emit(this.file);
       this.loading = false;
       return { item, response, status, headers };
     };
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes || !changes.fileName) { return; }
-    const f = changes.fileName;
+    if (!changes || !changes.file) { return; }
+    const f = changes.file;
     if (f.currentValue !== undefined) {
-      this.url = this.getMediaUrl(this.fileName);
+      this.url = this.getMediaUrl(this.file.value);
     }
   }
 
@@ -51,11 +51,11 @@ export class FileInputComponent implements OnInit, OnChanges {
     this.hasBaseDropZoneOver = e;
   }
 
-  getMediaUrl(fileName) {
+  getMediaUrl(fileName: string) {
     return environment.baseUrlImage + '/' + fileName;
   }
 
   updateCredits() {
-    this.onCreditsChanged.emit(this.credits);
+    this.onFileChanged.emit(this.file);
   }
 }

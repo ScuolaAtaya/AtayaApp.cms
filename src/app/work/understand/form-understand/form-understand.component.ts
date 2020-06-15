@@ -1,3 +1,4 @@
+import { Media } from './../../media';
 import { Question } from './../../question';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -25,10 +26,9 @@ export class FormUnderstandComponent implements OnInit {
   public id: string;
   public understand: Understand;
   public form: FormGroup;
-  public audio: string;
+  public audio: Media;
   public questions: Question[];
   public section: Section;
-  public audioCredits: string;
 
   constructor(
     private fb: FormBuilder,
@@ -69,12 +69,8 @@ export class FormUnderstandComponent implements OnInit {
     });
   }
 
-  onAudioChanged(fileName: string) {
-    this.audio = fileName;
-  }
-
-  onCreditsChanged(credits: string) {
-    this.audioCredits = credits;
+  onAudioChanged(file: Media) {
+    this.audio = file;
   }
 
   public onSubmit() {
@@ -111,8 +107,7 @@ export class FormUnderstandComponent implements OnInit {
     this.form.controls.title.setValue(understand.title);
     this.form.controls.video_url.setValue(understand.video_url.value);
     this.form.controls.video_credits.setValue(understand.video_url.credits);
-    this.audio = understand.audio.value;
-    this.audioCredits = understand.audio.credits;
+    this.audio = understand.audio;
     this.questions = understand.questions;
   }
 
@@ -126,8 +121,7 @@ export class FormUnderstandComponent implements OnInit {
     understand.video_url.value = this.form.controls.video_url.value.replace('https://www.youtube.com/watch?v=', '');
     console.log('video_url: ' + understand.video_url.value);
     understand.video_url.credits = this.form.controls.video_credits.value;
-    understand.audio.value = this.audio;
-    understand.audio.credits = this.audioCredits;
+    understand.audio = this.audio;
     understand.questions = this.questions;
     return understand;
   }

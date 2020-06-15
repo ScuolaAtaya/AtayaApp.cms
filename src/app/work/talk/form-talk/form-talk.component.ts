@@ -1,3 +1,4 @@
+import { Media } from './../../media';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PageTitleService } from '../../../core/page-title/page-title.service';
@@ -26,11 +27,9 @@ export class FormTalkComponent implements OnInit {
   public id: string;
   public talk: Talk;
   public form: FormGroup;
-  public audio: string;
-  public picture: string;
+  public audio: Media;
+  public picture: Media;
   private section: Section;
-  public pictureCredits: string;
-  public audioCredits: string;
 
   constructor(
     private fb: FormBuilder,
@@ -69,20 +68,12 @@ export class FormTalkComponent implements OnInit {
     });
   }
 
-  onPictureChanged(fileName: string) {
-    this.picture = fileName;
+  onPictureChanged(file: Media) {
+    this.picture = file;
   }
 
-  onPictureCreditsChanged(credits: string) {
-    this.pictureCredits = credits;
-  }
-
-  onAudioChanged(fileName: string) {
-    this.audio = fileName;
-  }
-
-  onAudioCreditsChanged(credits: string) {
-    this.audioCredits = credits;
+  onAudioChanged(file: Media) {
+    this.audio = file;
   }
 
   public onSubmit() {
@@ -117,10 +108,8 @@ export class FormTalkComponent implements OnInit {
 
   public objToForm(talk: Talk) {
     this.form.controls.title.setValue(talk.title);
-    this.picture = talk.picture.value;
-    this.pictureCredits = talk.picture.credits;
-    this.audio = talk.audio.value;
-    this.audioCredits = talk.audio.credits;
+    this.picture = talk.picture;
+    this.audio = talk.audio;
   }
 
   public formToObj() {
@@ -130,10 +119,8 @@ export class FormTalkComponent implements OnInit {
       talk = this.talk;
     }
     talk.title = this.form.controls.title.value;
-    talk.picture.value = this.picture;
-    talk.picture.credits = this.pictureCredits;
-    talk.audio.value = this.audio;
-    talk.audio.credits = this.audioCredits;
+    talk.picture = this.picture;
+    talk.audio = this.audio;
     return talk;
   }
 }

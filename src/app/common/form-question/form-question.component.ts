@@ -1,3 +1,4 @@
+import { Media } from './../../work/media';
 import { Question } from './../../work/question';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -14,11 +15,9 @@ export class FormQuestionComponent implements OnInit {
   public cardSubmitButtonTitle: string;
   public form: FormGroup;
   public question: Question;
-  public audio: string;
+  public audio: Media;
   public answers: any;
-  public audioCredits: string;
-  public picture: string;
-  public pictureCredits: string;
+  public picture: Media;
 
   constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormQuestionComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
     $('.form-question').addClass('app-dark');
@@ -39,20 +38,12 @@ export class FormQuestionComponent implements OnInit {
     }
   }
 
-  onAudioChanged(fileName: string) {
-    this.audio = fileName;
+  onAudioChanged(file: Media) {
+    this.audio = file;
   }
 
-  onAudioCreditsChanged(credits: string) {
-    this.audioCredits = credits;
-  }
-
-  onPictureChanged(fileName: string) {
-    this.picture = fileName;
-  }
-
-  onPictureCreditsChanged(credits: string) {
-    this.pictureCredits = credits;
+  onPictureChanged(file: Media) {
+    this.picture = file;
   }
 
   isFormValid() {
@@ -61,10 +52,8 @@ export class FormQuestionComponent implements OnInit {
 
   public objToForm(question: Question) {
     this.form.controls.body.setValue(question.body);
-    this.audio = question.audio.value;
-    this.audioCredits = question.audio.credits;
-    this.picture = question.picture.value;
-    this.pictureCredits = question.picture.credits;
+    this.audio = question.audio;
+    this.picture = question.picture;
     this.answers = question.answers;
   }
 
@@ -74,10 +63,8 @@ export class FormQuestionComponent implements OnInit {
       question = this.question;
     }
     question.body = this.form.controls.body.value;
-    question.audio.value = this.audio;
-    question.audio.credits = this.audioCredits;
-    question.picture.value = this.picture;
-    question.picture.credits = this.pictureCredits;
+    question.audio = this.audio;
+    question.picture = this.picture;
     question.answers = this.answers;
     return question;
   }

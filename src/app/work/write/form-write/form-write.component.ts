@@ -1,3 +1,4 @@
+import { Media } from './../../media';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PageTitleService } from '../../../core/page-title/page-title.service';
@@ -26,11 +27,9 @@ export class FormWriteComponent implements OnInit {
   public id: string;
   public write: Write;
   public form: FormGroup;
-  public picture: string;
-  public audio: string;
+  public picture: Media;
+  public audio: Media;
   public letters: string[];
-  public pictureCredits: string;
-  public audioCredits: string;
 
   constructor(
     private fb: FormBuilder,
@@ -71,20 +70,12 @@ export class FormWriteComponent implements OnInit {
     });
   }
 
-  onFileNameChanged(fileName: string) {
-    this.picture = fileName;
+  onFileNameChanged(file: Media) {
+    this.picture = file;
   }
 
-  onPictureCreditsChanged(credits: string) {
-    this.pictureCredits = credits;
-  }
-
-  onAudioChanged(fileName: string) {
-    this.audio = fileName;
-  }
-
-  onAudioCreditsChanged(credits: string) {
-    this.audioCredits = credits;
+  onAudioChanged(file: Media) {
+    this.audio = file;
   }
 
   public onSubmit() {
@@ -121,10 +112,8 @@ export class FormWriteComponent implements OnInit {
     this.form.controls.title.setValue(write.title);
     this.form.controls.word.setValue(write.word);
     this.letters = write.letters;
-    this.picture = write.picture.value;
-    this.pictureCredits = write.picture.credits;
-    this.audio = write.audio.value;
-    this.audioCredits = write.audio.credits;
+    this.picture = write.picture;
+    this.audio = write.audio;
   }
 
   public formToObj() {
@@ -135,10 +124,8 @@ export class FormWriteComponent implements OnInit {
     }
     write.title = this.form.controls.title.value;
     write.word = this.form.controls.word.value;
-    write.picture.value = this.picture;
-    write.picture.credits = this.pictureCredits;
-    write.audio.value = this.audio;
-    write.audio.credits = this.audioCredits;
+    write.picture = this.picture;
+    write.audio = this.audio;
     write.letters = this.letters;
     return write;
   }
