@@ -1,7 +1,5 @@
-import { FinalVerificationComponent } from './work/final-verification/final-verification.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './session/login/login.component';
@@ -16,8 +14,8 @@ import { UnderstandComponent } from './work/understand/understand.component';
 import { FormUnderstandComponent } from './work/understand/form-understand/form-understand.component';
 import { AuthGuardService } from './authentication/auth-guard.service';
 import { SubSectionComponent } from './dashboard/sub-section/sub-section.component';
+import { FinalVerificationComponent } from './work/final-verification/final-verification.component';
 import { FormFinalVerificationComponent } from './work/final-verification/form-final-verification/form-final-verification.component';
-
 
 const appRoutes: Routes = [
     {

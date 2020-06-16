@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start">
-  <md-card fxFlex="100%">
+  <md-card fxFlex="100%" class="padding">
     <div class="gene-card-title">
       <div fxLayout="row" fxLayoutAlign="start center">
         <div fxLayout="column">
@@ -9,7 +9,7 @@
       </div>
       <md-divider></md-divider>
     </div>
-    <div class="gene-card-content">
+    <div class="gene-card-content scroll-layout">
       <form [formGroup]="form">
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
         </div>
@@ -22,15 +22,20 @@
         </div>
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
           <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
-            <ms-file-input [fileName]="audio" type="mp3" (onFileNameChanged)="onFileNameChanged($event)"></ms-file-input>
+            <ms-file-input [file]="audio" type="mp3" (onFileChanged)="onAudioChanged($event)"></ms-file-input>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+          <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
+            <ms-file-input [file]="picture" type="image" (onFileChanged)="onPictureChanged($event)"></ms-file-input>
           </div>
         </div>
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
           <div class="box-inset box-inset-answersBox pad-all-md">
-              <h5 class="mrgn-b-md">Answers</h5>
-              <ms-answers-input [answers]="answers"></ms-answers-input>
+            <h5 class="mrgn-b-md">Answers</h5>
+            <ms-answers-input [answers]="answers"></ms-answers-input>
           </div>
-      </div>
+        </div>
         <div class="pad-wrap">
           <md-dialog-actions align="end">
             <button md-button (click)="onClose()">Annulla</button>

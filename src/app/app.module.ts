@@ -10,7 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AgmCoreModule } from '@agm/core';
 import { QuillModule } from 'ngx-quill';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
-import { SortablejsModule, SortablejsOptions } from 'angular-sortablejs';
+import { SortablejsModule } from 'angular-sortablejs';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
@@ -23,7 +23,6 @@ import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
 import { TreeModule as NgTreeModule } from 'ng2-tree';
 import { TreeModule } from 'angular-tree-component';
 import 'hammerjs';
-
 import { GeneAppComponent } from './app.component';
 import { RoutingModule } from './app-routing.module';
 import { MainComponent } from './main/main.component';
@@ -32,12 +31,9 @@ import { MenuItems } from './core/menu/menu-items/menu-items';
 import { PageTitleService } from './core/page-title/page-title.service';
 import { D3ChartService } from './core/nvD3/nvD3.service';
 import { nvD3 } from './core/nvD3/nvD3.component';
-
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SubSectionComponent } from './dashboard/sub-section/sub-section.component'
-
 import { MaterialIconComponent } from './material-icons/icons.component';
-
 import { CardsComponent } from './components/cards/cards.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
 import { GridListComponent } from './components/grid-list/gridlist.component';
@@ -56,23 +52,11 @@ import { ProgressComponent } from './components/progress/progress.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { ColorpickerComponent } from './components/colorpicker/colorpicker.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
-
 import { LoginComponent } from './session/login/login.component';
 import { RegisterComponent } from './session/register/register.component';
 import { ForgotPasswordComponent } from './session/forgot-password/forgot-password.component';
 import { LockScreenComponent } from './session/lockscreen/lockscreen.component';
-
-import { WriteComponent } from './work/write/write.component';
-import { ReadComponent } from './work/read/read.component';
-import { TalkComponent } from './work/talk/talk.component';
-import { UnderstandComponent } from './work/understand/understand.component';
-import { FormWriteComponent } from './work/write/form-write/form-write.component';
 import { DashboardItems, SubSections } from './dashboard/menu-items';
-import { FormTalkComponent } from './work/talk/form-talk/form-talk.component';
-import { WriteModule } from './work/write/write.module';
-import { ReadModule } from './work/read/read.module';
-import { UnderstandModule } from './work/understand/understand.module';
-import { TalkModule } from './work/talk/talk.module';
 import { WorkModule } from './work/work.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -92,10 +76,6 @@ export function createTranslateLoader(http: Http) {
 
 const perfectScrollbarConfig: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
-};
-
-const sortablejsConfig: SortablejsOptions = {
-    animation: 300
 };
 
 @NgModule({

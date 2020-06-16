@@ -1,5 +1,4 @@
 import { TestBed, inject } from '@angular/core/testing';
-
 import { SectionSolverService } from './section-solver.service';
 
 describe('SectionSolverService', () => {

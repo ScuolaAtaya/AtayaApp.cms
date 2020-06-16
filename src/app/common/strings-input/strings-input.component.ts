@@ -6,23 +6,24 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./strings-input.component.scss']
 })
 export class StringsInputComponent implements OnInit {
-
   @Input() placeholder: string;
-  @Input() strings: any;
+  @Input() strings: string[];
+  newString: string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  trackByIndex(index: number, obj: any): any {
+  trackByIndex(index: number, obj: string): any {
     return index;
   }
 
-  addString(string: string) {
-    if (string) {
-      this.strings.push(string);
+  addString() {
+    if (!!this.newString) {
+      this.strings.push(this.newString);
     }
+    this.newString = null;
   }
 
   deleteString(i: number) {
