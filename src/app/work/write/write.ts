@@ -1,10 +1,9 @@
-import { Work } from "../work";
+import { Media } from './../media';
+import { Work } from '../work';
 
-export class Write  extends Work{
-
-    letters: string[];
-    audio: string;
-    picture: string;
+export class Write  extends Work {
+    audio: Media;
+    picture: Media;
     word: string;
-
+    letters: string[];
 }

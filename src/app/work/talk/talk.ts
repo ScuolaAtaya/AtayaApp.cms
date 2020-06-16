@@ -1,8 +1,7 @@
-import { Work } from "../work";
+import { Media } from './../media';
+import { Work } from '../work';
 
-export class Talk extends Work{
-    
-    picture: string;
-    audio: string;
-
+export class Talk extends Work {
+    picture: Media;
+    audio: Media;
 }

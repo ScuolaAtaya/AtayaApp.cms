@@ -4,18 +4,15 @@
             <button class="mrgn-all-xs" md-icon-button type="button" (click)="deleteString(index)">
                 <md-icon>delete</md-icon>
             </button>
-            <md-input-container class="full-wid">
-                <input mdInput [(ngModel)]="strings[index]" [ngModelOptions]="{standalone: true}">
-            </md-input-container>
+            {{ string }}
         </h3>
     </md-list-item>
 </md-list>
 <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
     <md-input-container class="full-wid">
-        <input mdInput #newString (keyup.enter)="addString(newString.value)" (blur)="addString(newString.value); newString.value='' "
-            [placeholder]="placeholder">
+        <input mdInput [placeholder]="placeholder" [(ngModel)]="newString">
     </md-input-container>
-    <button class="mrgn-all-xs" md-fab color="primary" type="button" (click)="addString(newString.value)">
+    <button class="mrgn-all-xs" md-fab color="primary" type="button" (click)="addString()">
         <md-icon>add</md-icon>
     </button>
 </div>
