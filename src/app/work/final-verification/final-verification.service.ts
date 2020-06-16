@@ -9,7 +9,7 @@ export class FinalVerificationService extends WorkService {
 
   constructor(protected requestService: RequestService) {
       super(requestService)
-      this.target = 'final_verification';
+      this.target = 'final';
   }
 
   public getList<T extends Work>(sectionId: number): Observable<T[]> {

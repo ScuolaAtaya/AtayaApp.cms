@@ -30,7 +30,7 @@ const MENUITEMS = [
       { state: 'read', name: 'Leggiamo' },
       { state: 'understand', name: 'Capiamo' },
       { state: 'talk', name: 'Parliamo' },
-      { state: 'final_verification', name: 'Verifica finale' }
+      { state: 'final', name: 'Verifica finale' }
     ]
   }, {
     state: 'il-lavoro',
@@ -42,7 +42,7 @@ const MENUITEMS = [
       { state: 'read', name: 'Leggiamo' },
       { state: 'understand', name: 'Capiamo' },
       { state: 'talk', name: 'Parliamo' },
-      { state: 'final_verification', name: 'Verifica finale' }
+      { state: 'final', name: 'Verifica finale' }
     ]
   }, {
     state: 'il-cibo',
@@ -54,7 +54,7 @@ const MENUITEMS = [
       { state: 'read', name: 'Leggiamo' },
       { state: 'understand', name: 'Capiamo' },
       { state: 'talk', name: 'Parliamo' },
-      { state: 'final_verification', name: 'Verifica finale' }
+      { state: 'final', name: 'Verifica finale' }
     ]
   }, {
     state: 'pronto',
@@ -66,7 +66,7 @@ const MENUITEMS = [
       { state: 'read', name: 'Leggiamo' },
       { state: 'understand', name: 'Capiamo' },
       { state: 'talk', name: 'Parliamo' },
-      { state: 'final_verification', name: 'Verifica finale' }
+      { state: 'final', name: 'Verifica finale' }
     ]
   }, {
     state: 'come-sei-come-stai',
@@ -78,7 +78,7 @@ const MENUITEMS = [
       { state: 'read', name: 'Leggiamo' },
       { state: 'understand', name: 'Capiamo' },
       { state: 'talk', name: 'Parliamo' },
-      { state: 'final_verification', name: 'Verifica finale' }
+      { state: 'final', name: 'Verifica finale' }
     ]
   }, {
     state: 'la-salute',
@@ -90,7 +90,7 @@ const MENUITEMS = [
       { state: 'read', name: 'Leggiamo' },
       { state: 'understand', name: 'Capiamo' },
       { state: 'talk', name: 'Parliamo' },
-      { state: 'final_verification', name: 'Verifica finale' }
+      { state: 'final', name: 'Verifica finale' }
     ]
   }, {
     state: 'la-citta',
@@ -102,7 +102,7 @@ const MENUITEMS = [
       { state: 'read', name: 'Leggiamo' },
       { state: 'understand', name: 'Capiamo' },
       { state: 'talk', name: 'Parliamo' },
-      { state: 'final_verification', name: 'Verifica finale' }
+      { state: 'final', name: 'Verifica finale' }
     ]
   }, {
     state: 'mezzi-di-trasporto',
@@ -114,7 +114,7 @@ const MENUITEMS = [
       { state: 'read', name: 'Leggiamo' },
       { state: 'understand', name: 'Capiamo' },
       { state: 'talk', name: 'Parliamo' },
-      { state: 'final_verification', name: 'Verifica finale' }
+      { state: 'final', name: 'Verifica finale' }
     ]
   }, {
     state: 'la-cura-della-casa',
@@ -126,7 +126,7 @@ const MENUITEMS = [
       { state: 'read', name: 'Leggiamo' },
       { state: 'understand', name: 'Capiamo' },
       { state: 'talk', name: 'Parliamo' },
-      { state: 'final_verification', name: 'Verifica finale' }
+      { state: 'final', name: 'Verifica finale' }
     ]
   }, {
     state: 'il-viaggio',
@@ -138,7 +138,7 @@ const MENUITEMS = [
       { state: 'read', name: 'Leggiamo' },
       { state: 'understand', name: 'Capiamo' },
       { state: 'talk', name: 'Parliamo' },
-      { state: 'final_verification', name: 'Verifica finale' }
+      { state: 'final', name: 'Verifica finale' }
     ]
   }, {
     state: '',

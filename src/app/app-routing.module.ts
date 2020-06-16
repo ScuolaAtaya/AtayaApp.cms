@@ -42,9 +42,9 @@ const appRoutes: Routes = [
             { path: ':section/talk', component: TalkComponent },
             { path: ':section/talk/exercise', component: FormTalkComponent },
             { path: ':section/talk/exercise/:id', component: FormTalkComponent },
-            { path: ':section/final_verification', component: FinalVerificationComponent },
-            { path: ':section/final_verification/exercise', component: FormFinalVerificationComponent },
-            { path: ':section/final_verification/exercise/:id', component: FormFinalVerificationComponent },
+            { path: ':section/final', component: FinalVerificationComponent },
+            { path: ':section/final/exercise', component: FormFinalVerificationComponent },
+            { path: ':section/final/exercise/:id', component: FormFinalVerificationComponent },
             { path: ':section/menu', component: SubSectionComponent }
         ]
     }

@@ -1,10 +1,8 @@
 import { FinalVerificationService } from './final-verification.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { fadeInAnimation } from 'app/core/route-animation/route.animation';
-import { Read } from '../read/read';
 import { SortablejsOptions } from 'angular-sortablejs';
 import { Section, SectionSolverService } from '../section-solver.service';
-import { ReadService } from '../read/read.service';
 import { PageTitleService } from 'app/core/page-title/page-title.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkListMenuItems } from '../work-list-menu-items';
@@ -66,7 +64,7 @@ export class FinalVerificationComponent implements OnInit {
         }
       });
     } else {
-      this.router.navigate([this.section.name + '/read/exercise', id]);
+      this.router.navigate([this.section.name + '/final/exercise', id]);
     }
   }
 
