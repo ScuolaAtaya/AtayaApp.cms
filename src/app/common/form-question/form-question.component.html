@@ -30,7 +30,13 @@
             <ms-file-input [file]="picture" type="image" (onFileChanged)="onPictureChanged($event)"></ms-file-input>
           </div>
         </div>
-        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center" *ngIf="!isUnderstandQuestion">
+          <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
+            <md-checkbox class="example-margin" [(ngModel)]="correct" [ngModelOptions]="{standalone: true}" align="end">
+              Correct</md-checkbox>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center" *ngIf="isUnderstandQuestion">
           <div class="box-inset box-inset-answersBox pad-all-md">
             <h5 class="mrgn-b-md">Answers</h5>
             <ms-answers-input [answers]="answers"></ms-answers-input>

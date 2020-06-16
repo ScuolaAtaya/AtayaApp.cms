@@ -9,6 +9,7 @@ import { UtilsService } from '../utils.service';
 })
 export class QuestionsInputComponent implements OnInit {
   @Input() questions: Question[];
+  @Input() isUnderstandQuestion: boolean;
 
   constructor(public utils: UtilsService) { }
 
@@ -20,7 +21,7 @@ export class QuestionsInputComponent implements OnInit {
   }
 
   editQuestion(index: number, question: Question) {
-    this.utils.openQuestionDialog(question).subscribe(res => {
+    this.utils.openQuestionDialog({ question, isUnderstandQuestion: this.isUnderstandQuestion }).subscribe(res => {
       if (res !== undefined) {
         this.questions[index] = res;
       }
@@ -28,7 +29,7 @@ export class QuestionsInputComponent implements OnInit {
   }
 
   addQuestion() {
-    this.utils.openQuestionDialog(undefined).subscribe(res => {
+    this.utils.openQuestionDialog({ question: undefined, isUnderstandQuestion: this.isUnderstandQuestion }).subscribe(res => {
       if (res !== undefined) {
         this.questions.push(res);
       }

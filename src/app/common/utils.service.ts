@@ -42,11 +42,11 @@ export class UtilsService {
         })
     }
 
-  openQuestionDialog(question: any): Observable<any> {
+  openQuestionDialog(data: any): Observable<any> {
     this.questionDialogRef = this.dialog.open(FormQuestionComponent, {
       panelClass: 'form-question',
       disableClose: false,
-      data: question
+      data: data
     });
     return this.questionDialogRef.afterClosed().map(result => {
       this.questionDialogRef = null;
