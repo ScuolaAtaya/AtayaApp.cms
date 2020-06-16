@@ -42,6 +42,7 @@ export class FormUnderstandComponent implements OnInit {
 
   ngOnInit() {
     this.audio = new Media();
+    this.questions = [];
     this.cardTitle = 'Carica il nuovo esercizio';
     this.cardSubmitButtonTitle = 'Carica esercizio';
     this.route.params.subscribe(params => {
@@ -55,7 +56,6 @@ export class FormUnderstandComponent implements OnInit {
         video_url: [null, Validators.compose([Validators.required])],
         video_credits: [null]
       });
-      this.questions = [];
       if (this.id !== 'undefined') {
         this.cardTitle = 'Modifica l\'esercizio';
         this.cardSubmitButtonTitle = 'Modifica esercizio';
