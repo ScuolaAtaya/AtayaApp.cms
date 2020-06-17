@@ -40,8 +40,8 @@ export class UnderstandComponent implements OnInit {
         private router: Router,
         public workListMenuItems: WorkListMenuItems,
         public utils: UtilsService,
-        private translate: TranslateService) {
-    }
+        private translate: TranslateService
+    ) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
