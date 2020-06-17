@@ -47,11 +47,9 @@ export class TalkComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.section = this.sectionService.retrieveSection(params);
-      this.translate.get('Parliamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
-      this.downloadData();
-    });
+    this.route.params.subscribe(params => this.section = this.sectionService.retrieveSection(params));
+    this.translate.get('Parliamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
+    this.downloadData();
   }
 
   menuAction(item, menutItem) {
@@ -62,7 +60,7 @@ export class TalkComponent implements OnInit {
         if (result) {
           this.talkService.delete(id).subscribe(
             res => {
-              console.log(res)
+              console.log(res);
               this.downloadData();
             },
             err => console.log('Error occured : ' + err)

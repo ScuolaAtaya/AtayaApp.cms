@@ -47,11 +47,9 @@ export class WriteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.section = this.sectionService.retrieveSection(params);
-      this.translate.get('Scriviamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
-      this.downloadData();
-    });
+    this.route.params.subscribe(params =>  this.section = this.sectionService.retrieveSection(params));
+    this.translate.get('Scriviamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
+    this.downloadData();
   }
 
   menuAction(item, menutItem) {
