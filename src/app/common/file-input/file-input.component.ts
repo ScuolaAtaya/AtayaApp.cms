@@ -32,7 +32,7 @@ export class FileInputComponent implements OnInit, OnChanges {
       const json = JSON.parse(response);
       const name = json.name;
       this.file.value = name;
-      this.url = this.getMediaUrl(this.file.value);
+      this.url = this.getMediaUrl(this.file);
       this.onFileChanged.emit(this.file);
       this.loading = false;
       return { item, response, status, headers };
@@ -42,8 +42,8 @@ export class FileInputComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (!changes || !changes.file) { return; }
     const f = changes.file;
-    if (f.currentValue !== undefined) {
-      this.url = this.getMediaUrl(this.file.value);
+    if (!!f.currentValue) {
+      this.url = this.getMediaUrl(this.file);
     }
   }
 
@@ -51,8 +51,8 @@ export class FileInputComponent implements OnInit, OnChanges {
     this.hasBaseDropZoneOver = e;
   }
 
-  getMediaUrl(fileName: string) {
-    return environment.baseUrlImage + '/' + fileName;
+  getMediaUrl(file: Media) {
+    return environment.baseUrlImage + '/' + file.value;
   }
 
   updateCredits() {
