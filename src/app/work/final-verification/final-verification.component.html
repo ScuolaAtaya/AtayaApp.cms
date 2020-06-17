@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start">
-  <div  fxFlex="100" class="gene-sorted-drag-drop">
+  <div fxFlex="100" class="gene-sorted-drag-drop">
     <md-card class="mat-{{section.name}} mat-card">
       <div class="gene-card-title">
         <div fxLayout="row" fxLayoutAlign="start center">
@@ -17,13 +17,11 @@
               <md-icon>more_vert</md-icon>
             </button>
             <md-menu #menu="mdMenu" class="mat-content-menu-ruah">
-              <button md-menu-item *ngFor="let listMenuItem of workListMenuItems.getAll()" (click)="menuAction(finalVerification, listMenuItem)">
+              <button md-menu-item *ngFor="let listMenuItem of workListMenuItems.getAll()"
+                (click)="menuAction(finalVerification, listMenuItem)">
                 {{ listMenuItem.key | translate }}
               </button>
             </md-menu>
-          </div>
-          <div>
-            <img md-list-avatar [src]="getMediaUrl(finalVerification.picture)" alt="...">
           </div>
           <div class="pad-wrap">
             <span md-line class="gene-text-lg"> {{ finalVerification.title }} </span>

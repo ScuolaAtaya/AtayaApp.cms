@@ -9,6 +9,7 @@ import { WorkListMenuItems } from '../work-list-menu-items';
 import { UtilsService } from 'app/common/utils.service';
 import { TranslateService } from 'ng2-translate';
 import { environment } from 'environments/environment';
+import { FinalVerification } from './final-verification';
 @Component({
   selector: 'ms-final-verification',
   templateUrl: './final-verification.component.html',
@@ -20,8 +21,8 @@ import { environment } from 'environments/environment';
   animations: [fadeInAnimation]
 })
 export class FinalVerificationComponent implements OnInit {
-  finalVerificationList: any[];
-  numbers: any[];
+  finalVerificationList: FinalVerification[];
+  section: Section;
   groupOptions: SortablejsOptions = {
     group: 'testGroup',
     handle: '.drag-handle',
@@ -30,7 +31,6 @@ export class FinalVerificationComponent implements OnInit {
   simpleOptions: SortablejsOptions = {
     animation: 300
   };
-  section: Section;
 
   constructor(
     private finalVerificationService: FinalVerificationService,
@@ -50,15 +50,16 @@ export class FinalVerificationComponent implements OnInit {
   }
 
   menuAction(item, menutItem) {
-    const type = menutItem.type
-    const id = item._id
+    const type = menutItem.type;
+    const id = item._id;
     if (type === 'delete') {
       this.utils.confirm('Sei sicuro di voler continuare?').subscribe(result => {
         if (result) {
-          this.finalVerificationService.delete(id).subscribe(res => {
-            console.log(res);
-            this.downloadData();
-          },
+          this.finalVerificationService.delete(id).subscribe(
+            res => {
+              console.log(res);
+              this.downloadData();
+            },
             err => console.log('Error occured : ' + err)
           );
         }
@@ -68,13 +69,9 @@ export class FinalVerificationComponent implements OnInit {
     }
   }
 
-  getMediaUrl(fileName) {
-    return environment.baseUrlImage + '/' + fileName;
-  }
-
   downloadData() {
     this.finalVerificationService.getList(this.section.id).subscribe(
-      res => this.finalVerificationList = res,
+      res => this.finalVerificationList = res as FinalVerification[],
       err => console.log('Error occured : ' + err)
     );
   }
