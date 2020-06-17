@@ -42,21 +42,19 @@ export class FormUnderstandComponent implements OnInit {
 
   ngOnInit() {
     this.audio = new Media();
+    this.questions = [];
     this.cardTitle = 'Carica il nuovo esercizio';
     this.cardSubmitButtonTitle = 'Carica esercizio';
     this.route.params.subscribe(params => {
-      this.translate.get('Capiamo').subscribe((translatedText: string) => {
-        this.pageTitleService.setTitle(translatedText);
-      });
+      this.translate.get('Capiamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
       this.section = this.sectionService.retrieveSection(params);
-      this.id = String(params['id']);
+      this.id = params['id'];
       this.form = this.fb.group({
         title: [null, Validators.compose([Validators.required])],
         video_url: [null, Validators.compose([Validators.required])],
         video_credits: [null]
       });
-      this.questions = [];
-      if (this.id !== 'undefined') {
+      if (!!this.id) {
         this.cardTitle = 'Modifica l\'esercizio';
         this.cardSubmitButtonTitle = 'Modifica esercizio';
         this.understandService.getOne(this.id).subscribe(
@@ -76,7 +74,7 @@ export class FormUnderstandComponent implements OnInit {
 
   public onSubmit() {
     if (this.isFormValid()) {
-      if (this.id !== 'undefined') {
+      if (!!this.id) {
         this.understandService.update(this.formToObj(), this.id).subscribe(
           res => {
             console.log(res);
@@ -97,7 +95,7 @@ export class FormUnderstandComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.form.valid && this.audio !== undefined;
+    return this.form.valid && !!this.audio.value;
   }
 
   public goToListPage() {
@@ -116,7 +114,7 @@ export class FormUnderstandComponent implements OnInit {
     let understand = new Understand();
     understand.video_url = new Media();
     understand.unit_id = this.section.id;
-    if (this.understand) {
+    if (!!this.understand) {
       understand = this.understand;
     }
     understand.title = this.form.controls.title.value;

@@ -41,19 +41,17 @@ export class FormReadComponent implements OnInit {
 
   ngOnInit() {
     this.picture = new Media();
+    this.options = [];
     this.cardTitle = 'Carica il nuovo esercizio';
     this.cardSubmitButtonTitle = 'Carica esercizio';
-    this.options = [];
     this.route.params.subscribe(params => {
-      this.translate.get('Leggiamo').subscribe((translatedText: string) => {
-        this.pageTitleService.setTitle(translatedText);
-      })
+      this.translate.get('Leggiamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
       this.section = this.sectionService.retrieveSection(params);
-      this.id = String(params['id']);
+      this.id = params['id'];
       this.form = this.fb.group({
         title: [null, Validators.compose([Validators.required])]
       });
-      if (this.id !== 'undefined') {
+      if (!!this.id) {
         this.cardTitle = 'Modifica l\'esercizio';
         this.cardSubmitButtonTitle = 'Modifica esercizio';
         this.readService.getOne(this.id).subscribe(
@@ -73,7 +71,7 @@ export class FormReadComponent implements OnInit {
 
   public onSubmit() {
     if (this.isFormValid()) {
-      if (this.id !== 'undefined') {
+      if (!!this.id) {
         this.readService.update(this.formToObj(), this.id).subscribe(
           res => {
             console.log(res);
@@ -94,7 +92,7 @@ export class FormReadComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.form.valid && this.picture !== undefined;
+    return this.form.valid && !!this.picture.value;
   }
 
   public goToListPage() {
@@ -110,7 +108,7 @@ export class FormReadComponent implements OnInit {
   public formToObj() {
     let read = new Read();
     read.unit_id = this.section.id;
-    if (this.read) {
+    if (!!this.read) {
       read = this.read;
     }
     read.title = this.form.controls.title.value;

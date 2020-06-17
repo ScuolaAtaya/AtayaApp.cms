@@ -48,15 +48,13 @@ export class FormTalkComponent implements OnInit {
     this.cardTitle = 'Carica il nuovo esercizio';
     this.cardSubmitButtonTitle = 'Carica esercizio';
     this.route.params.subscribe(params => {
-      this.translate.get('Parliamo').subscribe((translatedText: string) => {
-        this.pageTitleService.setTitle(translatedText);
-      });
+      this.translate.get('Parliamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
       this.section = this.sectionService.retrieveSection(params);
-      this.id = String(params['id']);
+      this.id = params['id'];
       this.form = this.fb.group({
         title: [null, Validators.compose([Validators.required])]
       });
-      if (this.id !== 'undefined') {
+      if (!!this.id) {
         this.cardTitle = 'Modifica l\'esercizio';
         this.cardSubmitButtonTitle = 'Modifica esercizio';
         this.talkService.getOne(this.id).subscribe(
@@ -80,7 +78,7 @@ export class FormTalkComponent implements OnInit {
 
   public onSubmit() {
     if (this.isFormValid()) {
-      if (this.id !== 'undefined') {
+      if (!!this.id) {
         this.talkService.update(this.formToObj(), this.id).subscribe(
           res => {
             console.log(res);
@@ -101,7 +99,7 @@ export class FormTalkComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.form.valid && this.picture !== undefined && this.audio !== undefined;
+    return this.form.valid && !!this.picture.value && !!this.audio.value;
   }
 
   public goToListPage() {
@@ -117,7 +115,7 @@ export class FormTalkComponent implements OnInit {
   public formToObj() {
     let talk = new Talk();
     talk.unit_id = this.section.id;
-    if (this.talk) {
+    if (!!this.talk) {
       talk = this.talk;
     }
     talk.title = this.form.controls.title.value;
