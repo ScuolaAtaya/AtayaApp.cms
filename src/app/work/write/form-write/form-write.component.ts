@@ -45,15 +45,14 @@ export class FormWriteComponent implements OnInit {
   ngOnInit() {
     this.picture = new Media();
     this.audio = new Media();
+    this.letters = [];
     this.cardTitle = 'Carica il nuovo esercizio';
     this.cardSubmitButtonTitle = 'Carica esercizio';
     this.route.params.subscribe(params => {
-      this.translate.get('Scriviamo').subscribe((translatedText: string) => {
-        this.pageTitleService.setTitle(translatedText);
-      });
+      this.translate.get('Scriviamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
       this.section = this.sectionService.retrieveSection(params);
-      this.id = String(params['id']);
-      if (this.id !== 'undefined') {
+      this.id = params['id'];
+      if (!!this.id) {
         this.cardTitle = 'Modifica l\'esercizio';
         this.cardSubmitButtonTitle = 'Modifica esercizio';
         this.writeService.getOne(this.id).subscribe(
@@ -68,7 +67,6 @@ export class FormWriteComponent implements OnInit {
         title: [null, Validators.compose([Validators.required])],
         word: [null, Validators.compose([Validators.required])]
       });
-      this.letters = [];
     });
   }
 
@@ -82,7 +80,7 @@ export class FormWriteComponent implements OnInit {
 
   public onSubmit() {
     if (this.isFormValid()) {
-      if (this.id !== 'undefined') {
+      if (!!this.id) {
         this.writeService.update(this.formToObj(), this.id).subscribe(
           res => {
             console.log(res);
@@ -103,7 +101,7 @@ export class FormWriteComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.form.valid && this.picture !== undefined && this.audio !== undefined;
+    return this.form.valid && !!this.picture.value && !!this.audio.value;
   }
 
   public goToListPage() {
@@ -121,7 +119,7 @@ export class FormWriteComponent implements OnInit {
   public formToObj() {
     let write = new Write();
     write.unit_id = this.section.id;
-    if (this.write) {
+    if (!!this.write) {
       write = this.write;
     }
     write.title = this.form.controls.title.value;

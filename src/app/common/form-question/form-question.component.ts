@@ -54,9 +54,9 @@ export class FormQuestionComponent implements OnInit {
 
   isFormValid() {
     if (this.isUnderstandQuestion) {
-      return this.form.valid && this.audio !== undefined && this.picture !== undefined;
+      return this.form.valid && !!this.audio.value && !!this.picture.value;
     } else {
-      return this.form.valid && this.audio !== undefined && this.picture !== undefined && this.correct !== undefined;
+      return this.form.valid && !!this.audio.value && !!this.picture.value;
     }
   }
 
@@ -73,7 +73,7 @@ export class FormQuestionComponent implements OnInit {
 
   public formToObj() {
     let question = new Question();
-    if (this.question) {
+    if (!!this.question) {
       question = this.question;
     }
     question.body = this.form.controls.body.value;

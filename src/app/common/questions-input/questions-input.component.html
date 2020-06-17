@@ -1,14 +1,14 @@
 <md-list>
   <md-list-item *ngFor="let question of questions;let index = index;trackBy:trackByIndex;">
-      <h3 md-line>
-          <button class="mrgn-all-xs" md-icon-button type="button" (click)="deleteQuestion(index)">
-              <md-icon>delete</md-icon>
-          </button>
-          <button class="mrgn-all-xs" md-icon-button type="button" (click)="editQuestion(index, question)">
-            <md-icon>edit</md-icon>
-        </button>
-        {{ question.body }}
-      </h3>
+    <h3 md-line>
+      <button class="mrgn-all-xs" md-icon-button type="button" (click)="deleteQuestion(index)">
+        <md-icon>delete</md-icon>
+      </button>
+      <button class="mrgn-all-xs" md-icon-button type="button" (click)="editQuestion(index, question)">
+        <md-icon>edit</md-icon>
+      </button>
+      {{ question.body }}
+    </h3>
   </md-list-item>
 </md-list>
 <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">

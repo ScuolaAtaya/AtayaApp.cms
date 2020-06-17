@@ -43,7 +43,7 @@ export class FormAnswerComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.form.valid && this.correct !== undefined && this.audio !== undefined;
+    return this.form.valid && this.correct !== undefined && !!this.audio.value;
   }
 
   public objToForm(answer: Answer) {
@@ -54,7 +54,7 @@ export class FormAnswerComponent implements OnInit {
 
   public formToObj() {
     let answer = new Answer();
-    if (this.answer) {
+    if (!!this.answer) {
       answer = this.answer;
     }
     answer.body = this.form.controls.body.value;

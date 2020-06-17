@@ -13,16 +13,15 @@ export class QuestionsInputComponent implements OnInit {
 
   constructor(public utils: UtilsService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  trackByIndex(index: number, obj: Question): any {
+  trackByIndex(index: number): any {
     return index;
   }
 
   editQuestion(index: number, question: Question) {
     this.utils.openQuestionDialog({ question, isUnderstandQuestion: this.isUnderstandQuestion }).subscribe(res => {
-      if (res !== undefined) {
+      if (!!res) {
         this.questions[index] = res;
       }
     });
@@ -30,7 +29,7 @@ export class QuestionsInputComponent implements OnInit {
 
   addQuestion() {
     this.utils.openQuestionDialog({ question: undefined, isUnderstandQuestion: this.isUnderstandQuestion }).subscribe(res => {
-      if (res !== undefined) {
+      if (!!res) {
         this.questions.push(res);
       }
     });
