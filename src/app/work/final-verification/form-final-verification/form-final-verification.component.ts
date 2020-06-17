@@ -37,13 +37,11 @@ export class FormFinalVerificationComponent implements OnInit {
     this.cardTitle = 'Carica il nuovo esercizio';
     this.cardSubmitButtonTitle = 'Carica esercizio';
     this.route.params.subscribe(params => {
-      this.translate.get('Verifica finale').subscribe((translatedText: string) => {
-        this.pageTitleService.setTitle(translatedText);
-      });
+      this.translate.get('Verifica finale').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
       this.section = this.sectionService.retrieveSection(params);
-      this.id = String(params['id']);
+      this.id = params['id'];
       this.form = this.fb.group({ title: [null, Validators.compose([Validators.required])] });
-      if (this.id !== 'undefined') {
+      if (!!this.id) {
         this.cardTitle = 'Modifica l\'esercizio';
         this.cardSubmitButtonTitle = 'Modifica esercizio';
         this.finalVerificationService.getOne(this.id).subscribe(
@@ -59,7 +57,7 @@ export class FormFinalVerificationComponent implements OnInit {
 
   public onSubmit() {
     if (this.isFormValid()) {
-      if (this.id !== 'undefined') {
+      if (!!this.id) {
         this.finalVerificationService.update(this.formToObj(), this.id).subscribe(
           res => {
             console.log(res);
@@ -95,7 +93,7 @@ export class FormFinalVerificationComponent implements OnInit {
   public formToObj() {
     let finalVerification = new FinalVerification();
     finalVerification.unit_id = this.section.id;
-    if (this.finalVerification) {
+    if (!!this.finalVerification) {
       finalVerification = this.finalVerification;
     }
     finalVerification.title = this.form.controls.title.value;
