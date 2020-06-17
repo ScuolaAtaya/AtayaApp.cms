@@ -10,7 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AgmCoreModule } from '@agm/core';
 import { QuillModule } from 'ngx-quill';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
-import { SortablejsModule, SortablejsOptions } from 'angular-sortablejs';
+import { SortablejsModule } from 'angular-sortablejs';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ChartsModule } from 'ng2-charts/ng2-charts';

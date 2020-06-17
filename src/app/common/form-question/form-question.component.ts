@@ -14,13 +14,16 @@ export class FormQuestionComponent implements OnInit {
   public cardTitle: string;
   public cardSubmitButtonTitle: string;
   public form: FormGroup;
+  public isUnderstandQuestion: boolean;
   public question: Question;
   public audio: Media;
   public picture: Media;
   public answers: any;
+  public correct: boolean;
 
   constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormQuestionComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
     $('.form-question').addClass('app-dark');
+    this.correct = false;
   }
 
   ngOnInit() {
@@ -32,10 +35,11 @@ export class FormQuestionComponent implements OnInit {
     this.form = this.fb.group({
       body: [null, Validators.compose([Validators.required])]
     });
-    if (this.data && Object.keys(this.data).length > 0) {
+    this.isUnderstandQuestion = this.data.isUnderstandQuestion;
+    if (!!this.data.question) {
       this.cardTitle = 'Modifica la domanda';
       this.cardSubmitButtonTitle = 'Modifica domanda';
-      this.question = this.data;
+      this.question = this.data.question;
       this.objToForm(this.question);
     }
   }
@@ -49,14 +53,22 @@ export class FormQuestionComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.form.valid && !!this.audio.value && !!this.picture.value;
+    if (this.isUnderstandQuestion) {
+      return this.form.valid && !!this.audio.value && !!this.picture.value;
+    } else {
+      return this.form.valid && !!this.audio.value && !!this.picture.value;
+    }
   }
 
   public objToForm(question: Question) {
     this.form.controls.body.setValue(question.body);
     this.audio = question.audio;
     this.picture = question.picture;
-    this.answers = question.answers;
+    if (this.isUnderstandQuestion) {
+      this.answers = question.answers;
+    } else {
+      this.correct = question.answers;
+    }
   }
 
   public formToObj() {
@@ -67,7 +79,7 @@ export class FormQuestionComponent implements OnInit {
     question.body = this.form.controls.body.value;
     question.audio = this.audio;
     question.picture = this.picture;
-    question.answers = this.answers;
+    question.answers = this.isUnderstandQuestion ? this.answers : this.correct;
     return question;
   }
 

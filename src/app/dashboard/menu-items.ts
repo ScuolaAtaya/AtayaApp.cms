@@ -5,7 +5,7 @@ export class Menu {
     image: string;
     route: string;
 
-    constructor(title: string, image: string, route: string =null){
+    constructor(title: string, image: string, route: string = null) {
         this.image = title;
         this.image = image;
         this.route = route;
@@ -39,7 +39,7 @@ const MENUDASHBOARD = [{
 }, {
     title: 'La città e i suoi servizi',
     image: 'assets/img/la_citta.png',
-    route: 'la-citta' 
+    route: 'la-citta'
 }, {
     title: 'I mezzi di trasporto',
     image: 'assets/img/mezzi_di_trasporto.png',
@@ -52,9 +52,8 @@ const MENUDASHBOARD = [{
     title: 'Il viaggio',
     image: 'assets/img/il_viaggio.png',
     route: 'il-viaggio'
-}
-]
-
+} // TODO add new items
+];
 
 const MENUSUBSECTION = [{
     title: 'Capiamo',
@@ -63,7 +62,7 @@ const MENUSUBSECTION = [{
 }, {
     title: 'Parliamo',
     image: 'assets/img/sub-section-parliamo.png',
-    route: 'talk' 
+    route: 'talk'
 }, {
     title: 'Leggiamo',
     image: 'assets/img/sub-section-leggiamo.png',
@@ -72,8 +71,12 @@ const MENUSUBSECTION = [{
     title: 'Scriviamo',
     image: 'assets/img/sub-section-scriviamo.png',
     route: 'write'
-}]
-
+}, {
+    title: 'Verifica finale',
+    // TODO change asset
+    image: 'assets/img/sub-section-scriviamo.png',
+    route: 'final'
+}];
 
 @Injectable()
 export class DashboardItems {
@@ -81,7 +84,6 @@ export class DashboardItems {
         return MENUDASHBOARD;
     }
 }
-
 
 @Injectable()
 export class SubSections {

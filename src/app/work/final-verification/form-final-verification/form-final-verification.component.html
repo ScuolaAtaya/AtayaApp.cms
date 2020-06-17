@@ -1,0 +1,37 @@
+<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign=" start" class=" gene-file-upload">
+  <md-card fxFlex="100%">
+    <div class="gene-card-title">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column">
+          <h4>{{ cardTitle | translate }}</h4>
+        </div>
+        <span fxFlex></span>
+      </div>
+      <md-divider></md-divider>
+    </div>
+    <div class="gene-card-content">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+          <div fxFlex="100">
+            <md-input-container class="full-wid">
+              <input mdInput [placeholder]="'You must include a title.' | translate"
+                [formControl]="form.controls['title']">
+            </md-input-container>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+          <div class="box-inset box-inset-questionsBox pad-all-md">
+            <h5 class="mrgn-b-md">Questions</h5>
+            <ms-questions-input [questions]="questions" [isUnderstandQuestion]="false"></ms-questions-input>
+          </div>
+        </div>
+        <div class="pad-wrap">
+          <md-card-actions>
+            <button md-raised-button color="primary" type="submit" [disabled]="!isFormValid()"
+              style="float: right;">{{ cardSubmitButtonTitle | translate }}</button>
+          </md-card-actions>
+        </div>
+      </form>
+    </div>
+  </md-card>
+</div>

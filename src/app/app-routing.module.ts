@@ -14,7 +14,8 @@ import { UnderstandComponent } from './work/understand/understand.component';
 import { FormUnderstandComponent } from './work/understand/form-understand/form-understand.component';
 import { AuthGuardService } from './authentication/auth-guard.service';
 import { SubSectionComponent } from './dashboard/sub-section/sub-section.component';
-
+import { FinalVerificationComponent } from './work/final-verification/final-verification.component';
+import { FormFinalVerificationComponent } from './work/final-verification/form-final-verification/form-final-verification.component';
 
 const appRoutes: Routes = [
     {
@@ -41,6 +42,9 @@ const appRoutes: Routes = [
             { path: ':section/talk', component: TalkComponent },
             { path: ':section/talk/exercise', component: FormTalkComponent },
             { path: ':section/talk/exercise/:id', component: FormTalkComponent },
+            { path: ':section/final', component: FinalVerificationComponent },
+            { path: ':section/final/exercise', component: FormFinalVerificationComponent },
+            { path: ':section/final/exercise/:id', component: FormFinalVerificationComponent },
             { path: ':section/menu', component: SubSectionComponent }
         ]
     }
