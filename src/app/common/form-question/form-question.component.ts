@@ -54,9 +54,9 @@ export class FormQuestionComponent implements OnInit {
 
   isFormValid() {
     if (this.isUnderstandQuestion) {
-      return this.form.valid && !!this.audio.value && !!this.picture.value;
+      return this.form.valid && !!this.audio.value;
     } else {
-      return this.form.valid && !!this.audio.value && !!this.picture.value;
+      return this.form.valid && !!this.audio.value && this.correct !== undefined;
     }
   }
 
@@ -78,6 +78,7 @@ export class FormQuestionComponent implements OnInit {
     }
     question.body = this.form.controls.body.value;
     question.audio = this.audio;
+    this.picture.credits = !!this.picture.value ? this.picture.credits : undefined;
     question.picture = this.picture;
     question.answers = this.isUnderstandQuestion ? this.answers : this.correct;
     return question;
