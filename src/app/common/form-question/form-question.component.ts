@@ -63,7 +63,9 @@ export class FormQuestionComponent implements OnInit {
   public objToForm(question: Question) {
     this.form.controls.body.setValue(question.body);
     this.audio = question.audio;
-    this.picture = question.picture;
+    if (!!question.picture) {
+      this.picture = question.picture;
+    }
     if (this.isUnderstandQuestion) {
       this.answers = question.answers;
     } else {
@@ -78,8 +80,7 @@ export class FormQuestionComponent implements OnInit {
     }
     question.body = this.form.controls.body.value;
     question.audio = this.audio;
-    this.picture.credits = !!this.picture.value ? this.picture.credits : undefined;
-    question.picture = this.picture;
+    question.picture = !!this.picture.value ? this.picture : undefined;
     question.answers = this.isUnderstandQuestion ? this.answers : this.correct;
     return question;
   }
