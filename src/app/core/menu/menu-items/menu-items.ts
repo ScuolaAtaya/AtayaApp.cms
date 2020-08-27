@@ -141,6 +141,54 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
+    state: 'lavoro-cartellonistica',
+    name: 'LAVORO: CARTELLONISTICA',
+    type: 'sub',
+    icon: 'chat',
+    children: [
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final', name: 'Verifica finale' }
+    ]
+  }, {
+    state: 'lavoro-rischi-pericoli',
+    name: 'LAVORO: RISCHI E PERICOLI',
+    type: 'sub',
+    icon: 'chat',
+    children: [
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final', name: 'Verifica finale' }
+    ]
+  }, {
+    state: 'lavoro-benessere',
+    name: 'LAVORO: BENESSERE',
+    type: 'sub',
+    icon: 'chat',
+    children: [
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final', name: 'Verifica finale' }
+    ]
+  }, {
+    state: 'patente',
+    name: 'PATENTE',
+    type: 'sub',
+    icon: 'chat',
+    children: [
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final', name: 'Verifica finale' }
+    ]
+  }, {
     state: '',
     name: 'Genera il Libro ',
     type: 'createBook',
