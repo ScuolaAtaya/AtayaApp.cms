@@ -23,11 +23,10 @@ const MENUDASHBOARD = [
     { title: 'I mezzi di trasporto', image: 'assets/img/mezzi_di_trasporto.png', route: 'mezzi-di-trasporto' },
     { title: 'La cura della casa', image: 'assets/img/la_cura_della_casa.png', route: 'la-cura-della-casa' },
     { title: 'Il viaggio', image: 'assets/img/il_viaggio.png', route: 'il-viaggio' },
-    // TODO change assets
-    { title: 'Lavoro: cartellonistica', image: 'assets/img/la_citta.png', route: 'lavoro-cartellonistica' },
-    { title: 'Lavoro: rischi e pericoli', image: 'assets/img/mezzi_di_trasporto.png', route: 'lavoro-rischi-pericoli' },
-    { title: 'Lavoro: benessere', image: 'assets/img/la_cura_della_casa.png', route: 'lavoro-benessere' },
-    { title: 'Patente', image: 'assets/img/il_viaggio.png', route: 'patente' }
+    { title: 'Lavoro: cartellonistica', image: 'assets/img/cartellonistica.png', route: 'lavoro-cartellonistica' },
+    { title: 'Lavoro: rischi e pericoli', image: 'assets/img/rischi_pericoli.png', route: 'lavoro-rischi-pericoli' },
+    { title: 'Lavoro: benessere', image: 'assets/img/benessere.png', route: 'lavoro-benessere' },
+    { title: 'Patente', image: 'assets/img/patente.png', route: 'patente' }
 ];
 
 const MENUSUBSECTION = [
