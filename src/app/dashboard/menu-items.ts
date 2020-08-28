@@ -34,8 +34,7 @@ const MENUSUBSECTION = [
     { title: 'Parliamo', image: 'assets/img/sub-section-parliamo.png', route: 'talk' },
     { title: 'Leggiamo', image: 'assets/img/sub-section-leggiamo.png', route: 'read' },
     { title: 'Scriviamo', image: 'assets/img/sub-section-scriviamo.png', route: 'write' },
-    // TODO change asset
-    { title: 'Verifica finale', image: 'assets/img/sub-section-scriviamo.png', route: 'final' }
+    { title: 'Verifica finale', image: 'assets/img/sub-section-verifica_finale.png', route: 'final' }
 ];
 
 @Injectable()
