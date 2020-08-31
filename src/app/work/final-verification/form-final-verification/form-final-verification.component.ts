@@ -7,6 +7,7 @@ import { Section, SectionSolverService } from 'app/work/section-solver.service';
 import { PageTitleService } from 'app/core/page-title/page-title.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from 'ng2-translate';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'ms-form-final-verification',
@@ -57,23 +58,9 @@ export class FormFinalVerificationComponent implements OnInit {
 
   public onSubmit() {
     if (this.isFormValid()) {
-      if (!!this.id) {
-        this.finalVerificationService.update(this.formToObj(), this.id).subscribe(
-          res => {
-            console.log(res);
-            this.goToListPage();
-          },
-          err => console.log('Error occured : ' + err)
-        );
-      } else {
-        this.finalVerificationService.create(this.formToObj()).subscribe(
-          res => {
-            console.log(res);
-            this.goToListPage();
-          },
-          err => console.log('Error occured : ' + err)
-        );
-      }
+      const observable$ = !!this.id ?
+        this.finalVerificationService.update(this.formToObj(), this.id) : this.finalVerificationService.create(this.formToObj());
+      this.handleRequest(observable$);
     }
   }
 
@@ -99,5 +86,15 @@ export class FormFinalVerificationComponent implements OnInit {
     finalVerification.title = this.form.controls.title.value;
     finalVerification.questions = this.questions;
     return finalVerification;
+  }
+
+  private handleRequest(observable$: Observable<any>) {
+    observable$.subscribe(
+      (res: any) => {
+        console.log(res);
+        this.goToListPage();
+      },
+      (err: any) => console.log('Error occured : ' + err)
+    );
   }
 }

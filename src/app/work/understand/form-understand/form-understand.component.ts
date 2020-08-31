@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Media } from './../../media';
 import { Question } from './../../question';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -74,23 +75,9 @@ export class FormUnderstandComponent implements OnInit {
 
   public onSubmit() {
     if (this.isFormValid()) {
-      if (!!this.id) {
-        this.understandService.update(this.formToObj(), this.id).subscribe(
-          res => {
-            console.log(res);
-            this.goToListPage();
-          },
-          err => console.log('Error occured : ' + err)
-        );
-      } else {
-        this.understandService.create(this.formToObj()).subscribe(
-          res => {
-            console.log(res);
-            this.goToListPage();
-          },
-          err => console.log('Error occured : ' + err)
-        );
-      }
+      const observable$ = !!this.id ?
+        this.understandService.update(this.formToObj(), this.id) : this.understandService.create(this.formToObj());
+      this.handleRequest(observable$);
     }
   }
 
@@ -124,5 +111,15 @@ export class FormUnderstandComponent implements OnInit {
     understand.audio = this.audio;
     understand.questions = this.questions;
     return understand;
+  }
+
+  private handleRequest(observable$: Observable<any>) {
+    observable$.subscribe(
+      (res: any) => {
+        console.log(res);
+        this.goToListPage();
+      },
+      (err: any) => console.log('Error occured : ' + err)
+    );
   }
 }

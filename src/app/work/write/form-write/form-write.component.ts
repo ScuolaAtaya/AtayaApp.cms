@@ -10,6 +10,7 @@ import { WriteService } from './../write.service';
 import { ActivatedRoute } from '@angular/router'
 import { AuthenticationService } from './../../../authentication/authentication.service';
 import { TranslateService } from 'ng2-translate';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ms-form-write',
@@ -80,23 +81,8 @@ export class FormWriteComponent implements OnInit {
 
   public onSubmit() {
     if (this.isFormValid()) {
-      if (!!this.id) {
-        this.writeService.update(this.formToObj(), this.id).subscribe(
-          res => {
-            console.log(res);
-            this.goToListPage();
-          },
-          err => console.log('Error occured : ' + err)
-        );
-      } else {
-        this.writeService.create(this.formToObj()).subscribe(
-          res => {
-            console.log(res);
-            this.goToListPage();
-          },
-          err => console.log('Error occured : ' + err)
-        );
-      }
+      const observable$ = !!this.id ? this.writeService.update(this.formToObj(), this.id) : this.writeService.create(this.formToObj());
+      this.handleRequest(observable$);
     }
   }
 
@@ -128,5 +114,15 @@ export class FormWriteComponent implements OnInit {
     write.audio = this.audio;
     write.letters = this.letters;
     return write;
+  }
+
+  private handleRequest(observable$: Observable<any>) {
+    observable$.subscribe(
+      (res: any) => {
+        console.log(res);
+        this.goToListPage();
+      },
+      (err: any) => console.log('Error occured : ' + err)
+    );
   }
 }

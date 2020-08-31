@@ -10,6 +10,7 @@ import { Section, SectionSolverService } from '../../section-solver.service'
 import { Router } from '@angular/router'
 import { AuthenticationService } from './../../../authentication/authentication.service';
 import { TranslateService } from 'ng2-translate';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -78,23 +79,8 @@ export class FormTalkComponent implements OnInit {
 
   public onSubmit() {
     if (this.isFormValid()) {
-      if (!!this.id) {
-        this.talkService.update(this.formToObj(), this.id).subscribe(
-          res => {
-            console.log(res);
-            this.goToListPage();
-          },
-          err => console.log('Error occured : ' + err)
-        );
-      } else {
-        this.talkService.create(this.formToObj()).subscribe(
-          res => {
-            console.log(res);
-            this.goToListPage();
-          },
-          err => console.log('Error occured : ' + err)
-        );
-      }
+      const observable$ = !!this.id ? this.talkService.update(this.formToObj(), this.id) : this.talkService.create(this.formToObj());
+      this.handleRequest(observable$);
     }
   }
 
@@ -122,5 +108,15 @@ export class FormTalkComponent implements OnInit {
     talk.picture = this.picture;
     talk.audio = this.audio;
     return talk;
+  }
+
+  private handleRequest(observable$: Observable<any>) {
+    observable$.subscribe(
+      (res: any) => {
+        console.log(res);
+        this.goToListPage();
+      },
+      (err: any) => console.log('Error occured : ' + err)
+    );
   }
 }

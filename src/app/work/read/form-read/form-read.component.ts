@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Media } from './../../media';
 import { Answer } from './../../answer';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -71,23 +72,8 @@ export class FormReadComponent implements OnInit {
 
   public onSubmit() {
     if (this.isFormValid()) {
-      if (!!this.id) {
-        this.readService.update(this.formToObj(), this.id).subscribe(
-          res => {
-            console.log(res);
-            this.goToListPage();
-          },
-          err => console.log('Error occured : ' + err)
-        );
-      } else {
-        this.readService.create(this.formToObj()).subscribe(
-          res => {
-            console.log(res);
-            this.goToListPage();
-          },
-          err => console.log('Error occured : ' + err)
-        );
-      }
+      const observable$ = !!this.id ? this.readService.update(this.formToObj(), this.id) : this.readService.create(this.formToObj());
+      this.handleRequest(observable$);
     }
   }
 
@@ -115,5 +101,15 @@ export class FormReadComponent implements OnInit {
     read.picture = this.picture;
     read.options = this.options;
     return read;
+  }
+
+  private handleRequest(observable$: Observable<any>) {
+    observable$.subscribe(
+      (res: any) => {
+        console.log(res);
+        this.goToListPage();
+      },
+      (err: any) => console.log('Error occured : ' + err)
+    );
   }
 }
