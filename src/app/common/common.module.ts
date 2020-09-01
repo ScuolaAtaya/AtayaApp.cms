@@ -1,3 +1,4 @@
+import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StringsInputComponent } from './strings-input/strings-input.component';
@@ -31,8 +32,8 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
       tertiaryColour: '#ffffff'
     })
   ],
-  exports: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent, AudioPlayerComponent],
-  declarations: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent, AudioPlayerComponent]
+  exports: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent, AudioPlayerComponent, LeafletMapComponent],
+  declarations: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent, AudioPlayerComponent, LeafletMapComponent]
 })
 export class CommonComponentModule {
 }
