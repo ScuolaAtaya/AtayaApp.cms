@@ -27,7 +27,7 @@
                         </ms-file-input>
                     </div>
                     <div *ngIf="!!picture.value" class="box-inset box-inset-answersBox pad-all-md">
-                        <div class="marker-label">{{ 'Carica qui i marker alla foto' | translate }}</div>
+                        <div class="marker-label">{{ 'Aggiungi i marker alla foto' | translate }}</div>
                         <ms-leaflet-map [url]="url" [markers]="markers" (onMarkerDragEnd)="onMarkerDragEnd($event)">
                         </ms-leaflet-map>
                         <button md-raised-button class="marker-button" color="primary" type="button"
