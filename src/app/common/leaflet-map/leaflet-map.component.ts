@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CRS, icon, imageOverlay, LatLng, map, marker } from 'leaflet';
+import { CRS, imageOverlay, LatLng, map, marker } from 'leaflet';
+import { divIcon } from 'leaflet';
 
 @Component({
   selector: 'ms-leaflet-map',
@@ -8,13 +9,10 @@ import { CRS, icon, imageOverlay, LatLng, map, marker } from 'leaflet';
 })
 export class LeafletMapComponent implements OnInit {
   @Output() onMarkerDragEnd = new EventEmitter<Marker>();
-  @Output() onMarkerClick = new EventEmitter<Marker>();
-  @Output() onMapClick = new EventEmitter<[number, number]>();
   lfMap?: any;
-  _url = '';
+  _url: string;
   _markers: Marker[];
-  leafletMarkers: any[] = [];
-  _onMapClick = (event: any) => this.onMapClick.emit([event.latlng.lng, event.latlng.lat]);
+  leafletMarkers: Marker[];
 
   constructor() {
     this.initMap();
@@ -32,12 +30,13 @@ export class LeafletMapComponent implements OnInit {
     this.initMap();
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.leafletMarkers = [];
+  }
 
   async initMap() {
     try {
       if (this.lfMap != null) {
-        this.lfMap.off('click', this._onMapClick);
         this.lfMap.off();
         this.lfMap.remove();
       }
@@ -58,29 +57,25 @@ export class LeafletMapComponent implements OnInit {
   }
 
   addMarker(inputMarker: Marker) {
-    const latlng = new LatLng(inputMarker.y, inputMarker.x);
+    const latlng = new LatLng(inputMarker.x, inputMarker.y);
     const newMarker = marker(
       latlng,
       {
         draggable: true,
-        icon: icon({
-          iconSize: [25, 41],
-          iconAnchor: [13, 41],
-          iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/images/marker-icon.png',
-          shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/images/marker-shadow.png'
+        icon: divIcon({
+          className: 'custom-div-icon',
+          html: `<div class="marker-pin"><div class="marker-text">${inputMarker.id}</div></div>`,
+          iconSize: [30, 42],
+          iconAnchor: [15, 42]
         })
       }
     );
-    if (inputMarker.name != null) {
-      newMarker.bindTooltip(inputMarker.name, { direction: 'top', offset: [0, -41] });
-    }
     newMarker.on('dragend', () => {
       const newPosition = newMarker.getLatLng();
       inputMarker.x = newPosition.lng;
       inputMarker.y = newPosition.lat;
       this.onMarkerDragEnd.emit(inputMarker);
     });
-    newMarker.on('click', () => this.onMarkerClick.emit(inputMarker));
     newMarker.addTo(this.lfMap);
     this.leafletMarkers.push(newMarker);
   }
@@ -91,7 +86,6 @@ export class LeafletMapComponent implements OnInit {
     imageOverlay(mapUrl, bounds).addTo(this.lfMap);
     this.lfMap.fitBounds(bounds);
     this.lfMap.setMaxBounds(bounds);
-    this.lfMap.on('click', this._onMapClick);
   }
 
   imgWidthAndHeight(url: string): Promise<[number, number]> {
@@ -110,11 +104,9 @@ export class LeafletMapComponent implements OnInit {
     let width = 0;
     let height = 0;
     if (backgoundRatio > containerRatio) {
-      // landscape
       width = 1000;
       height = width / backgoundRatio;
     } else {
-      // portrait
       height = 1000;
       width = height * backgoundRatio;
     }
@@ -126,6 +118,4 @@ export interface Marker {
   x: number
   y: number
   id: number
-  name: string
-  payload: any
 }
