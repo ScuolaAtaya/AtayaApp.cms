@@ -94,5 +94,8 @@
   "server error": "Errore di comunicazione con il server. Riprovare per favore.",
   "Sei sicuro di voler continuare?": "Sei sicuro di voler continuare?",
 
-  "Credits": "Credits"
+  "Credits": "Credits",
+
+  "Carica qui i marker alla foto": "Carica qui i marker alla foto",
+  "Aggiungi marker": "Aggiungi marker"
 }

@@ -64,7 +64,7 @@ export class LeafletMapComponent implements OnInit {
         draggable: true,
         icon: divIcon({
           className: 'custom-div-icon',
-          html: `<div class="marker-pin"><div class="marker-text">${inputMarker.id}</div></div>`,
+          html: `<div class="marker-pin"><div class="marker-number">${inputMarker.id}</div></div>`,
           iconSize: [30, 42],
           iconAnchor: [15, 42]
         })
