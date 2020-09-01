@@ -10,6 +10,8 @@ import { Section, SectionSolverService } from '../../section-solver.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReadService } from './../read.service';
 import { TranslateService } from 'ng2-translate';
+import { Marker } from 'app/common/leaflet-map/leaflet-map.component';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'ms-form-read',
@@ -21,14 +23,16 @@ import { TranslateService } from 'ng2-translate';
   animations: [fadeInAnimation]
 })
 export class FormReadComponent implements OnInit {
-  public form: FormGroup;
-  public cardTitle: string
-  public cardSubmitButtonTitle: string
-  public id: string
-  public read: Read
-  public picture: Media;
-  private section: Section;
-  public options: Answer[];
+  form: FormGroup;
+  cardTitle: string
+  cardSubmitButtonTitle: string
+  id: string
+  read: Read
+  picture: Media;
+  section: Section;
+  options: Answer[];
+  url = ''
+  markers: Marker[];
 
   constructor(
     private fb: FormBuilder,
@@ -43,6 +47,7 @@ export class FormReadComponent implements OnInit {
   ngOnInit() {
     this.picture = new Media();
     this.options = [];
+    this.markers = [];
     this.cardTitle = 'Carica il nuovo esercizio';
     this.cardSubmitButtonTitle = 'Carica esercizio';
     this.route.params.subscribe(params => {
@@ -68,9 +73,13 @@ export class FormReadComponent implements OnInit {
 
   onPictureChanged(file: Media) {
     this.picture = file;
+    this.url = this.setUrl(file.value);
   }
 
-  public onSubmit() {
+  onMarkerDragEnd(marker: Marker) {
+  }
+
+  onSubmit() {
     if (this.isFormValid()) {
       const observable$ = !!this.id ? this.readService.update(this.formToObj(), this.id) : this.readService.create(this.formToObj());
       this.handleRequest(observable$);
@@ -81,17 +90,23 @@ export class FormReadComponent implements OnInit {
     return this.form.valid && !!this.picture.value;
   }
 
-  public goToListPage() {
+  addMarker() {
+    const newId = this.markers.length + 1;
+    this.markers = this.markers.concat({ x: 0, y: 0, id: newId });
+  }
+
+  private goToListPage() {
     this.router.navigate([this.section.name + '/read']);
   }
 
-  public objToForm(read: Read) {
+  private objToForm(read: Read) {
     this.form.controls.title.setValue(read.title);
     this.picture = read.picture;
     this.options = read.options;
+    this.url = this.setUrl(read.picture.value);
   }
 
-  public formToObj() {
+  private formToObj() {
     let read = new Read();
     read.unit_id = this.section.id;
     if (!!this.read) {
@@ -111,5 +126,9 @@ export class FormReadComponent implements OnInit {
       },
       (err: any) => console.log('Error occured : ' + err)
     );
+  }
+
+  private setUrl(url: string): string {
+    return environment.baseUrlImage + '/' + url;
   }
 }

@@ -30,7 +30,8 @@
                         <div class="marker-label">{{ 'Carica qui i marker alla foto' | translate }}</div>
                         <ms-leaflet-map [url]="url" [markers]="markers" (onMarkerDragEnd)="onMarkerDragEnd($event)">
                         </ms-leaflet-map>
-                        <button md-raised-button class="marker-button" color="primary">{{ 'Aggiungi marker' | translate}}</button>
+                        <button md-raised-button class="marker-button" color="primary" type="button"
+                            (click)="addMarker()">{{ 'Aggiungi marker' | translate}}</button>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
