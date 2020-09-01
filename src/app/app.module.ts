@@ -69,6 +69,7 @@ import { FormQuestionComponent } from './common/form-question/form-question.comp
 import { RequestService } from './common/request.service';
 import { ApiService } from './common/api.service';
 import { LogService } from './common/log.service';
+import { LeafletMapComponent } from './common/leaflet-map/leaflet-map.component';
 
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -144,7 +145,8 @@ const perfectScrollbarConfig: PerfectScrollbarConfigInterface = {
         ForgotPasswordComponent,
         LockScreenComponent,
         nvD3,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        LeafletMapComponent
     ],
     entryComponents: [
         DemoDialog,
