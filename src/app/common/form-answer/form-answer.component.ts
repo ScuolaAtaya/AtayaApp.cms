@@ -1,3 +1,4 @@
+import { Option } from './../../work/options';
 import { Media } from './../../work/media';
 import { Answer } from './../../work/answer';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -11,30 +12,33 @@ declare var $: any;
   styleUrls: ['./form-answer.component.scss']
 })
 export class FormAnswerComponent implements OnInit {
-  public cardTitle: string;
-  public cardSubmitButtonTitle: string;
-  public form: FormGroup;
-  public answer: Answer;
-  public audio: Media;
-  public correct: boolean;
+  cardTitle: string;
+  cardSubmitButtonTitle: string;
+  form: FormGroup;
+  isReadOption: boolean;
+  model: any;
+  audio: Media;
+  correct: boolean;
 
   constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormAnswerComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
     $('.form-answer').addClass('app-dark');
     this.correct = false;
+    this.audio = new Media();
   }
 
   ngOnInit() {
-    this.audio = new Media();
     this.cardTitle = 'Carica la nuova risposta';
     this.cardSubmitButtonTitle = 'Carica risposta';
-    this.form = this.fb.group({
-      body: [null, Validators.compose([Validators.required])]
-    });
-    if (this.data && Object.keys(this.data).length > 0) {
+    this.isReadOption = this.data.isReadOption;
+    const controlsConfig = this.isReadOption ?
+      { body: [null, Validators.compose([Validators.required])], markerId: [null, Validators.compose([Validators.required])] } :
+      { body: [null, Validators.compose([Validators.required])] };
+    this.form = this.fb.group(controlsConfig);
+    if (!!this.data.model) {
       this.cardTitle = 'Modifica la risposta';
       this.cardSubmitButtonTitle = 'Modifica risposta';
-      this.answer = this.data;
-      this.objToForm(this.answer);
+      this.model = this.data.model;
+      this.objToForm(this.model);
     }
   }
 
@@ -42,34 +46,54 @@ export class FormAnswerComponent implements OnInit {
     this.audio = file;
   }
 
-  isFormValid() {
-    return this.form.valid && this.correct !== undefined && !!this.audio.value;
-  }
-
-  public objToForm(answer: Answer) {
-    this.form.controls.body.setValue(answer.body);
-    this.correct = answer.correct;
-    this.audio = answer.audio;
-  }
-
-  public formToObj() {
-    let answer = new Answer();
-    if (!!this.answer) {
-      answer = this.answer;
-    }
-    answer.body = this.form.controls.body.value;
-    answer.correct = this.correct;
-    answer.audio = this.audio;
-    return answer;
-  }
-
-  public onSubmit() {
+  onSubmit() {
     if (this.isFormValid()) {
       this.dialogRef.close(this.formToObj());
     }
   }
 
-  public onClose() {
+  onClose() {
     this.dialogRef.close(undefined);
+  }
+
+  isFormValid() {
+    if (this.isReadOption) {
+      return this.form.valid && !!this.audio.value;
+    } else {
+      return this.form.valid && !!this.audio.value && this.correct !== undefined;
+    }
+  }
+
+  private objToForm(obj: any) {
+    obj = this.isReadOption ? obj as Option : obj as Answer
+    this.form.controls.body.setValue(obj.body);
+    if (this.isReadOption) {
+      this.form.controls.markerId.setValue(obj.markerId);
+    } else {
+      this.correct = obj.correct;
+    }
+    this.audio = obj.audio;
+  }
+
+  private formToObj() {
+    if (this.isReadOption) {
+      let option = new Option();
+      if (!!this.model) {
+        option = this.model;
+      }
+      option.body = this.form.controls.body.value;
+      option.markerId = this.form.controls.markerId.value;
+      option.audio = this.audio;
+      return option;
+    } else {
+      let answer = new Answer();
+      if (!!this.model) {
+        answer = this.model;
+      }
+      answer.body = this.form.controls.body.value;
+      answer.correct = this.correct;
+      answer.audio = this.audio;
+      return answer;
+    }
   }
 }
