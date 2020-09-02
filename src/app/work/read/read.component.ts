@@ -6,11 +6,9 @@ import { ReadService } from './read.service';
 import { Read } from './read';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Section, SectionSolverService } from '../section-solver.service';
-import { environment } from 'environments/environment';
 import { WorkListMenuItems } from '../work-list-menu-items';
 import { UtilsService } from '../../common/utils.service';
 import { TranslateService } from 'ng2-translate';
-import { Media } from '../media';
 
 @Component({
   selector: 'ms-read',
@@ -51,28 +49,24 @@ export class ReadComponent implements OnInit {
     this.downloadData();
   }
 
-  menuAction(item, menutItem) {
+  menuAction(item: any, menutItem: any) {
     const type = menutItem.type;
     const id = item._id;
     if (type === 'delete') {
       this.utils.confirm('Sei sicuro di voler continuare?').subscribe(result => {
         if (result) {
           this.readService.delete(id).subscribe(
-            res => {
+            (res: any) => {
               console.log(res);
               this.downloadData();
             },
-            err => console.log('Error occured : ' + err)
+            (err: string) => console.log('Error occured : ' + err)
           );
         }
      });
    } else {
       this.router.navigate([this.section.name + '/read/exercise', id]);
     }
-  }
-
-  getMediaUrl(picture: Media) {
-    return environment.baseUrlImage + '/' + picture.value;
   }
 
   downloadData() {
