@@ -1,6 +1,6 @@
+import { Option } from './../../options';
 import { Observable } from 'rxjs/Observable';
 import { Media } from './../../media';
-import { Answer } from './../../answer';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PageTitleService } from '../../../core/page-title/page-title.service';
@@ -30,7 +30,7 @@ export class FormReadComponent implements OnInit {
   read: Read
   picture: Media;
   section: Section;
-  options: Answer[];
+  options: Option[];
   url: string;
   markers: Marker[];
 
@@ -72,12 +72,9 @@ export class FormReadComponent implements OnInit {
     });
   }
 
-  onPictureChanged(file: Media) {
-    this.picture = file;
-    this.url = this.getMediaUr(file.value);
-  }
-
-  onMarkerDragEnd(marker: Marker) {
+  onPictureChanged(event: Media) {
+    this.picture = event;
+    this.url = this.getMediaUr(this.picture.value);
   }
 
   onSubmit() {
