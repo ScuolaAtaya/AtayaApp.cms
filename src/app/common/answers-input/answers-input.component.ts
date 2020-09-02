@@ -1,3 +1,4 @@
+import { Option } from './../../work/options';
 import { Answer } from './../../work/answer';
 import { Component, OnInit, Input } from '@angular/core';
 import { UtilsService } from '../utils.service';
@@ -8,7 +9,8 @@ import { UtilsService } from '../utils.service';
   styleUrls: ['./answers-input.component.scss']
 })
 export class AnswersInputComponent implements OnInit {
-  @Input() answers: Answer[];
+  @Input() model: any[];
+  @Input() isReadOption: boolean;
 
   constructor(public utils: UtilsService) { }
 
@@ -18,23 +20,23 @@ export class AnswersInputComponent implements OnInit {
     return index;
   }
 
-  editAnswer(index: number, answer: Answer) {
-    this.utils.openAnswerDialog(answer).subscribe(res => {
+  editAnswer(index: number, model: Answer | Option) {
+    this.utils.openAnswerDialog({ model, isReadOption: this.isReadOption }).subscribe(res => {
       if (!!res) {
-        this.answers[index] = res;
+        this.model[index] = res;
       }
     });
   }
 
   addAnswer() {
-    this.utils.openAnswerDialog(undefined).subscribe(res => {
+    this.utils.openAnswerDialog({ model: undefined, isReadOption: this.isReadOption }).subscribe(res => {
       if (!!res) {
-        this.answers.push(res);
+        this.model.push(res);
       }
     });
   }
 
   deleteAnswer(i: number) {
-    this.answers.splice(i, 1);
+    this.model.splice(i, 1);
   }
 }

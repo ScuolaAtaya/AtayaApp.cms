@@ -30,11 +30,11 @@ export class UtilsService {
         })
     }
 
-    openAnswerDialog(answer: any): Observable<any> {
+    openAnswerDialog(data: any): Observable<any> {
         this.answerDialogRef = this.dialog.open(FormAnswerComponent, {
             panelClass: 'form-answer',
             disableClose: false,
-            data: answer
+            data: data
         });
         return this.answerDialogRef.afterClosed().map(result => {
             this.answerDialogRef = null;

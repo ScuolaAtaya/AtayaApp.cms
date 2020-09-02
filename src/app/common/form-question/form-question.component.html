@@ -39,7 +39,7 @@
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center" *ngIf="isUnderstandQuestion">
           <div class="box-inset box-inset-answersBox pad-all-md">
             <h5 class="mrgn-b-md">Answers</h5>
-            <ms-answers-input [answers]="answers"></ms-answers-input>
+            <ms-answers-input [model]="answers" [isReadOption]="false"></ms-answers-input>
           </div>
         </div>
         <div class="pad-wrap">

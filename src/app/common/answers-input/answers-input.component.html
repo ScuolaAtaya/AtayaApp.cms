@@ -1,13 +1,13 @@
 <md-list>
-  <md-list-item *ngFor="let answer of answers;let index = index;trackBy:trackByIndex;">
+  <md-list-item *ngFor="let m of model;let index = index;trackBy:trackByIndex;">
     <h3 md-line>
       <button class="mrgn-all-xs" md-icon-button type="button" (click)="deleteAnswer(index)">
         <md-icon>delete</md-icon>
       </button>
-      <button class="mrgn-all-xs" md-icon-button type="button" (click)="editAnswer(index, answer)">
+      <button class="mrgn-all-xs" md-icon-button type="button" (click)="editAnswer(index, m)">
         <md-icon>edit</md-icon>
       </button>
-      {{ answer.body }}
+      {{ m.body }}
     </h3>
   </md-list-item>
 </md-list>
