@@ -74,6 +74,7 @@ export class FormReadComponent implements OnInit {
 
   onPictureChanged(event: Media) {
     this.picture = event;
+    this.markers = [];
     this.url = this.getMediaUr(this.picture.value);
   }
 
