@@ -31,7 +31,7 @@ export class FormReadComponent implements OnInit {
   picture: Media;
   section: Section;
   options: Answer[];
-  url = ''
+  url: string;
   markers: Marker[];
 
   constructor(
@@ -42,12 +42,13 @@ export class FormReadComponent implements OnInit {
     private readService: ReadService,
     private router: Router,
     private translate: TranslateService
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.picture = new Media();
     this.options = [];
     this.markers = [];
+  }
+
+  ngOnInit() {
     this.cardTitle = 'Carica il nuovo esercizio';
     this.cardSubmitButtonTitle = 'Carica esercizio';
     this.route.params.subscribe(params => {
@@ -73,7 +74,7 @@ export class FormReadComponent implements OnInit {
 
   onPictureChanged(file: Media) {
     this.picture = file;
-    this.url = this.setUrl(file.value);
+    this.url = this.getMediaUr(file.value);
   }
 
   onMarkerDragEnd(marker: Marker) {
@@ -103,7 +104,8 @@ export class FormReadComponent implements OnInit {
     this.form.controls.title.setValue(read.title);
     this.picture = read.picture;
     this.options = read.options;
-    this.url = this.setUrl(read.picture.value);
+    this.markers = read.markers;
+    this.url = this.getMediaUr(read.picture.value);
   }
 
   private formToObj() {
@@ -115,6 +117,7 @@ export class FormReadComponent implements OnInit {
     read.title = this.form.controls.title.value;
     read.picture = this.picture;
     read.options = this.options;
+    read.markers = this.markers;
     return read;
   }
 
@@ -128,7 +131,7 @@ export class FormReadComponent implements OnInit {
     );
   }
 
-  private setUrl(url: string): string {
+  private getMediaUr(url: string): string {
     return environment.baseUrlImage + '/' + url;
   }
 }
