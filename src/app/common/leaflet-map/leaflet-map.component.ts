@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CRS, imageOverlay, LatLng, map, marker } from 'leaflet';
 import { divIcon } from 'leaflet';
+import { Marker } from 'app/work/marker';
 
 @Component({
   selector: 'ms-leaflet-map',
@@ -112,10 +113,4 @@ export class LeafletMapComponent implements OnInit {
     }
     return [[0, -width / 2], [height, width / 2]];
   }
-}
-
-export interface Marker {
-  x: number
-  y: number
-  id: number
 }

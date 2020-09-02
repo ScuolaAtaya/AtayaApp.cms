@@ -10,8 +10,8 @@ import { Section, SectionSolverService } from '../../section-solver.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReadService } from './../read.service';
 import { TranslateService } from 'ng2-translate';
-import { Marker } from 'app/common/leaflet-map/leaflet-map.component';
 import { environment } from 'environments/environment';
+import { Marker } from 'app/work/marker';
 
 @Component({
   selector: 'ms-form-read',
