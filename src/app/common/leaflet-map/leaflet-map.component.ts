@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CRS, imageOverlay, LatLng, map, marker } from 'leaflet';
 import { divIcon } from 'leaflet';
 import { Marker } from 'app/work/marker';
@@ -10,16 +10,13 @@ declare var $: any;
   styleUrls: ['./leaflet-map.component.scss']
 })
 export class LeafletMapComponent implements OnInit {
-  @Output() onMarkerDragEnd = new EventEmitter<Marker>();
   lfMap?: any;
   _url: string;
   _markers: Marker[];
   leafletMarkers: Marker[];
 
   constructor() {
-    $(document).ready(() => {
-      this.initMap()
-    })
+    $(document).ready(() => this.initMap());
   }
 
   @Input()
@@ -76,9 +73,8 @@ export class LeafletMapComponent implements OnInit {
     );
     newMarker.on('dragend', () => {
       const newPosition = newMarker.getLatLng();
-      inputMarker.x = newPosition.lng;
-      inputMarker.y = newPosition.lat;
-      this.onMarkerDragEnd.emit(inputMarker);
+      inputMarker.x = newPosition.lat;
+      inputMarker.y = newPosition.lng;
     });
     newMarker.addTo(this.lfMap);
     this.leafletMarkers.push(newMarker);
@@ -103,7 +99,7 @@ export class LeafletMapComponent implements OnInit {
   }
 
   boundsFromImageSize(imageWidth: number, imageHeight: number): [number, number][] {
-    const containerRatio = 673 / 337;
+    const containerRatio = 1600 / 900;
     const backgoundRatio = imageWidth / imageHeight;
     let width = 0;
     let height = 0;
