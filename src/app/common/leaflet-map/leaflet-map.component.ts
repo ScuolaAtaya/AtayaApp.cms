@@ -14,6 +14,8 @@ export class LeafletMapComponent implements OnInit {
   _url: string;
   _markers: Marker[];
   leafletMarkers: Marker[];
+  width: number;
+  height: number;
 
   constructor() {
     $(document).ready(() => this.initMap());
@@ -101,15 +103,13 @@ export class LeafletMapComponent implements OnInit {
   boundsFromImageSize(imageWidth: number, imageHeight: number): [number, number][] {
     const containerRatio = 1600 / 900;
     const backgoundRatio = imageWidth / imageHeight;
-    let width = 0;
-    let height = 0;
     if (backgoundRatio > containerRatio) {
-      width = 1000;
-      height = width / backgoundRatio;
+      this.width = 1000;
+      this.height = this.width / backgoundRatio;
     } else {
-      height = 1000;
-      width = height * backgoundRatio;
+      this.height = 1000;
+      this.width = this.height * backgoundRatio;
     }
-    return [[0, -width / 2], [height, width / 2]];
+    return [[0, 0], [this.height, this.width]];
   }
 }
