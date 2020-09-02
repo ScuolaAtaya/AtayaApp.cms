@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CRS, imageOverlay, LatLng, map, marker } from 'leaflet';
 import { divIcon } from 'leaflet';
 import { Marker } from 'app/work/marker';
+declare var $: any;
 
 @Component({
   selector: 'ms-leaflet-map',
@@ -16,7 +17,9 @@ export class LeafletMapComponent implements OnInit {
   leafletMarkers: Marker[];
 
   constructor() {
-    this.initMap();
+    $(document).ready(() => {
+      this.initMap()
+    })
   }
 
   @Input()

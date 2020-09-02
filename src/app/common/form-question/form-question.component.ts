@@ -1,3 +1,4 @@
+import { Answer } from './../../work/answer';
 import { Media } from './../../work/media';
 import { Question } from './../../work/question';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -18,7 +19,7 @@ export class FormQuestionComponent implements OnInit {
   public question: Question;
   public audio: Media;
   public picture: Media;
-  public answers: any;
+  public answers: Answer[];
   public correct: boolean;
 
   constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormQuestionComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
