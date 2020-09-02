@@ -9,6 +9,8 @@ import { Section, SectionSolverService } from '../section-solver.service';
 import { WorkListMenuItems } from '../work-list-menu-items';
 import { UtilsService } from '../../common/utils.service';
 import { TranslateService } from 'ng2-translate';
+import { Media } from '../media';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'ms-read',
@@ -69,7 +71,12 @@ export class ReadComponent implements OnInit {
     }
   }
 
-  downloadData() {
+  getMediaUrl(picture: Media) {
+    return environment.baseUrlImage + '/' + picture.value;
+  }
+
+
+  private downloadData() {
     this.readService.getList(this.section.id).subscribe(
       res => this.readList = res as Read[],
       err => console.log('Error occured : ' + err)
