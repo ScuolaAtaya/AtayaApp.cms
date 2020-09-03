@@ -20,7 +20,7 @@ export class AnswersInputComponent implements OnInit {
     return index;
   }
 
-  editAnswer(index: number, model: Answer | Option) {
+  editAnswer(index: number, model: any) {
     this.utils.openAnswerDialog({ model, isReadOption: this.isReadOption }).subscribe(res => {
       if (!!res) {
         this.model[index] = res;
