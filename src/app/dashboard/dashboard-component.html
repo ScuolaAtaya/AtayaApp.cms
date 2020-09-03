@@ -1,4 +1,4 @@
-<div fxLayoutWrap="wrap" fxLayoutAlign="start" >
+<div fxLayoutWrap="wrap" fxLayoutAlign="start">
   <div fxFlex.gt-md="20" fxFlex.gt-sm="20" fxFlex="100" *ngFor="let dashboardItem of dashboardItems">
     <md-card class="mat-card-ruah" (click)="goTo(dashboardItem.route)">
       <img src="{{dashboardItem.image}}" alt="{{dashboardItem.title}}">

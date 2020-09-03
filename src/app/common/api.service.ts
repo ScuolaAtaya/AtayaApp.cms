@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { RequestService } from './request.service';
@@ -8,15 +9,11 @@ export class ApiService {
 
   constructor(protected requestService: RequestService) { }
 
-  createBook() {
+  createBook(): Observable<any> {
     return this.requestService.get(this.createUrlFromBaseUrl('book/create/v2'));
   }
 
-  private createUrl(...elements: string[]): string {
-    return elements.join('/');
-  }
-
-  public createUrlFromBaseUrl(...elements: string[]): string {
+  createUrlFromBaseUrl(...elements: string[]): string {
     elements.unshift(this.baseUrl);
     return elements.join('/');
   }

@@ -15,13 +15,13 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./form-final-verification.component.scss']
 })
 export class FormFinalVerificationComponent implements OnInit {
-  public cardTitle: string;
-  public cardSubmitButtonTitle: string;
-  public id: string;
-  public finalVerification: FinalVerification;
-  public form: FormGroup;
-  public questions: Question[];
-  public section: Section;
+  cardTitle: string;
+  cardSubmitButtonTitle: string;
+  id: string;
+  finalVerification: FinalVerification;
+  form: FormGroup;
+  questions: Question[];
+  section: Section;
 
   constructor(
     private fb: FormBuilder,
@@ -31,20 +31,19 @@ export class FormFinalVerificationComponent implements OnInit {
     private router: Router,
     private finalVerificationService: FinalVerificationService,
     private translate: TranslateService
-  ) { }
+  ) {
+    this.questions = [];
+  }
 
   ngOnInit() {
-    this.questions = [];
-    this.cardTitle = 'Carica il nuovo esercizio';
-    this.cardSubmitButtonTitle = 'Carica esercizio';
     this.route.params.subscribe(params => {
       this.translate.get('Verifica finale').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
       this.section = this.sectionService.retrieveSection(params);
       this.id = params['id'];
+      this.cardTitle = !!this.id ? 'Modifica l\'esercizio' : 'Carica il nuovo esercizio';
+      this.cardSubmitButtonTitle = !!this.id ? 'Modifica esercizio' : 'Carica esercizio';
       this.form = this.fb.group({ title: [null, Validators.compose([Validators.required])] });
       if (!!this.id) {
-        this.cardTitle = 'Modifica l\'esercizio';
-        this.cardSubmitButtonTitle = 'Modifica esercizio';
         this.finalVerificationService.getOne(this.id).subscribe(
           res => {
             this.finalVerification = res as FinalVerification;
@@ -56,7 +55,7 @@ export class FormFinalVerificationComponent implements OnInit {
     });
   }
 
-  public onSubmit() {
+  onSubmit() {
     if (this.isFormValid()) {
       const observable$ = !!this.id ?
         this.finalVerificationService.update(this.formToObj(), this.id) : this.finalVerificationService.create(this.formToObj());
@@ -68,16 +67,16 @@ export class FormFinalVerificationComponent implements OnInit {
     return this.form.valid;
   }
 
-  public goToListPage() {
+  goToListPage() {
     this.router.navigate([this.section.name + '/final']);
   }
 
-  public objToForm(finalVerification: FinalVerification) {
+  private objToForm(finalVerification: FinalVerification) {
     this.form.controls.title.setValue(finalVerification.title);
     this.questions = finalVerification.questions;
   }
 
-  public formToObj() {
+  private formToObj() {
     let finalVerification = new FinalVerification();
     finalVerification.unit_id = this.section.id;
     if (!!this.finalVerification) {
@@ -90,10 +89,7 @@ export class FormFinalVerificationComponent implements OnInit {
 
   private handleRequest(observable$: Observable<any>) {
     observable$.subscribe(
-      (res: any) => {
-        console.log(res);
-        this.goToListPage();
-      },
+      () => this.goToListPage(),
       (err: any) => console.log('Error occured : ' + err)
     );
   }

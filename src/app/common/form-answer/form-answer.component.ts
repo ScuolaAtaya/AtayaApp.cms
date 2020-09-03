@@ -27,16 +27,14 @@ export class FormAnswerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cardTitle = 'Carica la nuova risposta';
-    this.cardSubmitButtonTitle = 'Carica risposta';
+    this.cardTitle = !!this.data.model ? 'Modifica la risposta' : 'Carica la nuova risposta';
+    this.cardSubmitButtonTitle = !!this.data.model ? 'Modifica risposta' : 'Carica risposta';
     this.isReadOption = this.data.isReadOption;
     const controlsConfig = this.isReadOption ?
       { body: [null, Validators.compose([Validators.required])], markerId: [null, Validators.compose([Validators.required])] } :
       { body: [null, Validators.compose([Validators.required])] };
     this.form = this.fb.group(controlsConfig);
     if (!!this.data.model) {
-      this.cardTitle = 'Modifica la risposta';
-      this.cardSubmitButtonTitle = 'Modifica risposta';
       this.model = this.data.model;
       this.objToForm(this.model);
     }

@@ -1,5 +1,3 @@
-import { Option } from './../../work/options';
-import { Answer } from './../../work/answer';
 import { Component, OnInit, Input } from '@angular/core';
 import { UtilsService } from '../utils.service';
 

@@ -10,7 +10,7 @@ import { WriteService } from './../write.service';
 import { ActivatedRoute } from '@angular/router'
 import { AuthenticationService } from './../../../authentication/authentication.service';
 import { TranslateService } from 'ng2-translate';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'ms-form-write',
@@ -22,15 +22,15 @@ import { Observable } from 'rxjs';
   animations: [fadeInAnimation]
 })
 export class FormWriteComponent implements OnInit {
-  public cardTitle: string;
-  public cardSubmitButtonTitle: string;
-  public section: Section;
-  public id: string;
-  public write: Write;
-  public form: FormGroup;
-  public picture: Media;
-  public audio: Media;
-  public letters: string[];
+  cardTitle: string;
+  cardSubmitButtonTitle: string;
+  section: Section;
+  id: string;
+  write: Write;
+  form: FormGroup;
+  picture: Media;
+  audio: Media;
+  letters: string[];
 
   constructor(
     private fb: FormBuilder,
@@ -41,21 +41,20 @@ export class FormWriteComponent implements OnInit {
     private router: Router,
     public auth: AuthenticationService,
     private translate: TranslateService
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.picture = new Media();
     this.audio = new Media();
     this.letters = [];
-    this.cardTitle = 'Carica il nuovo esercizio';
-    this.cardSubmitButtonTitle = 'Carica esercizio';
+  }
+
+  ngOnInit() {
     this.route.params.subscribe(params => {
       this.translate.get('Scriviamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
       this.section = this.sectionService.retrieveSection(params);
       this.id = params['id'];
+      this.cardTitle = !!this.id ? 'Modifica l\'esercizio' : 'Carica il nuovo esercizio';
+      this.cardSubmitButtonTitle = !!this.id ? 'Modifica esercizio' : 'Carica esercizio';
       if (!!this.id) {
-        this.cardTitle = 'Modifica l\'esercizio';
-        this.cardSubmitButtonTitle = 'Modifica esercizio';
         this.writeService.getOne(this.id).subscribe(
           res => {
             this.write = res as Write;
@@ -79,7 +78,7 @@ export class FormWriteComponent implements OnInit {
     this.audio = file;
   }
 
-  public onSubmit() {
+  onSubmit() {
     if (this.isFormValid()) {
       const observable$ = !!this.id ? this.writeService.update(this.formToObj(), this.id) : this.writeService.create(this.formToObj());
       this.handleRequest(observable$);
@@ -90,11 +89,11 @@ export class FormWriteComponent implements OnInit {
     return this.form.valid && !!this.picture.value && !!this.audio.value;
   }
 
-  public goToListPage() {
+  goToListPage() {
     this.router.navigate([this.section.name + '/write']);
   }
 
-  public objToForm(write: Write) {
+  private objToForm(write: Write) {
     this.form.controls.title.setValue(write.title);
     this.form.controls.word.setValue(write.word);
     this.letters = write.letters;
@@ -102,7 +101,7 @@ export class FormWriteComponent implements OnInit {
     this.audio = write.audio;
   }
 
-  public formToObj() {
+  private formToObj() {
     let write = new Write();
     write.unit_id = this.section.id;
     if (!!this.write) {
@@ -118,10 +117,7 @@ export class FormWriteComponent implements OnInit {
 
   private handleRequest(observable$: Observable<any>) {
     observable$.subscribe(
-      (res: any) => {
-        console.log(res);
-        this.goToListPage();
-      },
+      () => this.goToListPage(),
       (err: any) => console.log('Error occured : ' + err)
     );
   }

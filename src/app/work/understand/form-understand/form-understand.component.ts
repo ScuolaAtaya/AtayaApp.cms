@@ -22,14 +22,14 @@ import { TranslateService } from 'ng2-translate';
   animations: [fadeInAnimation]
 })
 export class FormUnderstandComponent implements OnInit {
-  public cardTitle: string;
-  public cardSubmitButtonTitle: string;
-  public id: string;
-  public understand: Understand;
-  public form: FormGroup;
-  public audio: Media;
-  public questions: Question[];
-  public section: Section;
+  cardTitle: string;
+  cardSubmitButtonTitle: string;
+  id: string;
+  understand: Understand;
+  form: FormGroup;
+  audio: Media;
+  questions: Question[];
+  section: Section;
 
   constructor(
     private fb: FormBuilder,
@@ -39,25 +39,24 @@ export class FormUnderstandComponent implements OnInit {
     private router: Router,
     private understandService: UnderstandService,
     private translate: TranslateService
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.audio = new Media();
     this.questions = [];
-    this.cardTitle = 'Carica il nuovo esercizio';
-    this.cardSubmitButtonTitle = 'Carica esercizio';
+  }
+
+  ngOnInit() {
     this.route.params.subscribe(params => {
       this.translate.get('Capiamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
       this.section = this.sectionService.retrieveSection(params);
       this.id = params['id'];
+      this.cardTitle = !!this.id ? 'Modifica l\'esercizio' : 'Carica il nuovo esercizio';
+      this.cardSubmitButtonTitle = !!this.id ? 'Modifica esercizio' : 'Carica esercizio';
       this.form = this.fb.group({
         title: [null, Validators.compose([Validators.required])],
         video_url: [null, Validators.compose([Validators.required])],
         video_credits: [null]
       });
       if (!!this.id) {
-        this.cardTitle = 'Modifica l\'esercizio';
-        this.cardSubmitButtonTitle = 'Modifica esercizio';
         this.understandService.getOne(this.id).subscribe(
           res => {
             this.understand = res as Understand;
@@ -73,7 +72,7 @@ export class FormUnderstandComponent implements OnInit {
     this.audio = file;
   }
 
-  public onSubmit() {
+  onSubmit() {
     if (this.isFormValid()) {
       const observable$ = !!this.id ?
         this.understandService.update(this.formToObj(), this.id) : this.understandService.create(this.formToObj());
@@ -85,11 +84,11 @@ export class FormUnderstandComponent implements OnInit {
     return this.form.valid && !!this.audio.value;
   }
 
-  public goToListPage() {
+  goToListPage() {
     this.router.navigate([this.section.name + '/understand']);
   }
 
-  public objToForm(understand: Understand) {
+  private objToForm(understand: Understand) {
     this.form.controls.title.setValue(understand.title);
     this.form.controls.video_url.setValue(understand.video_url.value);
     this.form.controls.video_credits.setValue(understand.video_url.credits);
@@ -97,7 +96,7 @@ export class FormUnderstandComponent implements OnInit {
     this.questions = understand.questions;
   }
 
-  public formToObj() {
+  private formToObj() {
     let understand = new Understand();
     understand.video_url = new Media();
     understand.unit_id = this.section.id;
@@ -115,10 +114,7 @@ export class FormUnderstandComponent implements OnInit {
 
   private handleRequest(observable$: Observable<any>) {
     observable$.subscribe(
-      (res: any) => {
-        console.log(res);
-        this.goToListPage();
-      },
+      () => this.goToListPage(),
       (err: any) => console.log('Error occured : ' + err)
     );
   }

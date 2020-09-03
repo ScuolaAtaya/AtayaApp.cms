@@ -8,11 +8,11 @@ import {RequestService} from '../../common/request.service';
 @Injectable()
 export class ReadService extends WorkService {
     constructor(protected requestService: RequestService) {
-        super(requestService)
-        this.target = 'read'
+        super(requestService);
+        this.target = 'read';
     }
 
-    public getList<T extends Work>(sectionId: number): Observable<T[]> {
+    getList<T extends Work>(sectionId: number): Observable<T[]> {
         return this.getAllBySection(sectionId);
     }
 }

@@ -24,10 +24,10 @@ import { Marker } from 'app/work/marker';
 })
 export class FormReadComponent implements OnInit {
   form: FormGroup;
-  cardTitle: string
-  cardSubmitButtonTitle: string
-  id: string
-  read: Read
+  cardTitle: string;
+  cardSubmitButtonTitle: string;
+  id: string;
+  read: Read;
   picture: Media;
   section: Section;
   options: Option[];
@@ -49,18 +49,16 @@ export class FormReadComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cardTitle = 'Carica il nuovo esercizio';
-    this.cardSubmitButtonTitle = 'Carica esercizio';
     this.route.params.subscribe(params => {
       this.translate.get('Leggiamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
       this.section = this.sectionService.retrieveSection(params);
       this.id = params['id'];
+      this.cardTitle = !!this.id ? 'Modifica l\'esercizio' : 'Carica il nuovo esercizio';
+      this.cardSubmitButtonTitle = !!this.id ? 'Modifica esercizio' : 'Carica esercizio';
       this.form = this.fb.group({
         title: [null, Validators.compose([Validators.required])]
       });
       if (!!this.id) {
-        this.cardTitle = 'Modifica l\'esercizio';
-        this.cardSubmitButtonTitle = 'Modifica esercizio';
         this.readService.getOne(this.id).subscribe(
           res => {
             this.read = res as Read;
@@ -94,7 +92,7 @@ export class FormReadComponent implements OnInit {
     this.markers = this.markers.concat({ x: 0, y: 0, id: newId });
   }
 
-  private goToListPage() {
+  goToListPage() {
     this.router.navigate([this.section.name + '/read']);
   }
 
@@ -121,10 +119,7 @@ export class FormReadComponent implements OnInit {
 
   private handleRequest(observable$: Observable<any>) {
     observable$.subscribe(
-      (res: any) => {
-        console.log(res);
-        this.goToListPage();
-      },
+      () => this.goToListPage(),
       (err: any) => console.log('Error occured : ' + err)
     );
   }

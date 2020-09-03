@@ -13,10 +13,10 @@ export class FileInputComponent implements OnInit, OnChanges {
   @Input() file: Media;
   @Input() type: string;
   @Output() onFileChanged = new EventEmitter<Media>();
-  public uploader: FileUploader;
-  public hasBaseDropZoneOver: Boolean;
-  public url: string;
-  public loading = false;
+  uploader: FileUploader;
+  hasBaseDropZoneOver: Boolean;
+  url: string;
+  loading = false;
 
   constructor(public auth: AuthenticationService) { }
 

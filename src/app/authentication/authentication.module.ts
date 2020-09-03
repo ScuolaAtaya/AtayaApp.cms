@@ -5,9 +5,7 @@ import { AuthenticationService } from './authentication.service';
 import { TokenInterceptor } from './token-interceptor';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [],
   providers: [AuthenticationService, AuthGuardService, TokenInterceptor]
 })

@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
     selector: 'ms-audio-player',
@@ -6,6 +6,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
     styleUrls: ['./audio-player.component.scss']
 })
 export class AudioPlayerComponent implements OnInit, OnDestroy {
+    @Input() showTime = true;
     trackSize: number;
     currentTime: number;
     audio: HTMLAudioElement;
@@ -14,11 +15,8 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     playing = false;
     loading = false;
     _audioSource: string;
-    // @Input() audioSource: string;
-    @Input() showTime = true;
 
-    constructor() {
-    }
+    constructor() { }
 
     @Input()
     set audioSource(audio: string) {
@@ -27,8 +25,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
         this.resetAudio();
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() { }
 
     ngOnDestroy() {
         if (this.audio !== undefined) {
@@ -38,14 +35,12 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
     toggleAudio() {
         if (this.playing) {
-            // Do stuff
             this.playButtonIcon = 'play_arrow';
             this.playing = false;
             if (this.audio !== undefined) {
                 this.audio.pause();
             }
         } else {
-            // Do other stuff
             this.playButtonIcon = 'pause';
             this.playing = true;
             if (this.audio === undefined) {
@@ -64,16 +59,15 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     }
 
     setupAudio() {
-        // stuff and things
         this.loading = true;
         this.audio = new Audio();
         this.audio.src = this._audioSource;
         this.audio.load();
-        this.audio.addEventListener('loadedmetadata', (event) => {
+        this.audio.addEventListener('loadedmetadata', () => {
             this.loading = false;
             this.trackSize = this.audio.duration
         });
-        this.audio.addEventListener('timeupdate', (event) => {
+        this.audio.addEventListener('timeupdate', () => {
             if (!this.dragging) {
                 this.currentTime = this.audio.currentTime;
             }
@@ -83,14 +77,14 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     formatSeconds(seconds: number) {
         try {
             const date = new Date(null);
-            date.setSeconds(seconds !== undefined ? seconds : 0); // specify value for SECONDS here
-            return date.toISOString().substr(14, 5)
-        }catch (e) {
-            return '00:00'
+            date.setSeconds(seconds !== undefined ? seconds : 0);
+            return date.toISOString().substr(14, 5);
+        } catch (e) {
+            return '00:00';
         }
     }
 
-    seekAudio(event) {
+    seekAudio(event: any) {
         this.audio.currentTime = event.value;
     }
 
@@ -101,8 +95,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
             addEventListener('mouseup', () => {
                 this.dragging = false;
                 console.log('dragging = ' + false);
-            })
+            });
         }
     }
-
 }

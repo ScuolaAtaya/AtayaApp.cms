@@ -6,13 +6,12 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class FinalVerificationService extends WorkService {
-
   constructor(protected requestService: RequestService) {
-      super(requestService)
+      super(requestService);
       this.target = 'final';
   }
 
-  public getList<T extends Work>(sectionId: number): Observable<T[]> {
+  getList<T extends Work>(sectionId: number): Observable<T[]> {
       return this.getAllBySection(sectionId);
   }
 }

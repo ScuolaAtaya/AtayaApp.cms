@@ -12,15 +12,15 @@ declare var $: any;
   styleUrls: ['./form-question.component.scss']
 })
 export class FormQuestionComponent implements OnInit {
-  public cardTitle: string;
-  public cardSubmitButtonTitle: string;
-  public form: FormGroup;
-  public isUnderstandQuestion: boolean;
-  public question: Question;
-  public audio: Media;
-  public picture: Media;
-  public answers: Answer[];
-  public correct: boolean;
+  cardTitle: string;
+  cardSubmitButtonTitle: string;
+  form: FormGroup;
+  isUnderstandQuestion: boolean;
+  question: Question;
+  audio: Media;
+  picture: Media;
+  answers: Answer[];
+  correct: boolean;
 
   constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormQuestionComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
     $('.form-question').addClass('app-dark');
@@ -31,15 +31,13 @@ export class FormQuestionComponent implements OnInit {
     this.audio = new Media();
     this.picture = new Media();
     this.answers = [];
-    this.cardTitle = 'Carica la nuova domanda';
-    this.cardSubmitButtonTitle = 'Carica domanda';
+    this.cardTitle = !!this.data.question ? 'Modifica la domanda' : 'Carica la nuova domanda';
+    this.cardSubmitButtonTitle = !!this.data.question ? 'Modifica domanda' : 'Carica domanda';
     this.form = this.fb.group({
       body: [null, Validators.compose([Validators.required])]
     });
     this.isUnderstandQuestion = this.data.isUnderstandQuestion;
     if (!!this.data.question) {
-      this.cardTitle = 'Modifica la domanda';
-      this.cardSubmitButtonTitle = 'Modifica domanda';
       this.question = this.data.question;
       this.objToForm(this.question);
     }

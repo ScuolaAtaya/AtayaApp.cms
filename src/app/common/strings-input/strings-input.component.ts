@@ -12,8 +12,7 @@ export class StringsInputComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   trackByIndex(index: number): any {
     return index;

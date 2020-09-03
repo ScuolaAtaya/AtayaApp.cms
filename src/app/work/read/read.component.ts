@@ -35,7 +35,8 @@ export class ReadComponent implements OnInit {
     animation: 300
   };
 
-  constructor(private readService: ReadService,
+  constructor(
+    private readService: ReadService,
     private pageTitleService: PageTitleService,
     private route: ActivatedRoute,
     private sectionService: SectionSolverService,
@@ -58,10 +59,7 @@ export class ReadComponent implements OnInit {
       this.utils.confirm('Sei sicuro di voler continuare?').subscribe(result => {
         if (result) {
           this.readService.delete(id).subscribe(
-            (res: any) => {
-              console.log(res);
-              this.downloadData();
-            },
+            () => this.downloadData(),
             (err: string) => console.log('Error occured : ' + err)
           );
         }

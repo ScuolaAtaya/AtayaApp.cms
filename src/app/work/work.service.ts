@@ -4,9 +4,9 @@ import { Work } from './work';
 import { ApiService } from '../common/api.service';
 
 export abstract class WorkService extends ApiService {
-    protected target: string;
+    target: string;
 
-    protected getAll<T extends Work>(): Observable<T[]> {
+    getAll<T extends Work>(): Observable<T[]> {
         return this.requestService.get(this.createUrlFromBaseUrl(this.target)).map(response => response as T[])
     }
 
@@ -14,7 +14,7 @@ export abstract class WorkService extends ApiService {
         return this.requestService.get(this.createUrlFromBaseUrl(this.target, id)).map(response => response as T)
     }
 
-    protected getAllBySection<T extends Work>(section: number): Observable<T[]> {
+    getAllBySection<T extends Work>(section: number): Observable<T[]> {
         return this.requestService.get(this.createUrlFromBaseUrl(this.target, 'unit_id', String(section))).map(response => response as T[])
     }
 

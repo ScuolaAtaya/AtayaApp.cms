@@ -49,17 +49,14 @@ export class UnderstandComponent implements OnInit {
         this.downloadData();
     }
 
-    menuAction(item, menutItem) {
+    menuAction(item: any, menutItem: any) {
         const type = menutItem.type;
         const id = item._id;
         if (type === 'delete') {
             this.utils.confirm('Sei sicuro di voler continuare?').subscribe(result => {
                 if (result) {
                     this.understandService.delete(id).subscribe(
-                        res => {
-                            console.log(res);
-                            this.downloadData();
-                        },
+                        () => this.downloadData(),
                         err => console.log('Error occured : ' + err)
                     );
                 }

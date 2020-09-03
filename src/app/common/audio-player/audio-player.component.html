@@ -6,11 +6,11 @@
     </div>
     <div class="slider-box">
         <md-slider class="center-vertical  audio-slider" style="width: 70%" [value]="currentTime"
-                   (mousedown)="setDragging(true)"
-                   (mouseup)="setDragging(false)" (change)="seekAudio($event)" min="0"
-                   [max]="audio?.duration"></md-slider>
+            (mousedown)="setDragging(true)" (mouseup)="setDragging(false)" (change)="seekAudio($event)" min="0"
+            [max]="audio?.duration"></md-slider>
     </div>
     <div class="time-box">
-        <span *ngIf="showTime" class="text-nowrap time-text">{{ formatSeconds(currentTime) }} / {{ formatSeconds(audio?.duration) }}</span>
+        <span *ngIf="showTime" class="text-nowrap time-text">{{ formatSeconds(currentTime) }} /
+            {{ formatSeconds(audio?.duration) }}</span>
     </div>
 </div>

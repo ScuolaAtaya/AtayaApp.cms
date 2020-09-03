@@ -1,11 +1,11 @@
-<div class="app" #root="$implicit" dir="ltr" [ngClass]="{'app-dark': dark, 'boxed': boxed, 'collapsed-sidebar': collapseSidebar, 'compact-sidebar': compactSidebar, 'customizer-in': customizerIn}">
+<div class="app" #root="$implicit" dir="ltr"
+    [ngClass]="{'app-dark': dark, 'boxed': boxed, 'collapsed-sidebar': collapseSidebar, 'compact-sidebar': compactSidebar, 'customizer-in': customizerIn}">
     <md-sidenav-container class="gene-container">
         <md-sidenav #sidenav [mode]="sidenavMode" [opened]="sidenavOpen" class="sidebar-area">
             <div class="sidebar-panel gene-sidenav" fxLayout="column">
                 <md-toolbar class="sidebar-logo">
                     <div class="gene-logo">
                         <div class="logo-sign inline-block">
-                            <!--<img src="assets/img/logo-sign.png" width="30" height="30">-->
                         </div>
                         <div class="logo-text inline-block">
                             <h1>Ruah CMS</h1>
@@ -14,30 +14,37 @@
                 </md-toolbar>
                 <div class="sidebar-container">
                     <div class="gene-user-thumb text-center">
-                        <img class="img-responsive img-circle" src="assets/img/user.png" width="107" height="107" alt="user list image">
+                        <img class="img-responsive img-circle" src="assets/img/user.png" width="107" height="107"
+                            alt="user list image">
                         <span class="gene-user-name gene-block">{{user.name}}</span>
                     </div>
                     <div class="sidenav-scrollbar-container" fxLayout="column">
                         <perfect-scrollbar>
                             <md-nav-list fxLayout="column" menuToggleDirective class="navigation">
                                 <md-list-item menuToggleLink *ngFor="let menuitem of menuItems.getAll()">
-                                    <a menuToggle class="gene-relative" md-ripple [routerLink]="['/', menuitem.state]" routerLinkActive="active-link" *ngIf="menuitem.type === 'link'">
+                                    <a menuToggle class="gene-relative" md-ripple [routerLink]="['/', menuitem.state]"
+                                        routerLinkActive="active-link" *ngIf="menuitem.type === 'link'">
                                         <md-icon>{{ menuitem.icon }}</md-icon>
                                         <span>{{ menuitem.name | translate }}</span>
                                     </a>
-                                    <a menuToggle class="gene-relative" md-ripple href="javascript:;" *ngIf="menuitem.type === 'sub'">
+                                    <a menuToggle class="gene-relative" md-ripple href="javascript:;"
+                                        *ngIf="menuitem.type === 'sub'">
                                         <md-icon>{{ menuitem.icon }}</md-icon>
                                         <span>{{ menuitem.name | translate }}</span>
                                         <span fxFlex></span>
                                         <md-icon class="menu-caret">chevron_right</md-icon>
                                     </a>
-                                    <a menuToggle class="gene-relative" md-ripple *ngIf="menuitem.type === 'createBook'" (click)="createBook()">
+                                    <a menuToggle class="gene-relative" md-ripple *ngIf="menuitem.type === 'createBook'"
+                                        (click)="createBook()">
                                         <md-icon>{{ menuitem.icon }}</md-icon>
                                         <span>{{ menuitem.name | translate }}</span>
                                     </a>
                                     <md-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
-                                        <md-list-item *ngFor="let childitem of menuitem.children" routerLinkActive="open">
-                                            <a [routerLink]="['/', menuitem.state, childitem.state ]" routerLinkActive="active-link" class="gene-relative" md-ripple>{{ childitem.name | translate }}</a>
+                                        <md-list-item *ngFor="let childitem of menuitem.children"
+                                            routerLinkActive="open">
+                                            <a [routerLink]="['/', menuitem.state, childitem.state ]"
+                                                routerLinkActive="active-link" class="gene-relative"
+                                                md-ripple>{{ childitem.name | translate }}</a>
                                         </md-list-item>
                                     </md-nav-list>
                                 </md-list-item>
@@ -51,7 +58,8 @@
             <a class="navbar-brand" href="#">{{header}}</a>
             <span fxFlex></span>
             <div class="secondary-menu">
-                <button fxHide="true" fxHide.gt-sm="false" md-button class="fullscreen-toggle" (click)="toggleFullscreen()">
+                <button fxHide="true" fxHide.gt-sm="false" md-button class="fullscreen-toggle"
+                    (click)="toggleFullscreen()">
                     <md-icon *ngIf="!isFullscreen">fullscreen</md-icon>
                     <md-icon *ngIf="isFullscreen">fullscreen_exit</md-icon>
                 </button>
@@ -68,43 +76,9 @@
             </div>
         </div>
     </md-sidenav-container>
-
-    <!-- Demo Purposes Only 
-    <div class="gene-customizer">
-        <button class="customizer-toggle" (click)="customizerFunction()">
-            <md-icon class="fa-spin">settings</md-icon>
-        </button>
-
-        <div class="settings-panel">
-            <md-toolbar color="primary">
-                <span fxFlex>Options</span>
-            </md-toolbar>
-            <md-card-content class="theme-options">
-                <h3>Layout Options</h3>
-                <md-divider></md-divider>
-                <div>
-                    <md-checkbox [(ngModel)]="collapseSidebar" (change)="compactSidebar = false" [align]="end">Collapsed Sidebar</md-checkbox>
-                </div>
-                <div class="boxed-layout-md">
-                    <md-checkbox [(ngModel)]="boxed" [align]="end">Boxed Layout</md-checkbox>
-                </div>
-                <div>
-                    <md-checkbox [(ngModel)]="dark" (change)="addClassOnBody($event)" [align]="end">Dark Mode</md-checkbox>
-                </div>
-                <div>
-                    <md-checkbox (change)="root.dir = (root.dir == 'rtl' ? 'ltr' : 'rtl')" [align]="end">RTL</md-checkbox>
-                </div>
-                <div>
-                    <md-select placeholder="Language" class="mt-1" [(ngModel)]="currentLang" #langSelect="ngModel" (ngModelChange)="translate.use(currentLang)">
-                        <md-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{ lang }}</md-option>
-                    </md-select>
-                </div>
-            </md-card-content>
-        </div>
-    </div>
-     /Demo Purposes Only -->
 </div>
-<md-menu class="user-menu mat-content-menu-ruah mat-menu-logout-ruah" x-position="before" y-position="below" #menu="mdMenu">
+<md-menu class="user-menu mat-content-menu-ruah mat-menu-logout-ruah" x-position="before" y-position="below"
+    #menu="mdMenu">
     <md-divider></md-divider>
     <button [routerLink]="['/login']" md-menu-item>
         <md-icon>exit_to_app</md-icon>

@@ -32,8 +32,25 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
       tertiaryColour: '#ffffff'
     })
   ],
-  exports: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent, AudioPlayerComponent, LeafletMapComponent],
-  declarations: [StringsInputComponent, FileInputComponent, FormAnswerComponent, AnswersInputComponent, QuestionsInputComponent, FormQuestionComponent, AudioPlayerComponent, LeafletMapComponent]
+  exports: [
+    StringsInputComponent,
+    FileInputComponent,
+    FormAnswerComponent,
+    AnswersInputComponent,
+    QuestionsInputComponent,
+    FormQuestionComponent,
+    AudioPlayerComponent,
+    LeafletMapComponent
+  ],
+  declarations: [
+    StringsInputComponent,
+    FileInputComponent,
+    FormAnswerComponent,
+    AnswersInputComponent,
+    QuestionsInputComponent,
+    FormQuestionComponent,
+    AudioPlayerComponent,
+    LeafletMapComponent
+  ]
 })
-export class CommonComponentModule {
-}
+export class CommonComponentModule { }

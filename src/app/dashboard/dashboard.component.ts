@@ -11,20 +11,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard-component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    "[@fadeInAnimation]": 'true'
+    '[@fadeInAnimation]': 'true'
   },
   animations: [fadeInAnimation]
 })
 export class DashboardComponent implements OnInit {
-
-  public dashboardItems: Menu[];
+  dashboardItems: Menu[];
 
   constructor(private pageTitleService: PageTitleService, private router: Router, dashboardItems: DashboardItems) {
     this.dashboardItems = dashboardItems.getAll();
   }
-  ngOnInit = () => this.pageTitleService.setTitle("Home");
 
-  public goTo = (route: string) => this.router.navigate([`${route}/menu`]);
-  
+  ngOnInit = () => this.pageTitleService.setTitle('Home');
 
+  goTo = (route: string) => this.router.navigate([`${route}/menu`]);
 }

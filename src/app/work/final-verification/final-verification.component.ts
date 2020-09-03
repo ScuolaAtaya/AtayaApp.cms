@@ -8,8 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WorkListMenuItems } from '../work-list-menu-items';
 import { UtilsService } from 'app/common/utils.service';
 import { TranslateService } from 'ng2-translate';
-import { environment } from 'environments/environment';
 import { FinalVerification } from './final-verification';
+
 @Component({
   selector: 'ms-final-verification',
   templateUrl: './final-verification.component.html',
@@ -49,17 +49,14 @@ export class FinalVerificationComponent implements OnInit {
     this.downloadData();
   }
 
-  menuAction(item, menutItem) {
+  menuAction(item: any, menutItem: any) {
     const type = menutItem.type;
     const id = item._id;
     if (type === 'delete') {
       this.utils.confirm('Sei sicuro di voler continuare?').subscribe(result => {
         if (result) {
           this.finalVerificationService.delete(id).subscribe(
-            res => {
-              console.log(res);
-              this.downloadData();
-            },
+            () => this.downloadData(),
             err => console.log('Error occured : ' + err)
           );
         }

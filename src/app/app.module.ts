@@ -174,5 +174,4 @@ const perfectScrollbarConfig: PerfectScrollbarConfigInterface = {
         RequestService
     ]
 })
-export class GeneAppModule {
-}
+export class GeneAppModule { }
