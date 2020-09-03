@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CRS, imageOverlay, LatLng, map, marker } from 'leaflet';
 import { divIcon } from 'leaflet';
 import { Marker } from 'app/work/marker';
+import { Util } from 'leaflet';
+import { Transformation } from 'leaflet';
 declare var $: any;
 
 @Component({
@@ -43,7 +45,11 @@ export class LeafletMapComponent implements OnInit {
         this.lfMap.off();
         this.lfMap.remove();
       }
-      this.lfMap = map('map', { crs: CRS.Simple, minZoom: -3 });
+      // set coordinates [0, 0] to image's top-left corner
+      const CRSPixel = Util.extend(CRS.Simple, {
+        transformation: new Transformation(1, 0, 1, 0)
+      });
+      this.lfMap = map('map', { crs: CRSPixel, minZoom: -3 });
       await this.loadMap(this._url);
       this.removeMarkers();
       this._markers.forEach(marker => this.addMarker(marker));
@@ -60,23 +66,21 @@ export class LeafletMapComponent implements OnInit {
   }
 
   addMarker(inputMarker: Marker) {
-    const latlng = new LatLng(inputMarker.x, inputMarker.y);
-    const newMarker = marker(
-      latlng,
-      {
-        draggable: true,
-        icon: divIcon({
-          className: 'custom-div-icon',
-          html: `<div class="marker-pin"><div class="marker-number">${inputMarker.id}</div></div>`,
-          iconSize: [30, 42],
-          iconAnchor: [15, 42]
-        })
-      }
-    );
+    // set coordinates [0, 0] to image's top-left corner and [1, 1] to image's bottom-right corner
+    const latlng = new LatLng(inputMarker.x * this.height, inputMarker.y * this.width);
+    const newMarker = marker(latlng, {
+      draggable: true,
+      icon: divIcon({
+        className: 'custom-div-icon',
+        html: `<div class="marker-pin"><div class="marker-number">${inputMarker.id}</div></div>`,
+        iconSize: [30, 42],
+        iconAnchor: [15, 42]
+      })
+    });
     newMarker.on('dragend', () => {
       const newPosition = newMarker.getLatLng();
-      inputMarker.x = newPosition.lat;
-      inputMarker.y = newPosition.lng;
+      inputMarker.x = newPosition.lat / this.height;
+      inputMarker.y = newPosition.lng / this.width;
     });
     newMarker.addTo(this.lfMap);
     this.leafletMarkers.push(newMarker);
