@@ -40,8 +40,8 @@
         </div>
         <div class="pad-wrap">
           <md-dialog-actions align="end">
-            <button md-button (click)="onClose()">Annulla</button>
-            <button md-button color="primary" (click)="onSubmit()" [disabled]="!isFormValid()">Ok</button>
+            <button md-button (click)="onClose()">{{ 'Annulla' | translate }}</button>
+            <button md-button color="primary" (click)="onSubmit()" [disabled]="!isFormValid()">{{ 'Ok' | translate }}</button>
           </md-dialog-actions>
         </div>
       </form>

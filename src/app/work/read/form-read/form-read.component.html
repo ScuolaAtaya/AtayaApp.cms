@@ -31,7 +31,7 @@
                         <ms-leaflet-map [url]="url" [markers]="markers">
                         </ms-leaflet-map>
                         <button md-raised-button class="mat-button-ruah marker-button" type="button"
-                            (click)="addMarker()">{{ 'Aggiungi marker' | translate}}</button>
+                            (click)="addMarker()">{{ 'Aggiungi marker' | translate }}</button>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
@@ -44,6 +44,8 @@
                     <md-card-actions>
                         <button md-raised-button color="primary" type="submit" [disabled]="!isFormValid()"
                             style="float: right;">{{ cardSubmitButtonTitle | translate }}</button>
+                        <button md-raised-button class="mat-button-ruah" type="button" style="float: right;"
+                            (click)="goToListPage()">{{ 'Annulla' | translate }}</button>
                     </md-card-actions>
                 </div>
             </form>

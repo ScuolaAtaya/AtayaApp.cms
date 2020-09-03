@@ -43,6 +43,8 @@
                     <md-card-actions>
                         <button md-raised-button color="primary" type="submit" [disabled]="!isFormValid()"
                             style="float: right;">{{ cardSubmitButtonTitle | translate }}</button>
+                        <button md-raised-button class="mat-button-ruah" type="button" style="float: right;"
+                            (click)="goToListPage()">{{ 'Annulla' | translate }}</button>
                     </md-card-actions>
                 </div>
             </form>
