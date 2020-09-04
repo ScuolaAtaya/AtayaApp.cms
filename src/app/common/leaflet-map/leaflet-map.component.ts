@@ -39,7 +39,7 @@ export class LeafletMapComponent implements OnInit {
     this.leafletMarkers = [];
   }
 
-  async initMap() {
+  private async initMap() {
     try {
       if (this.lfMap != null) {
         this.lfMap.off();
@@ -58,16 +58,25 @@ export class LeafletMapComponent implements OnInit {
     }
   }
 
-  removeMarkers() {
+  private async loadMap(mapUrl: string) {
+    const [width, height] = await this.imgWidthAndHeight(mapUrl);
+    const bounds = this.boundsFromImageSize(width, height);
+    imageOverlay(mapUrl, bounds).addTo(this.lfMap);
+    this.lfMap.fitBounds(bounds);
+    this.lfMap.setMaxBounds(bounds);
+  }
+
+  private removeMarkers() {
     if (this.lfMap != null) {
       this.leafletMarkers.forEach(layer => this.lfMap.removeLayer(layer));
     }
     this.leafletMarkers = [];
   }
 
-  addMarker(inputMarker: Marker) {
+  private addMarker(inputMarker: Marker) {
+    // Coordinates in CRS.Simple take the form of [y, x] instead of [x, y], in the same way Leaflet uses [lat, lng] instead of [lng, lat]
     // set coordinates [0, 0] to image's top-left corner and [1, 1] to image's bottom-right corner
-    const latlng = new LatLng(inputMarker.x * this.height, inputMarker.y * this.width);
+    const latlng = new LatLng(inputMarker.y * this.height, inputMarker.x * this.width);
     const newMarker = marker(latlng, {
       draggable: true,
       icon: divIcon({
@@ -79,22 +88,25 @@ export class LeafletMapComponent implements OnInit {
     });
     newMarker.on('dragend', () => {
       const newPosition = newMarker.getLatLng();
-      inputMarker.x = newPosition.lat / this.height;
-      inputMarker.y = newPosition.lng / this.width;
+      if (newPosition.lat > this.height) {
+        newPosition.lat = this.height;
+      } else if (newPosition.lat < 0) {
+        newPosition.lat = 0;
+      }
+      if (newPosition.lng > this.width) {
+        newPosition.lng = this.width;
+      } else if (newPosition.lng < 0) {
+        newPosition.lng = 0;
+      }
+      newMarker.setLatLng(newPosition);
+      inputMarker.y = newPosition.lat / this.height;
+      inputMarker.x = newPosition.lng / this.width;
     });
     newMarker.addTo(this.lfMap);
     this.leafletMarkers.push(newMarker);
   }
 
-  async loadMap(mapUrl: string) {
-    const [width, height] = await this.imgWidthAndHeight(mapUrl);
-    const bounds = this.boundsFromImageSize(width, height);
-    imageOverlay(mapUrl, bounds).addTo(this.lfMap);
-    this.lfMap.fitBounds(bounds);
-    this.lfMap.setMaxBounds(bounds);
-  }
-
-  imgWidthAndHeight(url: string): Promise<[number, number]> {
+  private imgWidthAndHeight(url: string): Promise<[number, number]> {
     return new Promise<[number, number]>(resolve => {
       const img = new Image();
       img.addEventListener('load', function () {
@@ -104,7 +116,7 @@ export class LeafletMapComponent implements OnInit {
     })
   }
 
-  boundsFromImageSize(imageWidth: number, imageHeight: number): [number, number][] {
+  private boundsFromImageSize(imageWidth: number, imageHeight: number): [number, number][] {
     const containerRatio = 1600 / 900;
     const backgoundRatio = imageWidth / imageHeight;
     if (backgoundRatio > containerRatio) {
