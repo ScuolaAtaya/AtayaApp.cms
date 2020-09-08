@@ -17,6 +17,7 @@ export class FileInputComponent implements OnInit, OnChanges {
   hasBaseDropZoneOver: boolean;
   url: string;
   loading: boolean;
+  deleteFileButtonTitle: string;
 
   constructor(public auth: AuthenticationService) {
     this.loading = false;
@@ -29,6 +30,7 @@ export class FileInputComponent implements OnInit, OnChanges {
       headers: [{ name: 'Authorization', value: 'Bearer ' + this.auth.getUser().token }],
       autoUpload: true
     });
+    this.deleteFileButtonTitle = this.type === 'image' ? 'Elimina foto' : 'Elimina MP3';
     this.uploader.onProgressItem = () => this.loading = true;
     this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: any) => {
       const json = JSON.parse(response);
@@ -55,11 +57,16 @@ export class FileInputComponent implements OnInit, OnChanges {
     this.hasBaseDropZoneOver = e;
   }
 
-  getMediaUrl(file: Media) {
-    return environment.baseUrlImage + '/' + file.value;
+  deleteFile() {
+    this.file = new Media();
+    this.onFileChanged.emit(this.file);
   }
 
   updateCredits() {
     this.onFileChanged.emit(this.file);
+  }
+
+  private getMediaUrl(file: Media) {
+    return environment.baseUrlImage + '/' + file.value;
   }
 }

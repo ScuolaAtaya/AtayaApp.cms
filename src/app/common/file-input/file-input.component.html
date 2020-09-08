@@ -13,5 +13,7 @@
   <md-input-container class="full-wid">
     <input mdInput [placeholder]="'Credits' | translate" [(ngModel)]="file.credits" (keyup)='updateCredits($event)'>
   </md-input-container>
+  <button md-raised-button class="mat-button-ruah" type="button" *ngIf="!!file.value"
+    (click)="deleteFile()">{{ deleteFileButtonTitle | translate }}</button>
 </div>
 <ngx-loading [show]="loading"></ngx-loading>
