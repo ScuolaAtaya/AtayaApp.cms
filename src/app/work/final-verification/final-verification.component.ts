@@ -33,13 +33,13 @@ export class FinalVerificationComponent implements OnInit {
   };
 
   constructor(
+    public workListMenuItems: WorkListMenuItems,
+    public utils: UtilsService,
     private finalVerificationService: FinalVerificationService,
     private pageTitleService: PageTitleService,
     private route: ActivatedRoute,
     private sectionService: SectionSolverService,
     private router: Router,
-    public workListMenuItems: WorkListMenuItems,
-    public utils: UtilsService,
     private translate: TranslateService
   ) { }
 

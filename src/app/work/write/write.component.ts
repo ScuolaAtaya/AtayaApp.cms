@@ -36,18 +36,18 @@ export class WriteComponent implements OnInit {
   };
 
   constructor(
+    public workListMenuItems: WorkListMenuItems,
+    public utils: UtilsService,
     private writeService: WriteService,
     private pageTitleService: PageTitleService,
     private route: ActivatedRoute,
     private sectionService: SectionSolverService,
-    public workListMenuItems: WorkListMenuItems,
-    public utils: UtilsService,
     private router: Router,
     private translate: TranslateService
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params =>  this.section = this.sectionService.retrieveSection(params));
+    this.route.params.subscribe(params => this.section = this.sectionService.retrieveSection(params));
     this.translate.get('Scriviamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
     this.downloadData();
   }

@@ -4,7 +4,7 @@ import { ReadService } from './read.service';
 import { ReadComponent } from './read.component';
 import { FormReadComponent } from './form-read/form-read.component';
 import { MaterialModule } from '@angular/material';
-import { DragulaModule, DragulaService } from 'ng2-dragula/ng2-dragula';
+import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { SortablejsModule } from 'angular-sortablejs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';

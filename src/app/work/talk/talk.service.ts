@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Work } from '../work';
 import { WorkService } from '../work.service';
-import {RequestService} from '../../common/request.service';
+import { RequestService } from '../../common/request.service';
 
 @Injectable()
 export class TalkService extends WorkService {

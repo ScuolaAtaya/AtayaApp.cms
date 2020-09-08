@@ -26,7 +26,6 @@ export class Section {
 
 @Injectable()
 export class SectionSolverService {
-
   constructor() { }
 
   public getByName(name: string): Section {

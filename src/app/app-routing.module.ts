@@ -55,5 +55,4 @@ const appRoutes: Routes = [
     exports: [RouterModule],
     providers: []
 })
-export class RoutingModule {
-}
+export class RoutingModule { }
