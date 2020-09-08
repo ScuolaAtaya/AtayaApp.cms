@@ -30,8 +30,10 @@
                         <div class="marker-label">{{ 'Aggiungi i marker alla foto' | translate }}</div>
                         <ms-leaflet-map [url]="url" [markers]="markers">
                         </ms-leaflet-map>
-                        <button md-raised-button class="mat-button-ruah marker-button" type="button"
+                        <button md-raised-button color="primary" class="marker-button" type="button"
                             (click)="addMarker()">{{ 'Aggiungi marker' | translate }}</button>
+                        <button md-raised-button class="mat-button-ruah marker-button" [disabled]="markers.length === 0"
+                            type="button" (click)="deleteLastMarker()">{{ 'Elimina marker' | translate }}</button>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">

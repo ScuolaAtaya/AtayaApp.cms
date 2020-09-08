@@ -92,6 +92,10 @@ export class FormReadComponent implements OnInit {
     this.markers = this.markers.concat({ x: 0, y: 0, id: newId });
   }
 
+  deleteLastMarker() {
+    this.markers = this.markers.slice(0, this.markers.length - 1);
+  }
+
   goToListPage() {
     this.router.navigate([this.section.name + '/read']);
   }
