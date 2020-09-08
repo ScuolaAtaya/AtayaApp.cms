@@ -14,11 +14,13 @@ export class FileInputComponent implements OnInit, OnChanges {
   @Input() type: string;
   @Output() onFileChanged = new EventEmitter<Media>();
   uploader: FileUploader;
-  hasBaseDropZoneOver: Boolean;
+  hasBaseDropZoneOver: boolean;
   url: string;
-  loading = false;
+  loading: boolean;
 
-  constructor(public auth: AuthenticationService) { }
+  constructor(public auth: AuthenticationService) {
+    this.loading = false;
+  }
 
   ngOnInit() {
     this.uploader = new FileUploader({
@@ -40,7 +42,9 @@ export class FileInputComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes || !changes.file) { return; }
+    if (!changes || !changes.file) {
+      return;
+    }
     const f = changes.file;
     if (!!f.currentValue) {
       this.url = this.getMediaUrl(this.file);

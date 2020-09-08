@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   dashboardItems: Menu[];
 
-  constructor(private pageTitleService: PageTitleService, private router: Router, dashboardItems: DashboardItems) {
+  constructor(dashboardItems: DashboardItems, private pageTitleService: PageTitleService, private router: Router) {
     this.dashboardItems = dashboardItems.getAll();
   }
 

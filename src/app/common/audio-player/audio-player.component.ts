@@ -6,21 +6,26 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
     styleUrls: ['./audio-player.component.scss']
 })
 export class AudioPlayerComponent implements OnInit, OnDestroy {
-    @Input() showTime = true;
+    @Input() showTime: boolean;
     trackSize: number;
     currentTime: number;
     audio: HTMLAudioElement;
-    playButtonIcon = 'play_arrow';
-    dragging = false;
-    playing = false;
-    loading = false;
+    playButtonIcon: string;
+    dragging: boolean;
+    playing: boolean;
+    loading: boolean;
     _audioSource: string;
 
-    constructor() { }
+    constructor() {
+        this.playButtonIcon = 'play_arrow';
+        this.showTime = true;
+        this.dragging = false;
+        this.playing = false;
+        this.loading = false;
+    }
 
     @Input()
     set audioSource(audio: string) {
-        console.log('resetting: ' + audio);
         this._audioSource = audio;
         this.resetAudio();
     }
@@ -29,7 +34,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         if (this.audio !== undefined) {
-            this.audio.pause()
+            this.audio.pause();
         }
     }
 
@@ -89,13 +94,9 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     }
 
     setDragging(isDragging: boolean) {
-        console.log('dragging = ' + isDragging);
         this.dragging = isDragging;
         if (isDragging) {
-            addEventListener('mouseup', () => {
-                this.dragging = false;
-                console.log('dragging = ' + false);
-            });
+            addEventListener('mouseup', () => this.dragging = false);
         }
     }
 }

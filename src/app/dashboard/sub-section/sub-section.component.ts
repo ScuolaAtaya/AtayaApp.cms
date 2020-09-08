@@ -16,16 +16,15 @@ import { SectionSolverService, Section } from '../../work/section-solver.service
   animations: [fadeInAnimation]
 })
 export class SubSectionComponent implements OnInit {
-
-  public subSectionItems: Menu[];
+  subSectionItems: Menu[];
   section: Section;
 
-
-  constructor(private pageTitleService: PageTitleService,
-    private router: Router,
+  constructor(
     subSectionItems: SubSections,
+    private pageTitleService: PageTitleService,
+    private router: Router,
     private sectionService: SectionSolverService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {
     this.subSectionItems = subSectionItems.getAll();
   }
@@ -37,7 +36,5 @@ export class SubSectionComponent implements OnInit {
     });
   }
 
-  public goTo = (route: string) => this.router.navigate([`/${this.section.name}/${route}`]);
-
-
+  goTo = (route: string) => this.router.navigate([`/${this.section.name}/${route}`]);
 }

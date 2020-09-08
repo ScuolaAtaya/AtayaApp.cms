@@ -23,25 +23,25 @@ const screenfull = require('screenfull');
 export class MainComponent implements OnInit, OnDestroy {
     @ViewChild('sidenav') sidenav: any;
     header: string;
-    currentLang = 'en';
+    currentLang: string;
     url: string;
-    showSettings = false;
-    dark = true;
+    showSettings: boolean;
+    dark: boolean;
     boxed: boolean;
     collapseSidebar: boolean;
     compactSidebar: boolean;
-    customizerIn = false;
-    root = 'ltr';
-    chatpanelOpen = false;
-    deviceInfo = null;
+    customizerIn: boolean;
+    root: string;
+    chatpanelOpen: boolean;
+    deviceInfo: any;
     user: User;
-    sidenavOpen = true;
-    sidenavMode = 'side';
-    isMobile = false;
-    isFullscreen = false;
-    private _router: Subscription;
-    private _mediaSubscription: Subscription;
-    private _routerEventsSubscription: Subscription;
+    sidenavOpen: boolean;
+    sidenavMode: string;
+    isMobile: boolean;
+    isFullscreen: boolean;
+    _router: Subscription;
+    _mediaSubscription: Subscription;
+    _routerEventsSubscription: Subscription;
 
     constructor(
         public menuItems: MenuItems,
@@ -55,6 +55,16 @@ export class MainComponent implements OnInit, OnDestroy {
         private api: ApiService,
         private logger: LogService
     ) {
+        this.currentLang = 'en';
+        this.root = 'ltr';
+        this.sidenavMode = 'side';
+        this.dark = true;
+        this.showSettings = false;
+        this.customizerIn = false;
+        this.chatpanelOpen = false;
+        this.sidenavOpen = true;
+        this.isMobile = false;
+        this.isFullscreen = false;
         this.user = authenticationService.getUser();
         const browserLang: string = translate.getBrowserLang();
         translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
@@ -65,7 +75,8 @@ export class MainComponent implements OnInit, OnDestroy {
         this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe(
             (event: NavigationEnd) => this.url = event.url
         );
-        if (this.url != '/session/login' && this.url != '/session/register' && this.url != '/session/forgot-password' && this.url != '/session/lockscreen') {
+        if (this.url !== '/session/login' && this.url !== '/session/register'
+            && this.url !== '/session/forgot-password' && this.url !== '/session/lockscreen') {
             const elemSidebar = <HTMLElement>document.querySelector('.sidebar-container ');
             if (window.matchMedia(`(min-width: 960px)`).matches) {
                 Ps.initialize(elemSidebar, { wheelSpeed: 2, suppressScrollX: true });
@@ -141,6 +152,6 @@ export class MainComponent implements OnInit, OnDestroy {
                     () => this.translate.get('Libro generato correttamente').subscribe((text: string) => this.logger.success(text))
                 );
             }
-        })
+        });
     }
 }

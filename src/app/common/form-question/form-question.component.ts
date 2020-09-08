@@ -22,7 +22,7 @@ export class FormQuestionComponent implements OnInit {
   answers: Answer[];
   correct: boolean;
 
-  constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormQuestionComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
+  constructor(@Inject(MD_DIALOG_DATA) public data: any, public dialogRef: MdDialogRef<FormQuestionComponent>, private fb: FormBuilder) {
     $('.form-question').addClass('app-dark');
     this.correct = false;
   }
@@ -51,15 +51,20 @@ export class FormQuestionComponent implements OnInit {
     this.picture = file;
   }
 
-  isFormValid() {
-    if (this.isUnderstandQuestion) {
-      return this.form.valid && !!this.audio.value;
-    } else {
-      return this.form.valid && !!this.audio.value && this.correct !== undefined;
+  onSubmit() {
+    if (this.isFormValid()) {
+      this.dialogRef.close(this.formToObj());
     }
   }
+  onClose() {
+    this.dialogRef.close(undefined);
+  }
 
-  public objToForm(question: Question) {
+  isFormValid() {
+    return this.form.valid && !!this.audio.value;
+  }
+
+  private objToForm(question: Question) {
     this.form.controls.body.setValue(question.body);
     this.audio = question.audio;
     if (!!question.picture) {
@@ -72,7 +77,7 @@ export class FormQuestionComponent implements OnInit {
     }
   }
 
-  public formToObj() {
+  private formToObj() {
     let question = new Question();
     if (!!this.question) {
       question = this.question;
@@ -82,14 +87,5 @@ export class FormQuestionComponent implements OnInit {
     question.picture = !!this.picture.value ? this.picture : undefined;
     question.answers = this.isUnderstandQuestion ? this.answers : this.correct;
     return question;
-  }
-
-  public onSubmit() {
-    if (this.isFormValid()) {
-      this.dialogRef.close(this.formToObj());
-    }
-  }
-  public onClose() {
-    this.dialogRef.close(undefined);
   }
 }

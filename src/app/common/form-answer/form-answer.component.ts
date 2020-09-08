@@ -20,7 +20,7 @@ export class FormAnswerComponent implements OnInit {
   audio: Media;
   correct: boolean;
 
-  constructor(private fb: FormBuilder, public dialogRef: MdDialogRef<FormAnswerComponent>, @Inject(MD_DIALOG_DATA) public data: any) {
+  constructor(@Inject(MD_DIALOG_DATA) public data: any, public dialogRef: MdDialogRef<FormAnswerComponent>, private fb: FormBuilder) {
     $('.form-answer').addClass('app-dark');
     this.correct = false;
     this.audio = new Media();
@@ -55,11 +55,7 @@ export class FormAnswerComponent implements OnInit {
   }
 
   isFormValid() {
-    if (this.isReadOption) {
-      return this.form.valid && !!this.audio.value;
-    } else {
-      return this.form.valid && !!this.audio.value && this.correct !== undefined;
-    }
+    return this.form.valid && !!this.audio.value;
   }
 
   private objToForm(obj: any) {

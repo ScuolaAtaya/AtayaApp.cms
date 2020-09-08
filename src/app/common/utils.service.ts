@@ -7,9 +7,9 @@ import { FormQuestionComponent } from './form-question/form-question.component';
 
 @Injectable()
 export class UtilsService {
-  private confirmDialogRef: MdDialogRef<ConfirmDialogComponent>;
-  private answerDialogRef: MdDialogRef<FormAnswerComponent>;
-  private questionDialogRef: MdDialogRef<FormQuestionComponent>;
+  confirmDialogRef: MdDialogRef<ConfirmDialogComponent>;
+  answerDialogRef: MdDialogRef<FormAnswerComponent>;
+  questionDialogRef: MdDialogRef<FormQuestionComponent>;
 
   constructor(private dialog: MdDialog) { }
 
