@@ -23,7 +23,8 @@
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center" *ngIf="isReadOption">
           <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
             <md-input-container class="full-wid">
-              <input mdInput placeholder="You must include a marker" [formControl]="form.controls['markerId']">
+              <input mdInput type="number" placeholder="You must include a marker"
+                [formControl]="form.controls['markerId']">
             </md-input-container>
           </div>
         </div>
@@ -41,7 +42,8 @@
         <div class="pad-wrap">
           <md-dialog-actions align="end">
             <button md-button (click)="onClose()">{{ 'Annulla' | translate }}</button>
-            <button md-button color="primary" (click)="onSubmit()" [disabled]="!isFormValid()">{{ 'Ok' | translate }}</button>
+            <button md-button color="primary" (click)="onSubmit()"
+              [disabled]="!isFormValid()">{{ 'Ok' | translate }}</button>
           </md-dialog-actions>
         </div>
       </form>
