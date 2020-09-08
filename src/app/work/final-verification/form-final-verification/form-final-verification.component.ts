@@ -64,7 +64,7 @@ export class FormFinalVerificationComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.form.valid;
+    return this.form.valid && this.questions.length > 0;
   }
 
   goToListPage() {

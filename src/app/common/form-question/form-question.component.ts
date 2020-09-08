@@ -61,7 +61,12 @@ export class FormQuestionComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.form.valid && !!this.audio.value;
+    if (this.isUnderstandQuestion) {
+      const answerCorrect = this.answers.filter(answer => answer.correct === true);
+      return this.form.valid && !!this.audio.value && answerCorrect.length === 1;
+    } else {
+      return this.form.valid && !!this.audio.value;
+    }
   }
 
   private objToForm(question: Question) {

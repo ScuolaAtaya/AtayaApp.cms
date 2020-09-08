@@ -81,7 +81,7 @@ export class FormUnderstandComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.form.valid && !!this.audio.value;
+    return this.form.valid && !!this.audio.value && this.questions.length > 0;
   }
 
   goToListPage() {
