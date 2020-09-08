@@ -14,11 +14,11 @@
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="100">
                         <md-input-container class="full-wid">
-                            <input mdInput [placeholder]="'You must include a title.' | translate"
+                            <input mdInput [placeholder]="'You must include a title' | translate"
                                 [formControl]="form.controls['title']">
                         </md-input-container>
                         <md-input-container class="full-wid">
-                            <input mdInput [placeholder]="'You must include a YouTube Url.' | translate"
+                            <input mdInput [placeholder]="'You must include a YouTube Url' | translate"
                                 [formControl]="form.controls['video_url']">
                         </md-input-container>
                         <md-input-container class="full-wid">
@@ -35,7 +35,7 @@
                 </div>
                 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div class="box-inset box-inset-questionsBox pad-all-md">
-                        <h5 class="mrgn-b-md">Questions</h5>
+                        <h5 class="mrgn-b-md">{{ 'Questions' | translate }}</h5>
                         <ms-questions-input [questions]="questions" [isUnderstandQuestion]="true"></ms-questions-input>
                     </div>
                 </div>

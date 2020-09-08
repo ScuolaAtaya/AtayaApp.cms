@@ -16,7 +16,8 @@
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
           <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
             <md-input-container class="full-wid">
-              <input mdInput placeholder="You must include a title" [formControl]="form.controls['body']">
+              <input mdInput [placeholder]="'You must include a title' | translate"
+                [formControl]="form.controls['body']">
             </md-input-container>
           </div>
         </div>
@@ -33,19 +34,20 @@
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center" *ngIf="!isUnderstandQuestion">
           <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
             <md-checkbox class="example-margin" [(ngModel)]="correct" [ngModelOptions]="{standalone: true}" align="end">
-              Correct</md-checkbox>
+              {{ 'Correct' | translate }}</md-checkbox>
           </div>
         </div>
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center" *ngIf="isUnderstandQuestion">
           <div class="box-inset box-inset-answersBox pad-all-md">
-            <h5 class="mrgn-b-md">Answers</h5>
+            <h5 class="mrgn-b-md">{{ 'Answers' | translate }}</h5>
             <ms-answers-input [model]="answers" [isReadOption]="false"></ms-answers-input>
           </div>
         </div>
         <div class="pad-wrap">
           <md-dialog-actions align="end">
             <button md-button (click)="onClose()">{{ 'Annulla' | translate}}</button>
-            <button md-button color="primary" (click)="onSubmit()" [disabled]="!isFormValid()">{{ 'Ok' | translate }}</button>
+            <button md-button color="primary" (click)="onSubmit()"
+              [disabled]="!isFormValid()">{{ 'Ok' | translate }}</button>
           </md-dialog-actions>
         </div>
       </form>

@@ -14,14 +14,14 @@
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
           <div fxFlex="100">
             <md-input-container class="full-wid">
-              <input mdInput [placeholder]="'You must include a title.' | translate"
+              <input mdInput [placeholder]="'You must include a title' | translate"
                 [formControl]="form.controls['title']">
             </md-input-container>
           </div>
         </div>
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
           <div class="box-inset box-inset-questionsBox pad-all-md">
-            <h5 class="mrgn-b-md">Questions</h5>
+            <h5 class="mrgn-b-md">{{ 'Questions' | translate }}</h5>
             <ms-questions-input [questions]="questions" [isUnderstandQuestion]="false"></ms-questions-input>
           </div>
         </div>
