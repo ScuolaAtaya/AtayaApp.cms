@@ -10,7 +10,7 @@
 </md-list>
 <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100">
     <md-input-container class="full-wid">
-        <input mdInput [placeholder]="placeholder" [(ngModel)]="newString">
+        <input mdInput [placeholder]="placeholder" [(ngModel)]="newString" maxlength="3">
     </md-input-container>
     <button class="mrgn-all-xs" md-fab color="primary" type="button" (click)="addString()">
         <md-icon>add</md-icon>

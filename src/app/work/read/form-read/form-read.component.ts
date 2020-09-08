@@ -84,7 +84,7 @@ export class FormReadComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.form.valid && !!this.picture.value;
+    return this.form.valid && !!this.picture.value && this.markers.length > 0 && this.options.length >= this.markers.length;
   }
 
   addMarker() {
