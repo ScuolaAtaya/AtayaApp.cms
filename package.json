@@ -5,9 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "startStage": "ng serve --environment=stage",
-    "build": "ng build --aot=true",
-    "buildStage": "ng build --aot=true --environment=stage",
+    "start-stage": "ng serve --environment=stage",
+    "build": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build --prod --aot --build-optimizer",
+    "build-prod": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build --prod -c production --aot --build-optimizer",
+    "build-stage": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build --prod -c stage --aot --build-optimizer",
+    "build-dev": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build --prod -c dev --aot --build-optimizer",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
