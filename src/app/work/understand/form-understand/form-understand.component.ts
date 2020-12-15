@@ -104,8 +104,7 @@ export class FormUnderstandComponent implements OnInit {
       understand = this.understand;
     }
     understand.title = this.form.controls.title.value;
-    understand.video_url.value = this.form.controls.video_url.value.replace('https://www.youtube.com/watch?v=', '');
-    console.log('video_url: ' + understand.video_url.value);
+    understand.video_url.value = this.form.controls.video_url.value.replace('https://www.youtube.com/watch?v=', '').trim();
     understand.video_url.credits = this.form.controls.video_credits.value;
     understand.audio = this.audio;
     understand.questions = this.questions;
