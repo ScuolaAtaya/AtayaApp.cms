@@ -4,7 +4,7 @@
     <div *ngIf="!file.value">{{ 'Carica qui la tua foto' | translate }}</div>
     <img *ngIf="file.value" class="picturePreview" [src]="url" />
   </div>
-  <div *ngIf="type == 'mp3'">
+  <div *ngIf="type == 'audio'">
     <div *ngIf="!file.value">{{ 'Carica qui il tuo MP3' | translate }}</div>
     <div *ngIf="file.value">
       <ms-audio-player [audioSource]="url"></ms-audio-player>

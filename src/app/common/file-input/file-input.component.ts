@@ -28,7 +28,8 @@ export class FileInputComponent implements OnInit, OnChanges {
       url: environment.baseUrl + '/media/upload',
       method: 'POST',
       headers: [{ name: 'Authorization', value: 'Bearer ' + this.auth.getUser().token }],
-      autoUpload: true
+      autoUpload: true,
+      allowedFileType: [this.type]
     });
     this.deleteFileButtonTitle = this.type === 'image' ? 'Elimina foto' : 'Elimina MP3';
     this.uploader.onProgressItem = () => this.loading = true;
