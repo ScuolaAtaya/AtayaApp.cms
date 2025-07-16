@@ -21,8 +21,8 @@ const MENUITEMS = [
     type: 'link',
     icon: 'explore'
   }, {
-    state: 'accoglienza',
-    name: 'ACCOGLIENZA ',
+    state: 'presentazione',
+    name: 'PRESENTAZIONE',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -33,8 +33,8 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
-    state: 'il-lavoro',
-    name: 'IL LAVORO ',
+    state: 'lavoro',
+    name: 'LAVORO ',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -45,8 +45,8 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
-    state: 'il-cibo',
-    name: 'IL CIBO ',
+    state: 'cibo',
+    name: 'CIBO ',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -57,8 +57,8 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
-    state: 'pronto',
-    name: 'PRONTO? ',
+    state: 'telefono',
+    name: 'TELEFONO ',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -81,8 +81,8 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
-    state: 'la-salute',
-    name: 'LA SALUTE ',
+    state: 'salute',
+    name: 'SALUTE ',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -93,8 +93,8 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
-    state: 'la-citta',
-    name: 'LA CITTA E I SUOI SERVIZI',
+    state: 'citta',
+    name: 'CITTA SERVIZI',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -106,7 +106,7 @@ const MENUITEMS = [
     ]
   }, {
     state: 'mezzi-di-trasporto',
-    name: 'I MEZZI DI TRASPORTO',
+    name: 'MEZZI DI TRASPORTO',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -117,8 +117,8 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
-    state: 'la-cura-della-casa',
-    name: 'LA CURA DELLA CASA',
+    state: 'cura-della-casa',
+    name: 'CURA DELLA CASA',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -129,8 +129,8 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
-    state: 'il-viaggio',
-    name: 'IL VIAGGIO',
+    state: 'viaggio',
+    name: 'VIAGGIO',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -141,8 +141,8 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
-    state: 'lavoro-cartellonistica',
-    name: 'LAVORO: CARTELLONISTICA',
+    state: 'cartellonistica',
+    name: 'CARTELLONISTICA',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -153,8 +153,8 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
-    state: 'lavoro-rischi-pericoli',
-    name: 'LAVORO: RISCHI E PERICOLI',
+    state: 'rischi-pericoli',
+    name: 'RISCHI E PERICOLI',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -165,8 +165,8 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
-    state: 'lavoro-benessere',
-    name: 'LAVORO: BENESSERE',
+    state: 'benessere-al-lavoro',
+    name: 'BENESSERE AL LAVORO',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -178,7 +178,19 @@ const MENUITEMS = [
     ]
   }, {
     state: 'patente',
-    name: 'PATENTE',
+    name: 'PATENTE DI GUIDA',
+    type: 'sub',
+    icon: 'chat',
+    children: [
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final', name: 'Verifica finale' }
+    ]
+  },  {
+    state: 'edilizia',
+    name: 'EDILIZIA',
     type: 'sub',
     icon: 'chat',
     children: [
@@ -189,6 +201,42 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   }, {
+    state: 'edilizia-2',
+    name: 'EDILIZIA 2',
+    type: 'sub',
+    icon: 'chat',
+    children: [
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final', name: 'Verifica finale' }
+    ]
+  },  {
+    state: 'assistenza-alla-persona',
+    name: 'ASSISTENZA ALLA PERSONA',
+    type: 'sub',
+    icon: 'chat',
+    children: [
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final', name: 'Verifica finale' }
+    ]
+  },{
+    state: 'pulizie',
+    name: 'PULIZIE',
+    type: 'sub',
+    icon: 'chat',
+    children: [
+      { state: 'write', name: 'Scriviamo' },
+      { state: 'read', name: 'Leggiamo' },
+      { state: 'understand', name: 'Capiamo' },
+      { state: 'talk', name: 'Parliamo' },
+      { state: 'final', name: 'Verifica finale' }
+    ]
+  },{
     state: '',
     name: 'Genera il Libro ',
     type: 'createBook',

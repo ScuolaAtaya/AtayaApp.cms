@@ -2,6 +2,8 @@ mat-grid-tile {
     border-spacing: 100pd;
 }
 
-card-header .mat-card-title {
-    font-size: 10px;
-  }
+.mat-card-title {
+    height: 48px;
+    font-size: 16px;
+    text-align: center;
+}
