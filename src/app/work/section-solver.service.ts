@@ -16,7 +16,7 @@ const section = [
   { id: 11, name: 'rischi-pericoli', title: 'Rischi e pericoli' },
   { id: 12, name: 'benessere-al-lavoro', title: 'Benessere al lavoro' },
   { id: 13, name: 'patente', title: 'Patente di guida' },
-  { id: 14, name: 'edilizia', title: 'Edilizia' },
+  { id: 14, name: 'edilizia-1', title: 'Edilizia 1' },
   { id: 15, name: 'edilizia-2', title: 'Edilizia 2' },
   { id: 16, name: 'assistenza-alla-persona', title: 'Assistenza alla persona' },
   { id: 17, name: 'pulizie', title: 'Pulizie' }

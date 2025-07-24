@@ -189,8 +189,8 @@ const MENUITEMS = [
       { state: 'final', name: 'Verifica finale' }
     ]
   },  {
-    state: 'edilizia',
-    name: 'EDILIZIA',
+    state: 'edilizia-1',
+    name: 'EDILIZIA 1',
     type: 'sub',
     icon: 'chat',
     children: [

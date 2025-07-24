@@ -27,7 +27,7 @@ const MENUDASHBOARD = [
     { title: 'Rischi e pericoli', image: 'assets/img/rischi_pericoli.png', route: 'rischi-pericoli' },
     { title: 'Benessere al lavoro', image: 'assets/img/benessere.png', route: 'benessere-al-lavoro' },
     { title: 'Patente di guida', image: 'assets/img/patente.png', route: 'patente' },
-    { title: 'Edilizia', image: 'assets/img/edilizia.png', route: 'edilizia' },
+    { title: 'Edilizia 1', image: 'assets/img/edilizia_1.png', route: 'edilizia-1' },
     { title: 'Edilizia 2', image: 'assets/img/edilizia_2.png', route: 'edilizia-2' },
     { title: 'Assistenza alla persona', image: 'assets/img/assistenza_persona.png', route: 'assistenza-alla-persona' },
     { title: 'Pulizie', image: 'assets/img/pulizie.png', route: 'pulizie' }
