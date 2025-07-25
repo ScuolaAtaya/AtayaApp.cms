@@ -13,20 +13,24 @@ export class Menu {
 }
 
 const MENUDASHBOARD = [
-    { title: 'Accoglienza', image: 'assets/img/accoglienza.png', route: 'accoglienza' },
-    { title: 'Il lavoro', image: 'assets/img/il_lavoro.png', route: 'il-lavoro' },
-    { title: 'Il cibo', image: 'assets/img/il_cibo.png', route: 'il-cibo' },
-    { title: 'Pronto?', image: 'assets/img/pronto.png', route: 'pronto' },
+    { title: 'Presentazione', image: 'assets/img/presentazione.png', route: 'presentazione' },
+    { title: 'Lavoro', image: 'assets/img/lavoro.png', route: 'lavoro' },
+    { title: 'Cibo', image: 'assets/img/cibo.png', route: 'cibo' },
+    { title: 'Telefono', image: 'assets/img/telefono.png', route: 'telefono' },
     { title: 'Come sei? Come stai?', image: 'assets/img/come_sei_come_stai.png', route: 'come-sei-come-stai' },
-    { title: 'La salute', image: 'assets/img/la_salute.png', route: 'la-salute' },
-    { title: 'La città e i suoi servizi', image: 'assets/img/la_citta.png', route: 'la-citta' },
-    { title: 'I mezzi di trasporto', image: 'assets/img/mezzi_di_trasporto.png', route: 'mezzi-di-trasporto' },
-    { title: 'La cura della casa', image: 'assets/img/la_cura_della_casa.png', route: 'la-cura-della-casa' },
-    { title: 'Il viaggio', image: 'assets/img/il_viaggio.png', route: 'il-viaggio' },
-    { title: 'Lavoro: cartellonistica', image: 'assets/img/cartellonistica.png', route: 'lavoro-cartellonistica' },
-    { title: 'Lavoro: rischi e pericoli', image: 'assets/img/rischi_pericoli.png', route: 'lavoro-rischi-pericoli' },
-    { title: 'Lavoro: benessere', image: 'assets/img/benessere.png', route: 'lavoro-benessere' },
-    { title: 'Patente', image: 'assets/img/patente.png', route: 'patente' }
+    { title: 'Salute', image: 'assets/img/salute.png', route: 'salute' },
+    { title: 'Città e servizi', image: 'assets/img/citta.png', route: 'citta' },
+    { title: 'Mezzi di trasporto', image: 'assets/img/mezzi_di_trasporto.png', route: 'mezzi-di-trasporto' },
+    { title: 'Cura della casa', image: 'assets/img/cura_della_casa.png', route: 'cura-della-casa' },
+    { title: 'Viaggio', image: 'assets/img/viaggio.png', route: 'viaggio' },
+    { title: 'Cartellonistica', image: 'assets/img/cartellonistica.png', route: 'cartellonistica' },
+    { title: 'Rischi e pericoli', image: 'assets/img/rischi_pericoli.png', route: 'rischi-pericoli' },
+    { title: 'Benessere al lavoro', image: 'assets/img/benessere.png', route: 'benessere-al-lavoro' },
+    { title: 'Patente di guida', image: 'assets/img/patente.png', route: 'patente' },
+    { title: 'Edilizia 1', image: 'assets/img/edilizia_1.png', route: 'edilizia-1' },
+    { title: 'Edilizia 2', image: 'assets/img/edilizia_2.png', route: 'edilizia-2' },
+    { title: 'Assistenza alla persona', image: 'assets/img/assistenza_persona.png', route: 'assistenza-alla-persona' },
+    { title: 'Pulizie', image: 'assets/img/pulizie.png', route: 'pulizie' }
 ];
 
 const MENUSUBSECTION = [

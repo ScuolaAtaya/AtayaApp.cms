@@ -2,72 +2,92 @@
     color: white;
 }
 
-.mat-accoglienza {
+.mat-presentazione {
     @extend .mat-ruah;
-    background-color: #37ABDF !important;
+    background-color: #FD367D !important;
 }
 
-.mat-il-lavoro {
+.mat-lavoro {
     @extend .mat-ruah;
-    background-color: #2C74B6 !important;
+    background-color: #FA436F !important;
 }
 
-.mat-il-cibo {
+.mat-cibo {
     @extend .mat-ruah;
-    background-color: #72458E !important;
+    background-color: #F85061 !important;
 }
 
-.mat-pronto {
+.mat-telefono {
     @extend .mat-ruah;
-    background-color: #AE007D !important;
+    background-color: #F55D53 !important;
 }
 
 .mat-come-sei-come-stai {
     @extend .mat-ruah;
-    background-color: #D4145D !important;
+    background-color: #F36A45 !important;
 }
 
-.mat-la-salute {
+.mat-salute {
     @extend .mat-ruah;
-    background-color: #D2262D !important;
+    background-color: #F07838 !important;
 }
 
-.mat-la-citta {
+.mat-citta {
     @extend .mat-ruah;
-    background-color: #DD6927 !important;
+    background-color: #EE852A !important;
 }
 
 .mat-mezzi-di-trasporto {
     @extend .mat-ruah;
-    background-color: #EAAC12 !important;
+    background-color: #EB921C !important;
 }
 
-.mat-la-cura-della-casa {
+.mat-cura-della-casa {
     @extend .mat-ruah;
-    background-color: #9ACB2A !important;
+    background-color: #E99F0E !important;
 }
 
-.mat-il-viaggio {
+.mat-viaggio {
     @extend .mat-ruah;
-    background-color: #139B43 !important;
+    background-color: #E6AC00 !important;
 }
 
-.mat-lavoro-cartellonistica {
+.mat-cartellonistica {
     @extend .mat-ruah;
-    background-color: #00796B !important;
+    background-color: #E6AC00 !important;
 }
 
-.mat-lavoro-rischi-pericoli {
+.mat-rischi-pericoli {
     @extend .mat-ruah;
-    background-color: #0097A7 !important;
+    background-color: #A1B63C !important;
 }
 
-.mat-lavoro-benessere {
+.mat-benessere-al-lavoro {
     @extend .mat-ruah;
-    background-color: #455965 !important;
+    background-color: #5CC078 !important;
 }
 
 .mat-patente {
     @extend .mat-ruah;
-    background-color: #6E4C41 !important;
+    background-color: #17CAB4 !important;
+}
+
+.mat-edilizia-1 {
+    @extend .mat-ruah;
+    background-color: #17CAB4 !important;
+}
+
+.mat-edilizia-2 {
+    @extend .mat-ruah;
+    background-color: #6499A2 !important;
+}
+
+.mat-assistenza-alla-persona {
+    @extend .mat-ruah;
+    background-color: #B0678F !important;
+}
+
+.mat-pulizie {
+    @extend .mat-ruah;
+    background-color: #FD367D !important;
 }
