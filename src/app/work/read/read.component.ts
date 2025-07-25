@@ -47,9 +47,11 @@ export class ReadComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => this.section = this.sectionService.retrieveSection(params));
+    this.route.params.subscribe(params => {
+      this.section = this.sectionService.retrieveSection(params);
+      this.downloadData();
+    });
     this.translate.get('Leggiamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
-    this.downloadData();
   }
 
   menuAction(item: any, menutItem: any) {
@@ -63,8 +65,8 @@ export class ReadComponent implements OnInit {
             (err: string) => console.log('Error occured : ' + err)
           );
         }
-     });
-   } else {
+      });
+    } else {
       this.router.navigate([this.section.name + '/read/exercise', id]);
     }
   }
