@@ -44,9 +44,11 @@ export class UnderstandComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.route.params.subscribe(params => this.section = this.sectionService.retrieveSection(params));
+        this.route.params.subscribe(params => {
+            this.section = this.sectionService.retrieveSection(params);
+            this.downloadData();
+        });
         this.translate.get('Capiamo').subscribe((translatedText: string) => this.pageTitleService.setTitle(translatedText));
-        this.downloadData();
     }
 
     menuAction(item: any, menutItem: any) {
